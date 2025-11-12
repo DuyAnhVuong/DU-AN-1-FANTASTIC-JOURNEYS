@@ -5,53 +5,54 @@ require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
-require_once './controllers/AdminDanhMucController.php';
-require_once './controllers/AdminSanPhamController.php';
-require_once './controllers/AdminDonHangController.php';
+// require_once './controllers/AdminDanhMucController.php';
+// require_once './controllers/AdminSanPhamController.php';
+// require_once './controllers/AdminDonHangController.php';
+// require_once './controllers/AdminBaoCaoThongKeController.php';
+// require_once './controllers/AdminTaiKhoanController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
-require_once './controllers/AdminTaiKhoanController.php';
 
 // Require toàn bộ file Models
-require_once './models/AdminDanhMuc.php';
-require_once './models/AdminSanPham.php';
-require_once './models/AdminDonHang.php';
-require_once './models/AdminTaiKhoan.php';
+// require_once './models/AdminDanhMuc.php';
+// require_once './models/AdminSanPham.php';
+// require_once './models/AdminDonHang.php';
+// require_once './models/AdminTaiKhoan.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
 
-if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
-    // Kiểm tra đăng nhập admin
-    checkLoginAdmin();
-}
+// if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
+//     // Kiểm tra đăng nhập admin
+//     checkLoginAdmin();
+// }
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
 match ($act) {
     // route danh mục
-    'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(),
-    'form-them-danh-muc' => (new AdminDanhMucController())->formAddDanhMuc(),
-    'them-danh-muc' => (new AdminDanhMucController())->postAddDanhMuc(),
-    'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
-    'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
-    'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
+    // 'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(),
+    // 'form-them-danh-muc' => (new AdminDanhMucController())->formAddDanhMuc(),
+    // 'them-danh-muc' => (new AdminDanhMucController())->postAddDanhMuc(),
+    // 'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
+    // 'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
+    // 'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
 
-    // route Sản phẩm
-    'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
-    'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(),
-    'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(),
-    'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
-    'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
-    'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(),
-    'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
-    'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
+    // // route Sản phẩm
+    // 'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
+    // 'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(),
+    // 'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(),
+    // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
+    // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
+    // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(),
+    // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
+    // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
 
-     // route đơn hàng
-    'don-hang' => (new AdminDonHangController())->danhSachDonHang(),
-    'sua-don-hang' => (new AdminDonHangController())->postEditDonHang(),
-    'chi-tiet-don-hang' => (new AdminDonHangController())->detailDonHang(),
-    'form-sua-don-hang' => (new AdminDonHangController())->formEditDonHang(),
+    //  // route đơn hàng
+    // 'don-hang' => (new AdminDonHangController())->danhSachDonHang(),
+    // 'sua-don-hang' => (new AdminDonHangController())->postEditDonHang(),
+    // 'chi-tiet-don-hang' => (new AdminDonHangController())->detailDonHang(),
+    // 'form-sua-don-hang' => (new AdminDonHangController())->formEditDonHang(),
     // route Trang chủ
     '/'=>(new AdminBaoCaoThongKeController())->home(),
 
@@ -80,7 +81,7 @@ match ($act) {
 
 
         //route login 
-        'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
-        'check-login-admin'=> (new AdminTaiKhoanController())->login(),
-        'logout-admin'=> (new AdminTaiKhoanController())->logout(),
+        // 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
+        // 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
+        // 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
 };
