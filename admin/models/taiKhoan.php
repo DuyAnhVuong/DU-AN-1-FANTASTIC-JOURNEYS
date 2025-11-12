@@ -1,8 +1,12 @@
 <?php
 class taiKhoan
 {
-    public $name;
-    public $email;
-    public $password;
+    public $TaiKhoanID;
+    public $TenDangNhap;
+    public $MatKhauHash;
+
+    public $Email;
+
+    public $VaiTro;
 }
 ?>
