@@ -54,34 +54,34 @@ match ($act) {
     // 'chi-tiet-don-hang' => (new AdminDonHangController())->detailDonHang(),
     // 'form-sua-don-hang' => (new AdminDonHangController())->formEditDonHang(),
     // route Trang chủ
-    '/'=>(new AdminBaoCaoThongKeController())->home(),
+    '/' => (new AdminBaoCaoThongKeController())->home(),
 
 
     // route quản lí tài khoản
-        //Quản lí tài khoản quản trị
-        'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->danhSachQuanTri(),
-        'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
-        'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
-        'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
-        'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
+    //Quản lí tài khoản quản trị
+    'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->danhSachQuanTri(),
+    'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
+    'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
+    'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
+    'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
 
-        //route reset password
-        'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
+    //route reset password
+    'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
 
-        //route quản lý tài khoản khach hàng
-        'list-tai-khoan-khach-hang' => (new AdminTaiKhoanController())->danhSachKhachHang(),
-        'form-sua-khach-hang' => (new AdminTaiKhoanController())->formEditKhachHang(),
-        'sua-khach-hang' => (new AdminTaiKhoanController())->postEditKhachHang(),
-        'chi-tiet-khach-hang' => (new AdminTaiKhoanController())->detailKhachHang(),
+    //route quản lý tài khoản khach hàng
+    'list-tai-khoan-khach-hang' => (new AdminTaiKhoanController())->danhSachKhachHang(),
+    'form-sua-khach-hang' => (new AdminTaiKhoanController())->formEditKhachHang(),
+    'sua-khach-hang' => (new AdminTaiKhoanController())->postEditKhachHang(),
+    'chi-tiet-khach-hang' => (new AdminTaiKhoanController())->detailKhachHang(),
 
-        // route quản lý tài khoản cá nhân
-        'form-sua-thong-tin-ca-nhan-quan-tri'=>(new AdminTaiKhoanController())->formEditCaNhanQuanTri(),
-        // 'sua-thong-tin-ca-nhan-quan-tri'=>(new AdminTaiKhoanController())->postEditCaNhanQuanTri(),
-        'sua-mat-khau-ca-nhan-quan-tri'=>(new AdminTaiKhoanController())->postEditMatKhauCaNhan(),
+    // route quản lý tài khoản cá nhân
+    'form-sua-thong-tin-ca-nhan-quan-tri' => (new AdminTaiKhoanController())->formEditCaNhanQuanTri(),
+    // 'sua-thong-tin-ca-nhan-quan-tri'=>(new AdminTaiKhoanController())->postEditCaNhanQuanTri(),
+    'sua-mat-khau-ca-nhan-quan-tri' => (new AdminTaiKhoanController())->postEditMatKhauCaNhan(),
 
 
-        //route login 
-        // 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
-        // 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
-        // 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
+//route login 
+// 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
+// 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
+// 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
 };
