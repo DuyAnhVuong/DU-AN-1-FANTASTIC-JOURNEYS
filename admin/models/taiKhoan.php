@@ -1,5 +1,7 @@
 <?php
-    class taiKhoan{
-        public $name;
-    }
+class taiKhoan
+{
+    public $name;
+    public $email;
+}
 ?>
