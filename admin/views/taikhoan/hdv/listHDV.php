@@ -50,12 +50,12 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($listQuanTri as $key=>$quanTri):?>
+                    <?php foreach($listHDV as $key=>$hdv):?>
                   <tr>
                    <td><?=$key+1 ?></td>
-                   <td><?=$quanTri['TenDangNhap']?></td>
-                   <td><?=$quanTri['Email']?></td>
-                   <td><?=$quanTri['VaiTro']==1 ?'Admin':'HDV'?></td>
+                   <td><?=$hdv['TenDangNhap']?></td>
+                   <td><?=$hdv['Email']?></td>
+                   <td><?=$hdv['VaiTro']==2 ?'HDV':'Admin'?></td>
                   
                    <td>
                     <a href="">
