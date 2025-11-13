@@ -1,91 +1,92 @@
 <!-- header -->
 <?php
-  require './views/layout/header.php';
+require './views/layout/header.php';
 ?>
-  <!-- Navbar -->
+<!-- Navbar -->
 <?php
-  include './views/layout/navbar.php';
+include './views/layout/navbar.php';
 ?>
-  <!-- /.navbar -->
+<!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
- <?php
-  include './views/layout/sidebar.php';
+<!-- Main Sidebar Container -->
+<?php
+include './views/layout/sidebar.php';
 ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Quản lý danh mục sản phẩm</h1>
-          </div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Quản lý danh Tour du lịch</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <a href="<?=BASE_URL_ADMIN .'?act=form-them-danh-muc' ?>">
-                  <button class="btn btn-success">Thêm danh mục</button>
-                </a>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <a href="<?= BASE_URL_ADMIN . '?act=form-them-danh-muc' ?>">
+                <button class="btn btn-success">Thêm danh mục</button>
+              </a>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
                   <tr>
                     <th>STT</th>
                     <th>Tên danh mục</th>
                     <th>Mô tả</th>
                     <th>Thao tác</th>
                   </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($listDanhMuc as $key=>$danhMuc):?>
-                  <tr>
-                   <td><?=$key+1 ?></td>
-                   <td><?=$danhMuc['ten_danh_muc']?></td>
-                   <td><?=$danhMuc['mo_ta']?></td>
-                   <td>
-                    <a href="<?=BASE_URL_ADMIN .'?act=form-sua-danh-muc&id_danh_muc='.$danhMuc['id'] ?>">
-                      <button class="btn btn-warning">Sửa</button>
-                    </a>
-                    <a href="<?=BASE_URL_ADMIN .'?act=xoa-danh-muc&id_danh_muc='.$danhMuc['id'] ?>"onclick="return confirm('Bạn có đồng ý xóa hay không')">
-                    <button class="btn btn-danger">Xóa</button>
-                    </a>
-                   </td>
-                  </tr>
-                  <?php endforeach?>
-                  </tbody>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
+                </thead>
+                <tbody>
+                  <?php foreach ($listDanhMuc as $key => $danhMuc): ?>
+                    <tr>
+                      <td><?= $key + 1 ?></td>
+                      <td><?= $danhMuc['ten_danh_muc'] ?></td>
+                      <td><?= $danhMuc['mo_ta'] ?></td>
+                      <td>
+                        <a href="<?= BASE_URL_ADMIN . '?act=form-sua-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>">
+                          <button class="btn btn-warning">Sửa</button>
+                        </a>
+                        <a href="<?= BASE_URL_ADMIN . '?act=xoa-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>"
+                          onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                          <button class="btn btn-danger">Xóa</button>
+                        </a>
+                      </td>
+                    </tr>
+                  <?php endforeach ?>
+                </tbody>
+                </tfoot>
+              </table>
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.col -->
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- footer -->
-    <?php
-    include './views/layout/footer.php';
-    ?>
-  <!-- endfooter -->
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- footer -->
+<?php
+include './views/layout/footer.php';
+?>
+<!-- endfooter -->
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -107,4 +108,5 @@
 <!-- Code injected by live-server -->
 
 </body>
+
 </html>

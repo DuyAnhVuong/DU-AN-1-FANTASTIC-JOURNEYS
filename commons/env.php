@@ -1,12 +1,11 @@
 <?php
-
-// Biến môi trường, dùng chung toàn hệ thống
-// Khai báo dưới dạng HẰNG SỐ để không phải dùng $GLOBALS
-
-define('BASE_URL', 'http://localhost/duan1_fantastic_journeys/');
+define('BASE_URL', 'http://localhost/DU-AN-1-FANTASTIC-JOURNEYS/');
 
 //đường dẫn vào đường admin
-define('BASE_URL_ADMIN', 'http://localhost/duan1_fantastic_journeys/admin/');
+define('BASE_URL_ADMIN', 'http://localhost/DU-AN-1-FANTASTIC-JOURNEYS/Admin/');
+
+
+
 
 define('DB_HOST', 'localhost');
 define('DB_PORT', 3306);
