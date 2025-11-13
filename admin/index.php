@@ -40,9 +40,9 @@ match ($act) {
     'danh-muc' => (new AdminDanhMucController())->danhSachDanhMuc(),
     'form-them-danh-muc' => (new AdminDanhMucController())->formAddDanhMuc(),
     'them-danh-muc' => (new AdminDanhMucController())->postAddDanhMuc(),
-    // 'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
-    // 'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
-    // 'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
+    'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
+    'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
+    'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
 
     // // route Sản phẩm
     // 'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
