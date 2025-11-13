@@ -96,11 +96,11 @@ include './views/layout/footer.php';
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
-      "lengthChange": false,
+      "lengthChange": false,g
       "searching": false,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": false,it 
       "responsive": true,
     });
   });

@@ -14,7 +14,6 @@ require_once './controllers/HomeController.php';
 // require_once './models/DonHang.php';
 // require_once './models/DanhMuc.php';
 
-
 // Route
 // $act = $_GET['act'] ?? '/';
 
