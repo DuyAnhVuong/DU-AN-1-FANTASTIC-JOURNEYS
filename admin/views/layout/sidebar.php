@@ -2,6 +2,8 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="../uploads/logo.jpg" alt="Fantastic" class="brand-image img-circle elevation-3" style="opacity: .8">
+
+
       <span class="brand-text font-weight-light">FANTASTIC JOURNEYS</span>
     </a>
 
@@ -14,6 +16,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">ADMIN</a>
+
         </div>
       </div>
 
@@ -57,7 +60,7 @@
             <a href="<?=BASE_URL_ADMIN .'?act=don-hang' ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-               Đơn hàng
+               Lịch trình tour
               </p>
             </a>
           </li>
@@ -80,6 +83,7 @@
                     <p>Tài khoản HDV</p>
                   </a>
                 </li>
+             
                
               </ul>
            </li>
