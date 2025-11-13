@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="https://sgweb.vn/wp-content/uploads/2022/12/Logo-giup-khach-hang-nho-toi-shop-giay-cua-ban-lau-hon.jpg" alt="DuyAnhVuong06" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">DA Shop</span>
+      <span class="brand-text font-weight-light">FANTASTIC JOURNEYS</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,7 +13,7 @@
           <img src="https://fagopet.vn/storage/in/r5/inr5f4qalj068szn2bs34qmv28r2_phoi-giong-meo-munchkin.webp" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Duy Anh Vuong</a>
+          <a href="#" class="d-block">FANTASTIC JOURNEYS</a>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
             <a href="<?=BASE_URL_ADMIN .'?act=danh-muc' ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Danh mục sản phẩm
+                Danh mục tour
               
               </p>
             </a>
@@ -48,7 +48,7 @@
             <a href="<?=BASE_URL_ADMIN .'?act=san-pham' ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-               Sản phẩm
+               Tour
               
               </p>
             </a>
@@ -57,7 +57,7 @@
             <a href="<?=BASE_URL_ADMIN .'?act=don-hang' ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-               Đơn hàng
+               Lịch trình tour
               </p>
             </a>
           </li>
@@ -77,15 +77,10 @@
                 <li class="nav-item">
                   <a href="<?=BASE_URL_ADMIN .'?act=list-tai-khoan-khach-hang' ?>" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
-                    <p>Tài khoản Khách hàng</p>
+                    <p>Tài khoản HDV</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="<?=BASE_URL_ADMIN .'?act=form-sua-thong-tin-ca-nhan-quan-tri' ?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Tài khoản cá nhân</p>
-                  </a>
-                </li>
+             
                
               </ul>
            </li>
