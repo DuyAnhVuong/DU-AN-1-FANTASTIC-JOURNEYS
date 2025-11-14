@@ -18,7 +18,6 @@ require_once './models/AdminDanhMuc.php';
 // require_once './models/AdminSanPham.php';
 // require_once './models/AdminDonHang.php';
 require_once './models/AdminTaiKhoan.php';
-require_once './models/AdminHDV.php ';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -63,11 +62,11 @@ match ($act) {
 
     // route quản lí tài khoản
 // Quản lí tài khoản quản trị
-    'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->danhSachQuanTri(),
-    // 'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
-// 'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
-// 'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
-// 'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
+    'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->listTaiKhoan(),
+    'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
+'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
+'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
+'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
 
     //route reset password
 // 'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
@@ -77,7 +76,7 @@ match ($act) {
 
 
     //route quản lý tài khoản HDV
-    'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
+    // 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
 // 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
 // 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
 // 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),

@@ -44,21 +44,23 @@
                   <tr>
                     <th>STT</th>
                     <th>Tên đăng nhập</th>
+                    <th>Mật khẩu</th>
                     <th>Email</th>
                     <th>Vai trò</th>
                     <th>Hành động</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($listQuanTri as $key=>$quanTri):?>
+                    <?php foreach($listTaiKhoan as $key=>$quanTri):?>
                   <tr>
                    <td><?=$key+1 ?></td>
                    <td><?=$quanTri['TenDangNhap']?></td>
+                   <td><?=$quanTri['MatKhauHash']?></td>
                    <td><?=$quanTri['Email']?></td>
                    <td><?=$quanTri['VaiTro']==1 ?'Admin':'HDV'?></td>
                   
                    <td>
-                    <a href="">
+                    <a href="<?=BASE_URL_ADMIN .'?act=form-sua-quan-tri&id='.$quanTri['TaiKhoanID'] ?>">
                       <button class="btn btn-warning">Sửa</button>
                     </a>
                     </a>
@@ -67,16 +69,7 @@
                   <?php endforeach?>
                   </tbody>
                   </tfoot>
-                  <tr>
-                    <tr>
-                    <th>STT</th>
-                    <th>Tên đăng nhập</th>
-                    <th>Email</th>
-                    <th>Vai trò</th>
-                    <th>Hành động</th>
-                    
-                  </tr>
-                  </tr>
+                  
                  
                 </table>
               </div>
