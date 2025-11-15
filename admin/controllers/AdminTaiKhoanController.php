@@ -153,5 +153,14 @@ class AdminTaiKhoanController
         }
     }
 }
+public function deleteQuanTri(){
+    $id = $_GET['id'];
+    $taiKhoan=$this->modelTaiKhoan->getDetailTaiKhoan($id);
+    if($taiKhoan){
+        $this->modelTaiKhoan->delete($id);
+    }
+    header("location: " .BASE_URL_ADMIN. '?act=list-tai-khoan-quan-tri');
+    exit();
+}
 }
 ?>
