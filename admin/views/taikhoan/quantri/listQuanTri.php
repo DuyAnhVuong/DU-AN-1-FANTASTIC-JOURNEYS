@@ -63,6 +63,9 @@
                     <a href="<?=BASE_URL_ADMIN .'?act=form-sua-quan-tri&id='.$quanTri['TaiKhoanID'] ?>">
                       <button class="btn btn-warning">Sửa</button>
                     </a>
+                       <a href="<?=BASE_URL_ADMIN .'?act=xoa-quan-tri&id='.$quanTri['TaiKhoanID'] ?>" onclick="return confirm('Bạn có đồng ý xoá không?')"> 
+                      <button class="btn btn-danger">Xoá</button>
+                    </a>
                     </a>
                    </td>
                   </tr>

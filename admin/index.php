@@ -64,10 +64,10 @@ match ($act) {
 // Quản lí tài khoản quản trị
     'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->listTaiKhoan(),
     'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
-'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
-'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
-'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
-
+    'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
+    'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
+    'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
+    'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
     //route reset password
 // 'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
 
