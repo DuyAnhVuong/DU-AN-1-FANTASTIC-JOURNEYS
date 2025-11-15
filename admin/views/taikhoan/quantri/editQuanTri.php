@@ -1,104 +1,83 @@
-<!-- header -->
 <?php
-  require './views/layout/header.php';
+require './views/layout/header.php';
 ?>
-  <!-- Navbar -->
 <?php
-  include './views/layout/navbar.php';
+include './views/layout/navbar.php';
 ?>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
- <?php
-  include './views/layout/sidebar.php';
+<?php
+include './views/layout/sidebar.php';
 ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+<div class="content-wrapper">
     <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Quản lý tài khoản Admin</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý tài khoản Admin</h1>
+                </div>
+            </div>
+        </div></section>
 
-    <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
- 
-            <div class="card card-dark">
-              <div class="card-header default_cursor_land">
-                <h3 class="card-title default_cursor_land">Sửa thông tin tài khoản Admin : <?=$quanTri['ho_ten'];?></h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="<?=BASE_URL_ADMIN .'?act=sua-quan-tri'; ?>" method="POST">
-                <div class="card-body default_cursor_land">
-                 <div class="form-group">
-                    <label >Họ tên</label>
-                    <input type="text" class="form-control" name="ho_ten" value="<?=$quanTri['ho_ten']?>"  placeholder="Nhập họ tên">
-                    <?php if(isset($_SESSION['error']['ho_ten'])) { ?>
-                        <p class="text-danger"><?= $_SESSION['error']['ho_ten'] ?></p>
-                   <?php }?>
-                  </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-dark">
+                        <div class="card-header default_cursor_land">
+                            <h3 class="card-title default_cursor_land">Sửa thông tin tài khoản Admin : <?=$quanTri['TenDangNhap'];?></h3>
+                        </div>
+                        <form action="<?=BASE_URL_ADMIN .'?act=sua-quan-tri'; ?>" method="POST">
+                            <div class="card-body default_cursor_land">
+                                
+                                <input type="hidden" name="id" value="<?=$quanTri['TaiKhoanID']?>"> 
+                                
+                                <div class="form-group">
+                                    <label >Họ tên</label>
+                                    <input type="text" class="form-control" name="TenDangNhap" value="<?=$quanTri['TenDangNhap']?>"  placeholder="Nhập họ tên">
+                                    <?php if(isset($_SESSION['error']['TenDangNhap'])) { ?>
+                                        <p class="text-danger"><?= $_SESSION['error']['TenDangNhap'] ?></p>
+                                    <?php }?>
+                                </div>
 
 
-                  <div class="form-group default_cursor_land col-12">
-                    <label >Email</label>
-                    <input type="email" class="form-control" name="email" value="<?=$quanTri['email']?>"  placeholder="Nhập email">
-                    <?php if(isset($_SESSION['error']['email'])) { ?>
-                        <p class="text-danger"><?= $_SESSION['error']['email'] ?></p>
-                   <?php }?>
-                  </div>
+                                <div class="form-group default_cursor_land col-12">
+                                    <label >Email</label>
+                                    <input type="email" class="form-control" name="Email" value="<?=$quanTri['Email']?>"  placeholder="Nhập Email">
+                                    <?php if(isset($_SESSION['error']['Email'])) { ?>
+                                        <p class="text-danger"><?= $_SESSION['error']['Email'] ?></p>
+                                    <?php }?>
+                                </div>
 
 
-                  <div class="form-group default_cursor_land col-12">
-                    <label >Số điện thoại</label>
-                    <input type="text" class="form-control" name="so_dien_thoai" value="<?=$quanTri['so_dien_thoai']?>"  placeholder="Nhập so_dien_thoai">
-                    <?php if(isset($_SESSION['error']['so_dien_thoai'])) { ?>
-                        <p class="text-danger"><?= $_SESSION['error']['so_dien_thoai'] ?></p>
-                   <?php }?>
-                  </div>
+                                <div class="form-group default_cursor_land col-12">
+                                    <label >Mật khẩu (Để trống nếu không thay đổi)</label>
+                                    <input type="password" class="form-control" name="MatKhauHash" placeholder="Nhập Mật khẩu mới">
+                                    <?php if(isset($_SESSION['error']['MatKhauHash'])) { ?>
+                                        <p class="text-danger"><?= $_SESSION['error']['MatKhauHash'] ?></p>
+                                    <?php }?>
+                                </div>
 
-                  
-                    <div class="form-group">
-                                    <label for="trang_thai">Trạng thái tài khoản</label>
-                                    <select id="trang_thai" name="trang_thai" class="form-control custom-select">
-                                       <option <?=$quanTri['trang_thai'] == 1 ? 'selected': ''?> value="1">Online</option>
-                                       <option <?=$quanTri['trang_thai'] !== 1 ? 'selected': ''?> value="2">Offline</option>
+                                
+                                <div class="form-group">
+                                    <label for="VaiTro">Chức vụ</label>
+                                    <select id="VaiTro" name="VaiTro" class="form-control custom-select">
+                                        <option <?= ($quanTri['VaiTro'] == 1) ? 'selected': ''?> value="1">Admin</option>
+                                        <option <?= ($quanTri['VaiTro'] == 2) ? 'selected': ''?> value="2">HDV</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="card-footer default_cursor_land">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer default_cursor_land">
-                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-              </form>
             </div>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- footer -->
-    <?php
-    include './views/layout/footer.php';
-    ?>
-  <!-- endfooter -->
-<!-- Page specific script -->
-<!-- Code injected by live-server -->
-
+        </section>
+    </div>
+<?php
+include './views/layout/footer.php';
+?>
 </body>
 </html>
