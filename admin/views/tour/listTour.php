@@ -50,39 +50,35 @@ include './views/layout/sidebar.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-primary">Thêm</button>
-                                                    </a>
+                                    <a href="<?= BASE_URL_ADMIN . '?act=form-tour' ?>">
+                                        <button class="btn btn-primary">Thêm</button>
+                                    </a>
                                     <?php foreach ($listTour as $key => $tourr): ?>
                                         <tr>
                                             <td><?= $key + 1 ?></td>
                                             <td><?= $tourr['TenTour'] ?></td>
                                             <td>
-                                                <img src="<?= BASE_URL . $image['hinh_anh'] ?>" style="width:100px" alt=""
-                                                    onerror="this.onerror=null; this.src='https://azpet.com.vn/wp-content/uploads/2024/11/z6015559978898_aaaa70a3bca6d9869da9a49f1deb9567-1536x1536.jpg'">
+                                                <img src="<?= BASE_URL . $tuor['image'] ?>" style="width:100px" alt="">
                                             </td>
                                             <td><?= $tourr['LoaiTourID'] ?></td>
-                                            <td><?= $tourr['MoTa'] ?></td>
+                                            <td class="mota"><?= $tourr['MoTa'] ?></td>
                                             <td><?= $tourr['NgayTao'] ?></td>
                                             <td><?= $tourr['Gia'] ?></td>
 
 
                                             <td>
-                                                <div class="btn-group">
-                                                   
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
+                                                <div class=" btn-group">
+
+                                                    <a href="">
                                                         <button class="btn btn-warning">Sửa</button>
                                                     </a>
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-primary">Xóa</button>
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-tour&id=' . $tourr['TourID'] ?>"
+                                                        onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                                                        <button class="btn btn-danger">Xóa</button>
                                                     </a>
 
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-warning">Chi tiết</button>
+                                                    <a href="">
+                                                        <button class="btn btn-primary">Chi tiết</button>
                                                     </a>
                                                 </div>
                                             </td>
@@ -133,5 +129,19 @@ include './views/layout/footer.php';
 <!-- Code injected by live-server -->
 
 </body>
+<style>
+    .mota {
+        /* Đặt chiều rộng cố định */
+        width: 550px;
+        /* HOẶC đặt chiều rộng tối đa */
+        max-width: 550px;
+        /* Giúp ẩn nội dung thừa, nhưng nội dung dài sẽ bị cắt */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    px;
+</style>
 
 </html>

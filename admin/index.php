@@ -51,9 +51,12 @@ match ($act) {
 
     //  // route đơn hàng
     'tour' => (new AdminTourController())->danhSachTour(),
+    'form-tour' => (new AdminTourController())->formAddTour(),
+    'them-tour' => (new AdminTourController())->postAddTour(),
     // 'sua-tuor' => (new AdminTuorController())->postEditTuor(),
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     // 'form-sua-tuor' => (new AdminTuorController())->formEditTuor(),
+    'xoa-tour' => (new AdminTourController())->deleteTour(),
 
     // route Trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
