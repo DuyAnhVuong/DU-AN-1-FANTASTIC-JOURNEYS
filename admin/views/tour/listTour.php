@@ -40,16 +40,20 @@ include './views/layout/sidebar.php';
                                 <thead>
                                     <tr>
                                         <th>TourID </th>
-                                        <th>TenTour</th>
-                                        <th>Image</th>
-                                        <th>LoaiTourID</th>
-                                        <th>MoTa</th>
-                                        <th>NgayTao</th>
-                                        <th>Gia</th>
-
+                                        <th>Tên tour</th>
+                                        <th>Ảnh tour</th>
+                                        <th>Loại tour</th>
+                                        <th>Mô tả</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Giá</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                     <a
+                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
+                                                        <button class="btn btn-primary">Thêm</button>
+                                                    </a>
                                     <?php foreach ($listTour as $key => $tourr): ?>
                                         <tr>
                                             <td><?= $key + 1 ?></td>
@@ -66,10 +70,7 @@ include './views/layout/sidebar.php';
 
                                             <td>
                                                 <div class="btn-group">
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-primary">Thêm</button>
-                                                    </a>
+                                                   
                                                     <a
                                                         href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
