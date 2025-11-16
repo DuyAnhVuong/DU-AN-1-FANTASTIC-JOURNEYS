@@ -7,16 +7,15 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 // Require toàn bộ file Controllers
 
 require_once './controllers/AdminDanhMucController.php';
-// require_once './controllers/AdminTuorController.php';
 require_once './controllers/AdminTaiKhoanController.php';
-
 require_once './controllers/AdminBaoCaoThongKeController.php';
+require_once './controllers/AdminTourController.php';
 
 // Require toàn bộ file Models
 
 require_once './models/AdminDanhMuc.php';
 // require_once './models/AdminSanPham.php';
-// require_once './models/AdminDonHang.php';
+require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 
 // Route
@@ -51,7 +50,7 @@ match ($act) {
 
 
     //  // route đơn hàng
-    // 'tuor' => (new AdminTuorController())->danhSachTuor(),
+    'tour' => (new AdminTourController())->danhSachTour(),
     // 'sua-tuor' => (new AdminTuorController())->postEditTuor(),
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     // 'form-sua-tuor' => (new AdminTuorController())->formEditTuor(),
@@ -69,14 +68,13 @@ match ($act) {
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
     //route reset password
-// 'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
 
 
 
 
 
-    //route quản lý tài khoản HDV
-    // 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
+//route quản lý tài khoản HDV
+// 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
 // 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
 // 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
 // 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),
