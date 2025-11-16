@@ -41,6 +41,7 @@
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . "?act=danh-muc" ?>" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
+
             <p>
               Danh mục tour
 
@@ -58,7 +59,7 @@
         </li>
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . '?act=don-hang' ?>" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="fa-solid fa-calendar"></i>
             <p>
               Lịch trình tour
             </p>
@@ -74,17 +75,11 @@
             <li class="nav-item">
               <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-quan-tri' ?>" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
-                <p>Tài khoản Admin</p>
+                <p>Tài khoản</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-hdv' ?>" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Tài khoản HDV</p>
-              </a>
             </li>
-
-
           </ul>
         </li>
       </ul>
