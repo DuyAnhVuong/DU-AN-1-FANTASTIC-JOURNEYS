@@ -20,7 +20,7 @@ include './views/layout/sidebar.php';
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý danh sách đơn hàng</h1>
+                    <h1>Quản lý Tour</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -39,36 +39,49 @@ include './views/layout/sidebar.php';
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Tên người nhận</th>
-                                        <th>SDT người nhận</th>
-                                        <th>Ngày đặt</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thao tác</th>
+                                        <th>TourID </th>
+                                        <th>TenTour</th>
+                                        <th>Image</th>
+                                        <th>LoaiTourID</th>
+                                        <th>MoTa</th>
+                                        <th>NgayTao</th>
+                                        <th>Gia</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($listDonHang as $key=>$donHang): ?>
+                                    <?php foreach ($listTour as $key => $tourr): ?>
                                         <tr>
                                             <td><?= $key + 1 ?></td>
-                                            <td><?= $donHang['ma_don_hang'] ?></td>
-                                            <td><?= $donHang['ten_nguoi_nhan'] ?></td>
-                                            <td><?= $donHang['sdt_nguoi_nhan'] ?></td>
-                                            <td><?= $donHang['ngay_dat'] ?></td>
-                                            <td><?= $donHang['tong_tien'] ?></td>
-                                            <td><?= $donHang['ten_trang_thai'] ?></td>
+                                            <td><?= $tourr['TenTour'] ?></td>
+                                            <td>
+                                                <img src="<?= BASE_URL . $image['hinh_anh'] ?>" style="width:100px" alt=""
+                                                    onerror="this.onerror=null; this.src='https://azpet.com.vn/wp-content/uploads/2024/11/z6015559978898_aaaa70a3bca6d9869da9a49f1deb9567-1536x1536.jpg'">
+                                            </td>
+                                            <td><?= $tourr['LoaiTourID'] ?></td>
+                                            <td><?= $tourr['MoTa'] ?></td>
+                                            <td><?= $tourr['NgayTao'] ?></td>
+                                            <td><?= $tourr['Gia'] ?></td>
+
 
                                             <td>
                                                 <div class="btn-group">
                                                     <a
                                                         href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-primary">Chi tiết</button>
+                                                        <button class="btn btn-primary">Thêm</button>
                                                     </a>
                                                     <a
                                                         href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
+                                                    </a>
+                                                    <a
+                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
+                                                        <button class="btn btn-primary">Xóa</button>
+                                                    </a>
+
+                                                    <a
+                                                        href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
+                                                        <button class="btn btn-warning">Chi tiết</button>
                                                     </a>
                                                 </div>
                                             </td>
@@ -76,16 +89,7 @@ include './views/layout/sidebar.php';
                                     <?php endforeach ?>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Tên người nhận</th>
-                                        <th>SDT người nhận</th>
-                                        <th>Ngày đặt</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thao tác</th>
-                                    </tr>
+
                                 </tfoot>
                             </table>
                         </div>
