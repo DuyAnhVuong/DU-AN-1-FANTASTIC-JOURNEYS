@@ -20,7 +20,7 @@ include './views/layout/sidebar.php';
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý danh sách đơn hàng</h1>
+                    <h1>Quản lý Tour</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -39,36 +39,46 @@ include './views/layout/sidebar.php';
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Tên người nhận</th>
-                                        <th>SDT người nhận</th>
-                                        <th>Ngày đặt</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thao tác</th>
+                                        <th>TourID </th>
+                                        <th>Tên tour</th>
+                                        <th>Ảnh tour</th>
+                                        <th>Loại tour</th>
+                                        <th>Mô tả</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Giá</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($listDonHang as $key=>$donHang): ?>
+                                    <a href="<?= BASE_URL_ADMIN . '?act=form-tour' ?>">
+                                        <button class="btn btn-primary">Thêm</button>
+                                    </a>
+                                    <?php foreach ($listTour as $key => $tourr): ?>
                                         <tr>
                                             <td><?= $key + 1 ?></td>
-                                            <td><?= $donHang['ma_don_hang'] ?></td>
-                                            <td><?= $donHang['ten_nguoi_nhan'] ?></td>
-                                            <td><?= $donHang['sdt_nguoi_nhan'] ?></td>
-                                            <td><?= $donHang['ngay_dat'] ?></td>
-                                            <td><?= $donHang['tong_tien'] ?></td>
-                                            <td><?= $donHang['ten_trang_thai'] ?></td>
+                                            <td><?= $tourr['TenTour'] ?></td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td><?= $tourr['LoaiTourID'] ?></td>
+                                            <td class="mota"><?= $tourr['MoTa'] ?></td>
+                                            <td><?= $tourr['NgayTao'] ?></td>
+                                            <td><?= $tourr['Gia'] ?></td>
+
 
                                             <td>
-                                                <div class="btn-group">
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-don-hang&id_don_hang=' . $donHang['id'] ?>">
-                                                        <button class="btn btn-primary">Chi tiết</button>
-                                                    </a>
-                                                    <a
-                                                        href="<?= BASE_URL_ADMIN . '?act=form-sua-don-hang&id_don_hang=' . $donHang['id'] ?>">
+                                                <div class=" btn-group">
+
+                                                    <a href="<?=BASE_URL_ADMIN .'?act=form-sua-tour&id='.$tourr['TourID'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
+                                                    </a>
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-tour&id=' . $tourr['TourID'] ?>"
+                                                        onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                                                        <button class="btn btn-danger">Xóa</button>
+                                                    </a>
+
+                                                    <a href="">
+                                                        <button class="btn btn-primary">Chi tiết</button>
                                                     </a>
                                                 </div>
                                             </td>
@@ -76,16 +86,7 @@ include './views/layout/sidebar.php';
                                     <?php endforeach ?>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Tên người nhận</th>
-                                        <th>SDT người nhận</th>
-                                        <th>Ngày đặt</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Trạng thái</th>
-                                        <th>Thao tác</th>
-                                    </tr>
+
                                 </tfoot>
                             </table>
                         </div>
@@ -128,5 +129,19 @@ include './views/layout/footer.php';
 <!-- Code injected by live-server -->
 
 </body>
+<style>
+    .mota {
+        /* Đặt chiều rộng cố định */
+        width: 550px;
+        /* HOẶC đặt chiều rộng tối đa */
+        max-width: 550px;
+        /* Giúp ẩn nội dung thừa, nhưng nội dung dài sẽ bị cắt */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    px;
+</style>
 
 </html>

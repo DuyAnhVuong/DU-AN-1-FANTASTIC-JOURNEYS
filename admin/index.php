@@ -6,16 +6,15 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/AdminDanhMucController.php';
-// require_once './controllers/AdminTuorController.php';
 require_once './controllers/AdminTaiKhoanController.php';
-
 require_once './controllers/AdminBaoCaoThongKeController.php';
+require_once './controllers/AdminTourController.php';
 
 // Require toàn bộ file Models
 
 require_once './models/AdminDanhMuc.php';
 // require_once './models/AdminSanPham.php';
-// require_once './models/AdminDonHang.php';
+require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 // Route
 $act = $_GET['act'] ?? '/';
@@ -57,10 +56,13 @@ match ($act) {
 
 
     //  // route đơn hàng
-    // 'tuor' => (new AdminTuorController())->danhSachTuor(),
-    // 'sua-tuor' => (new AdminTuorController())->postEditTuor(),
+    'tour' => (new AdminTourController())->danhSachTour(),
+    'form-tour' => (new AdminTourController())->formAddTour(),
+    'them-tour' => (new AdminTourController())->postAddTour(),
+    'sua-tour' => (new AdminTourController())->postEditTour(),
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
-    // 'form-sua-tuor' => (new AdminTuorController())->formEditTuor(),
+    'form-sua-tour' => (new AdminTourController())->formEditTour(),
+    'xoa-tour' => (new AdminTourController())->deleteTour(),
 
     // route Trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
@@ -70,13 +72,25 @@ match ($act) {
 // Quản lí tài khoản quản trị
     'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->listTaiKhoan(),
     'form-them-quan-tri' => (new AdminTaiKhoanController())->formAddQuanTri(),
-'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
-'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
-'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
-
+    'them-quan-tri' => (new AdminTaiKhoanController())->postAddQuanTri(),
+    'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
+    'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
+    'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
     //route reset password
-// 'reset-password' => (new AdminTaiKhoanController())->resetPassword(),
 
+<<<<<<< HEAD
+=======
+
+
+
+
+//route quản lý tài khoản HDV
+// 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
+// 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
+// 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
+// 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),
+
+>>>>>>> 427c6786b0a235818052c5b156b319196fa6b617
 //route login 
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),

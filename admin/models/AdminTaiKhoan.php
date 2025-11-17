@@ -108,6 +108,16 @@ public function getDetailTaiKhoan($id)
         return false;
     }
 }
+public function delete($id){
+    try{
+        $sql = "DELETE FROM tai_khoan WHERE TaiKhoanID= :TaiKhoanID";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':TaiKhoanID'=>$id,]);
+        return true;
+    }catch(Exception $e){
+        echo "Lỗi: " .$e->getMessage();
+    }
+}
 }
 
 

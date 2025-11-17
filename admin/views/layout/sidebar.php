@@ -40,7 +40,8 @@
 
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . "?act=danh-muc" ?>" class="nav-link">
-            <i class="fa-solid fa-list"></i>
+            <i class="nav-icon fas fa-th"></i>
+
             <p>
               Danh mục tour
 
@@ -48,8 +49,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= BASE_URL_ADMIN . '?act=san-pham' ?>" class="nav-link">
-            <i class="fa-solid fa-plane"></i>
+          <a href="<?= BASE_URL_ADMIN . '?act=tour' ?>" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
             <p>
               Tour
 
@@ -67,7 +68,7 @@
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
-            <p>Quản lí tài khoản</p>
+            <p>Quản lí nhân sự</p>
             <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
@@ -78,10 +79,7 @@
               </a>
             </li>
             <li class="nav-item">
-
             </li>
-
-
           </ul>
         </li>
       </ul>
