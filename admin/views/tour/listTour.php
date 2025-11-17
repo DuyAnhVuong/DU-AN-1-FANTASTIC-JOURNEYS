@@ -58,7 +58,7 @@ include './views/layout/sidebar.php';
                                             <td><?= $key + 1 ?></td>
                                             <td><?= $tourr['TenTour'] ?></td>
                                             <td>
-                                                <img src="<?= BASE_URL . $tuorr['image'] ?>" style="width:100px" alt="">
+                                                
                                             </td>
                                             <td><?= $tourr['LoaiTourID'] ?></td>
                                             <td class="mota"><?= $tourr['MoTa'] ?></td>
