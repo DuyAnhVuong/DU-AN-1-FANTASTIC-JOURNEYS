@@ -27,6 +27,7 @@ class AdminTourController
             $MoTa = $_POST['MoTa'];
             $NgayTao = $_POST['NgayTao'];
             $Gia = $_POST['Gia'];
+            
             $errors = [];
             if (empty($TenTour)) {
                 $errors['TenTour'] = 'Tên tour không được để trống';
