@@ -67,4 +67,32 @@ class AdminTour
             echo "Lỗi".$e->getMessage();
         }
     }
+    public function updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao , $Gia, $Image)
+    {
+        try{
+            $sql = "UPDATE tour SET 
+            TenTour = :TenTour,
+            LoaiTourID = :LoaiTourID,
+            MoTa = :MoTa,
+            NgayTao = :NgayTao,
+            Gia = :Gia,
+            Image = :Image
+            WHERE Id=:id
+            ";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':TenTour' => $TenTour,
+                ':LoaiTourID' => $LoaiTourID,
+                ':MoTa' => $MoTa,
+                ':NgayTao' => $NgayTao,
+                ':Gia' => $Gia,
+                ':Image' => $Image,
+                ':id' => $id
+            ]);
+            return true;
+        }catch(Exception $e){
+            echo "Lỗi:" .$e->getMessage();
+            return false;
+        }
+    }
 }
