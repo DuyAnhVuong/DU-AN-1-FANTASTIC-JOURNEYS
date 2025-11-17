@@ -13,116 +13,94 @@ include './views/layout/navbar.php';
 include './views/layout/sidebar.php';
 ?>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Chỉnh sửa thông tin đơn hàng:</h1>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
-
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-
-          <div class="card card-primary">
+          <div class="card card-dark">
             <div class="card-header default_cursor_land">
-              <h3 class="card-title default_cursor_land">Sửa mục thông tin đơn hàng:<?= $donHang['ma_don_hang'] ?></h3>
+              <h3 class="card-title default_cursor_land">Sửa tour</h3>
             </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form action="<?= BASE_URL_ADMIN . '?act=sua-don-hang' ?>" method="POST">
-              <input type="text" name="don_hang_id" VALUE="<?= $donHang['id'] ?>" hidden>
+            <form action="<?= BASE_URL_ADMIN . '?act=sua-tour' ?>" method="POST">
               <div class="card-body default_cursor_land">
-                <div class="form-group ">
-                  <label>Tên người nhận</label>
-                  <input type="text" class="form-control" name="ten_nguoi_nhan"
-                    value="<?= $donHang['ten_nguoi_nhan'] ?>" placeholder="Nhập tên người nhận">
-                  <?php if (isset($errors['ten_nguoi_nhan'])) { ?>
-                    <p class="text-danger"><?= $errors['ten_nguoi_nhan'] ?></p>
-                  <?php } ?>
-                </div>
 
-                <div class="form-group ">
-                  <label>Số điện thoại</label>
-                  <input type="text" class="form-control" name="sdt_nguoi_nhan"
-                    value="<?= $donHang['sdt_nguoi_nhan'] ?>" placeholder="Nhập số điện thoại người nhận">
-                  <?php if (isset($errors['sdt_nguoi_nhan'])) { ?>
-                    <p class="text-danger"><?= $errors['sdt_nguoi_nhan'] ?></p>
-                  <?php } ?>
-                </div>
-
-                <div class="form-group ">
-                  <label>Email</label>
-                  <input type="text" class="form-control" name="email_nguoi_nhan"
-                    value="<?= $donHang['email_nguoi_nhan'] ?>" placeholder="Nhập email người nhận">
-                  <?php if (isset($errors['email_nguoi_nhan'])) { ?>
-                    <p class="text-danger"><?= $errors['email_nguoi_nhan'] ?></p>
-                  <?php } ?>
-                </div>
-
-                <div class="form-group ">
-                  <label>Địa chỉ</label>
-                  <input type="text" class="form-control" name="dia_chi_nguoi_nhan"
-                    value="<?= $donHang['dia_chi_nguoi_nhan'] ?>" placeholder="Nhập tên người nhận">
-                  <?php if (isset($errors['dia_chi_nguoi_nhan'])) { ?>
-                    <p class="text-danger"><?= $errors['dia_chi_nguoi_nhan'] ?></p>
-                  <?php } ?>
-                </div>
-
-                <div class="form-group default_cursor_land">
-                  <label>Ghi chú</label>
-                  <textarea name="mo_ta" id="" class="form-control"
-                    placeholder="Nhập mô tả"><?= $donHang['ghi_chu'] ?></textarea>
-                </div>
-
-
-                <hr>
                 <div class="form-group">
-                  <label for="trang_thai_id">Trạng thái sản phẩm</label>
-                  <select id="trang_thai_id" name="trang_thai_id" class="form-control custom-select">
-                    <?php foreach ($listTrangThaiDonHang as $trangThai): ?>
-                      <option <?php
-                      if (
-                        $donHang['trang_thai_id'] > $trangThai['id']
-                        || $donHang['trang_thai_id'] == 9
-                        || $donHang['trang_thai_id'] == 10
-                        || $donHang['trang_thai_id'] == 11
-                      ) {
-                        echo 'disabled';
-                      }
-                      ?>
-                        <?= $trangThai['id'] == $donHang['trang_thai_id'] ? 'selected' : '' ?>
-                        value="<?= $trangThai['id'] ?>">
-                        <?= $trangThai['ten_trang_thai'] ?>
-                      </option>
-                    <?php endforeach; ?>
-                  </select>
+                  <label>Tên tour</label>
+                  <input type="text" class="form-control" name="TenTour" placeholder="Nhập tên Tour" value="<?=$tour['TenTour']?>">
+                  <?php if (isset($_SESSION['error']['TenTour'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['TenTour'] ?></p>
+                  <?php } ?>
                 </div>
+                    
+
+                <div class="form-group">
+                  <label>Ảnh minh họa</label>
+                  <input type="file" name="Image" placeholder="Chọn ảnh minh họa" value="<?=$tour['Image']?>">
+                  <?php if (isset($_SESSION['error']['Image'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['Image'] ?></p>
+                  <?php } ?>
+                </div>
+                <br>
+
+                 <div class="form-group default_cursor_land col-12">
+                  <label for="LoaiTourID">Loại Tour</label>
+                  <select class="form-control" name="LoaiTourID" id="LoaiTourID" value="<?=$tour['LoaiTourID']?>">
+                    <option value="0" selected disabled>Chọn tour</option>
+                    <option value="1">Tour Trong Nước</option>
+                    <option value="2">Tour Nước Ngoài</option>
+                    <option value="3">Tour Yêu Cầu</option>
+                  </select>
+                  <?php if (isset($_SESSION['error']['LoaiTourID'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['LoaiTourID'] ?></p>
+                  <?php } ?>
+                </div>
+
+
+                <div class="form-group default_cursor_land col-12">
+                  <label>Mô tả</label>
+                  <input type="text" class="form-control" name="MoTa" placeholder="Nhập MoTa" value="<?=$tour['MoTa']?>">
+                  <?php if (isset($_SESSION['error']['MoTa'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['MoTa'] ?></p>
+                  <?php } ?>
+                </div>
+
+
+                <div class="form-group default_cursor_land col-12">
+                  <label>Ngày tạo</label>
+                  <input type="date" class="form-control" name="NgayTao" placeholder="Nhập NgayTao" value="<?=$tour['NgayTao']?>">
+                  <?php if (isset($_SESSION['error']['NgayTao'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['NgayTao'] ?></p>
+                  <?php } ?>
+                </div>
+
+
+                <div class="form-group default_cursor_land col-12">
+                  <label>Giá</label>
+                  <input type="text" class="form-control" name="Gia" placeholder="Nhập giá" value="<?=$tour['Gia']?>">
+                  <?php if (isset($_SESSION['error']['Gia'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['Gia'] ?></p>
+                  <?php } ?>
+                </div>
+
+                
+
+
               </div>
-
-              <!-- /.card-body -->
-
               <div class="card-footer default_cursor_land">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
           </div>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
   </section>
-  <!-- /.content -->
+
+</div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 <!-- footer -->

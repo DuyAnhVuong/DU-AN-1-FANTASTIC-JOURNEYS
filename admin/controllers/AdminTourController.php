@@ -49,7 +49,49 @@ class AdminTourController
             }
         }
     }
+    public function formEditTour(){
+        $id = $_GET['id'] ?? null;
+        if(empty($id)){
+            header("Location: " . BASE_URL_ADMIN . '?act=tour');
+            exit();
+        }
+        $tour = $this->modelTour->getDetailTour($id);
+        if(!$tour){
+            header("Location: " . BASE_URL_ADMIN . '?act=tour');
+            exit();
+        }
+        require_once './views/tour/editTour.php';
+        deleteSessionError();
+    }
+    public function postEditTour(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $id = $_POST['id'] ?? '';
+            $TenTour = $_POST['TenTour'] ?? '';
+            $Image = $_POST['Image'] ?? '';
+            $LoaiTourID = $_POST['LoaiTourID'] ?? '';
+            $MoTa = $_POST['MoTa'] ?? '';
+            $NgayTao = $_POST['NgayTao'] ?? '';
+            $Gia = $_POST['Gia'] ?? '';
+            $errors = [];
+            if(empty($TenTour)){
+                $errors['TenTour'] = 'Tên tour không được để trống';
+            }
+            $_SESSION['error'] = $errors;
+            if (empty($errors)) {
+            // Sửa: Hàm updateTour chỉ nhận 5 tham số
+            $this->modelTour->updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao , $Gia, $Image);
 
+            // Chuyển hướng
+            header("Location:" . BASE_URL_ADMIN . '?act=tour');
+            exit();
+        } else {
+            $_SESSION['flash'] = true;
+            // Sửa lỗi chuyển hướng khi có lỗi để tránh lỗi "Undefined array key" nếu bạn dùng $id_quan_tri sau đó.
+            header("Location:" . BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $id);
+            exit();
+        }
+        }
+    }
     
     public function deleteTour()
     {
