@@ -77,7 +77,7 @@ class AdminTour
             NgayTao = :NgayTao,
             Gia = :Gia,
             Image = :Image
-            WHERE Id=:id
+            WHERE TourID=:id
             ";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
