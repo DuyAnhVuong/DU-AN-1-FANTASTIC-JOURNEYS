@@ -53,9 +53,9 @@ match ($act) {
     'tour' => (new AdminTourController())->danhSachTour(),
     'form-tour' => (new AdminTourController())->formAddTour(),
     'them-tour' => (new AdminTourController())->postAddTour(),
-    // 'sua-tuor' => (new AdminTuorController())->postEditTuor(),
+    'sua-tour' => (new AdminTourController())->postEditTour(),
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
-    // 'form-sua-tuor' => (new AdminTuorController())->formEditTuor(),
+    'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
 
     // route Trang chủ

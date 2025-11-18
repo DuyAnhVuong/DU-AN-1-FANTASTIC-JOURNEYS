@@ -22,7 +22,7 @@ include './views/layout/sidebar.php';
             <div class="card-header default_cursor_land">
               <h3 class="card-title default_cursor_land">Thêm tour</h3>
             </div>
-            <form action="<?= BASE_URL_ADMIN . '?act=them-tour' ?>" method="POST">
+            <form action="<?= BASE_URL_ADMIN . '?act=them-tour' ?>" method="POST" enctype="multipart/form-data">
               <div class="card-body default_cursor_land">
 
                 <div class="form-group">
@@ -32,18 +32,18 @@ include './views/layout/sidebar.php';
                     <p class="text-danger"><?= $_SESSION['error']['TenTour'] ?></p>
                   <?php } ?>
                 </div>
-                    
 
-                <div class="form-group">
-                  <label>Ảnh minh họa</label>
-                  <input type="file" name="Image" placeholder="Chọn ảnh minh họa">
+
+                <div class="form-group col-6">
+                  <label>Hình ảnh</label>
+                  <input type="file" class="form-control" name="Image">
                   <?php if (isset($_SESSION['error']['Image'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['Image'] ?></p>
                   <?php } ?>
                 </div>
                 <br>
 
-                 <div class="form-group default_cursor_land col-12">
+                <div class="form-group default_cursor_land col-12">
                   <label for="LoaiTourID">Loại Tour</label>
                   <select class="form-control" name="LoaiTourID" id="LoaiTourID">
                     <option value="0" selected disabled>Chọn tour</option>
@@ -83,7 +83,7 @@ include './views/layout/sidebar.php';
                   <?php } ?>
                 </div>
 
-                
+
 
 
               </div>

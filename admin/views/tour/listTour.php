@@ -57,9 +57,10 @@ include './views/layout/sidebar.php';
                                         <tr>
                                             <td><?= $key + 1 ?></td>
                                             <td><?= $tourr['TenTour'] ?></td>
-                                            <td>
-                                                <img src="<?= BASE_URL . $tuorr['Image'] ?>" style="width:100px" alt="">
+                                           <td>
+                                                <img src="<?= BASE_URL . $tourr['Image'] ?>" style="width:150px; height: 100px;" alt="">
                                             </td>
+                                            
                                             <td><?= $tourr['LoaiTourID'] ?></td>
                                             <td class="mota"><?= $tourr['MoTa'] ?></td>
                                             <td><?= $tourr['NgayTao'] ?></td>
@@ -69,7 +70,8 @@ include './views/layout/sidebar.php';
                                             <td>
                                                 <div class=" btn-group">
 
-                                                    <a href="">
+                                                    <a
+                                                        href="<?= BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $tourr['TourID'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
                                                     </a>
                                                     <a href="<?= BASE_URL_ADMIN . '?act=xoa-tour&id=' . $tourr['TourID'] ?>"
@@ -140,8 +142,6 @@ include './views/layout/footer.php';
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
-    px;
 </style>
 
 </html>
