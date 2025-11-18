@@ -78,19 +78,6 @@ match ($act) {
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
     //route reset password
 
-<<<<<<< HEAD
-=======
-
-
-
-
-//route quản lý tài khoản HDV
-// 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
-// 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
-// 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
-// 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),
-
->>>>>>> 427c6786b0a235818052c5b156b319196fa6b617
 //route login 
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),
