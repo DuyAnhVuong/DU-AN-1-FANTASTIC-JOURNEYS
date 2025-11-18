@@ -59,7 +59,6 @@ include './views/layout/sidebar.php';
                   <?php } ?>
                 </div>
 
-
                 <div class="form-group default_cursor_land col-12">
                   <label>Mô tả</label>
                   <input type="text" class="form-control" name="MoTa" placeholder="Nhập MoTa"
@@ -78,8 +77,6 @@ include './views/layout/sidebar.php';
                     <p class="text-danger"><?= $_SESSION['error']['NgayTao'] ?></p>
                   <?php } ?>
                 </div>
-
-
                 <div class="form-group default_cursor_land col-12">
                   <label>Giá</label>
                   <input type="text" class="form-control" name="Gia" placeholder="Nhập giá" value="<?= $tour['Gia'] ?>">
@@ -87,10 +84,6 @@ include './views/layout/sidebar.php';
                     <p class="text-danger"><?= $_SESSION['error']['Gia'] ?></p>
                   <?php } ?>
                 </div>
-
-
-
-
               </div>
               <div class="card-footer default_cursor_land">
                 <button type="submit" class="btn btn-primary">Submit</button>
