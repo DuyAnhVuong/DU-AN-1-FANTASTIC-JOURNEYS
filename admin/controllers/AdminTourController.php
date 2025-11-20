@@ -2,15 +2,18 @@
 class AdminTourController
 {
     public $modelTour;
+    public $modelDanhMuc;
 
     public function __construct()
     {
         $this->modelTour = new AdminTour();
+        $this->modelDanhMuc = new AdminDanhMuc();
     }
 
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
+
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
@@ -70,6 +73,7 @@ class AdminTourController
             exit();
         }
         $tour = $this->modelTour->getDetailTour($id);
+        $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
         if (!$tour) {
             header("Location: " . BASE_URL_ADMIN . '?act=tour');
             exit();
@@ -99,7 +103,7 @@ class AdminTourController
             if (isset($Image) && $Image['error'] == UPLOAD_ERR_OK) {
                 //upload file  anh mơi len
                 $new_file = uploadFile($Image, './uploads/');
-                
+
                 if (!empty($old_file)) { //nếu có ảnh thì xóa đi
                     deleteFile($old_file);
                 }
@@ -110,7 +114,7 @@ class AdminTourController
             if (empty($errors)) {
                 // Sửa: Hàm updateTour chỉ nhận 5 tham số
                 $this->modelTour->updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $new_file);
-                
+
                 // Chuyển hướng
                 header("Location:" . BASE_URL_ADMIN . '?act=tour');
                 exit();

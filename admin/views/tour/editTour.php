@@ -46,18 +46,16 @@ include './views/layout/sidebar.php';
                 </div>
                 <br>
 
-                <div class="form-group default_cursor_land col-12">
-                  <label for="LoaiTourID">Loại Tour</label>
-                  <select class="form-control" name="LoaiTourID" id="LoaiTourID" value="<?= $tour['LoaiTourID'] ?>">
-                    <option value="0" selected disabled>Chọn tour</option>
-                    <option value="1">Tour Trong Nước</option>
-                    <option value="2">Tour Nước Ngoài</option>
-                    <option value="3">Tour Yêu Cầu</option>
-                  </select>
-                  <?php if (isset($_SESSION['error']['LoaiTourID'])) { ?>
-                    <p class="text-danger"><?= $_SESSION['error']['LoaiTourID'] ?></p>
-                  <?php } ?>
-                </div>
+                 <div class="form-group">
+              <label for="LoaiTourID">Danh mục sản phẩm</label>
+              <select id="LoaiTourID" name="LoaiTourID" class="form-control custom-select">
+                <?php foreach ($listDanhMuc as $danhMuc): ?>
+                  <option <?= $danhMuc['id'] == $tour['LoaiTourID'] ? 'selected' : '' ?> value="<?= $danhMuc['id'] ?>">
+                    <?= $danhMuc['ten_danh_muc'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
 
                 <div class="form-group default_cursor_land col-12">
                   <label>Mô tả</label>
