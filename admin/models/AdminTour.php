@@ -26,7 +26,7 @@ class AdminTour
     {
         try {
             $sql = "INSERT INTO tour(TenTour,  LoaiTourID, MoTa, NgayTao , Gia, Image)
-            VALUE (:TenTour,  :LoaiTourID , :MoTa, :NgayTao, :Gia,:Image)";
+            VALUE (:TenTour,  :LoaiTourID , :MoTa, :NgayTao, :Gia, :Image)";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
@@ -36,7 +36,7 @@ class AdminTour
                 ':MoTa' => $MoTa,
                 ':NgayTao' => $NgayTao,
                 ':Gia' => $Gia,
-                ':Image' => $Image,
+                ':Image' => $Image
             ]);
             
             return true;

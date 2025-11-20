@@ -9,6 +9,7 @@ require_once './controllers/AdminDanhMucController.php';
 require_once './controllers/AdminTaiKhoanController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
+require_once './controllers/AdminNCCController.php';
 
 // Require toàn bộ file Models
 
@@ -16,6 +17,7 @@ require_once './models/AdminDanhMuc.php';
 // require_once './models/AdminSanPham.php';
 require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
+require_once './models/AdminNCC.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
