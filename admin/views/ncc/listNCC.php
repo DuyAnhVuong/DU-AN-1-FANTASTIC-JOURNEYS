@@ -43,7 +43,7 @@ include './views/layout/sidebar.php';
                 <thead>
                   <tr>
                     <th>NCC_TourID </th>
-                    <th>TourID </th>
+                    <th>Tên Tour </th>
                     <th>LoaiDichVu</th>
                     <th>TenNCC</th>
                     <th>ThongTinLienHe</th>
@@ -54,7 +54,7 @@ include './views/layout/sidebar.php';
                   <?php foreach ($listNCC as $key => $ncc): ?>
                     <tr>
                       <td><?= $key + 1 ?></td>
-                      <td><?= $key + 1 ?></td>
+                      <td><?= $ncc['TenTour'] ?></td>
                       <td><?= $ncc['LoaiDichVu'] ?></td>
                       <td><?= $ncc['TenNCC'] ?></td>
                       <td><?= $ncc['ThongTinLienHe'] ?></td>

@@ -20,16 +20,16 @@ include './views/layout/sidebar.php';
         <div class="col-12">
           <div class="card card-dark">
             <div class="card-header default_cursor_land">
-              <h3 class="card-title default_cursor_land">Thêm nhà cung cấp</h3>
+              <h3 class="card-title default_cursor_land">Thêm tour</h3>
             </div>
             <form action="<?= BASE_URL_ADMIN . '?act=them-tour' ?>" method="POST" enctype="multipart/form-data">
               <div class="card-body default_cursor_land">
 
                 <div class="form-group">
-                  <label>Loại dịch vụ</label>
-                  <input type="text" class="form-control" name="LoaiDichVu" placeholder="Nhập tên Tour">
-                  <?php if (isset($_SESSION['error']['LoaiDichVu'])) { ?>
-                    <p class="text-danger"><?= $_SESSION['error']['LoaiDichVu'] ?></p>
+                  <label>Tên tour</label>
+                  <input type="text" class="form-control" name="TenTour" placeholder="Nhập tên Tour">
+                  <?php if (isset($_SESSION['error']['TenTour'])) { ?>
+                    <p class="text-danger"><?= $_SESSION['error']['TenTour'] ?></p>
                   <?php } ?>
                 </div>
 

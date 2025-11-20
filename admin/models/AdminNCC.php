@@ -9,7 +9,11 @@ class AdminNCC
     public function getAllNCC()
     {
         try {
-            $sql = "SELECT * FROM nha_cung_cap_tour";
+            $sql = "SELECT nha_cung_cap_tour.*, tour.TenTour 
+            FROM nha_cung_cap_tour 
+            INNER JOIN tour 
+            ON nha_cung_cap_tour.TourID = tour.TourID 
+            WHERE nha_cung_cap_tour.NCC_TourID = NCC_TourID;";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll();
@@ -20,7 +24,7 @@ class AdminNCC
     public function insertNCC($TourID, $LoaiDichVu, $TenNCC, $ThongTinLienHe)
     {
         try {
-            $sql = "INSERT INTO ncc( TourID,LoaiDichVu, TenNCC, ThongTinLienHe)
+            $sql = "INSERT INTO nha_cung_cap_tour( TourID,LoaiDichVu, TenNCC, ThongTinLienHe)
             VALUE (:TourID, :LoaiDichVu, :TenNCC, :ThongTinLienHe)";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
@@ -42,7 +46,7 @@ class AdminNCC
     public function getDetailNCC($id)
     {
         try {
-            $sql = "SELECT * FROM ncc WHERE NCC_TourID=:NCC_TourID";
+            $sql = "SELECT * FROM nha_cung_cap_tour WHERE NCC_TourID=:NCC_TourID";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':NCC_TourID' => $id]);
             return $stmt->fetch();

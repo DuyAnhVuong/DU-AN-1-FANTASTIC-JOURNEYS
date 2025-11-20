@@ -27,11 +27,14 @@ include './views/layout/sidebar.php';
 
 
                 <div class="form-group">
-                  <label>TourID</label>
-                  <input type="text" class="form-control" name="TourID" placeholder="TourID">
-                  <?php if (isset($_SESSION['error']['TourID'])) { ?>
-                    <p class="text-danger"><?= $_SESSION['error']['TourID'] ?></p>
-                  <?php } ?>
+                  <label for="TourID">Danh mục sản phẩm</label>
+                  <select id="TourID" name="TourID" class="form-control custom-select">
+                    <?php foreach ($listTour as $Tour): ?>
+                      <option <?= $Tour['TourID'] == $listNCC['TourID'] ? 'selected' : '' ?>value="<?= $Tour['TourID'] ?>">
+                        <?= $Tour['TenTour'] ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
 
 
