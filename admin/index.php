@@ -10,6 +10,7 @@ require_once './controllers/AdminDanhMucController.php';
 require_once './controllers/AdminTaiKhoanController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
+require_once './controllers/AdminNCCController.php';
 
 // Require toàn bộ file Models
 
@@ -17,6 +18,7 @@ require_once './models/AdminDanhMuc.php';
 // require_once './models/AdminSanPham.php';
 require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
+require_once './models/AdminNCC.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -37,12 +39,12 @@ match ($act) {
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
 
     // // route Sản phẩm
-    // 'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
-    // 'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(),
-    // 'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(),
+    'ncc' => (new AdminNCCController())->danhSachNCC(),
+    'form-them-ncc' => (new AdminNCCController())->formAddNCC(),
+    'them-ncc' => (new AdminNCCController())->postAddNCC(),
     // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
     // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
-    // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(),
+    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
@@ -70,7 +72,7 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-    //route reset password
+//route reset password
 
 
 
