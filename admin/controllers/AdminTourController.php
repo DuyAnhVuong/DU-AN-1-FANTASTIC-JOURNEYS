@@ -81,33 +81,25 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['TourID'] ?? '';
-
             $TenTour = $_POST['TenTour'] ?? '';
             $AnhCu = $this->modelTour->getDetailTour($id);
-
-
             $old_file = $AnhCu['Image'];
-
-
-            $Image = $_POST['Image'] ?? '';
+            $Image = $_FILES['Image'] ?? '';
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
-
-
-
-
-
             $errors = [];
 
             if (empty($TenTour)) {
                 $errors['TenTour'] = 'Tên tour không được để trống';
             }
             $_SESSION['error'] = $errors;
+
             if (isset($Image) && $Image['error'] == UPLOAD_ERR_OK) {
                 //upload file  anh mơi len
                 $new_file = uploadFile($Image, './uploads/');
+                
                 if (!empty($old_file)) { //nếu có ảnh thì xóa đi
                     deleteFile($old_file);
                 }
@@ -118,7 +110,7 @@ class AdminTourController
             if (empty($errors)) {
                 // Sửa: Hàm updateTour chỉ nhận 5 tham số
                 $this->modelTour->updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $new_file);
-
+                
                 // Chuyển hướng
                 header("Location:" . BASE_URL_ADMIN . '?act=tour');
                 exit();

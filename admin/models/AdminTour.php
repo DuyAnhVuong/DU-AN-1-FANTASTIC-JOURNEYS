@@ -22,7 +22,7 @@ class AdminTour
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao , $Gia, $Image)
+    public function insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $Image)
     {
         try {
             $sql = "INSERT INTO tour(TenTour,  LoaiTourID, MoTa, NgayTao , Gia, Image)
@@ -31,14 +31,14 @@ class AdminTour
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':TenTour' => $TenTour,
-                
+
                 ':LoaiTourID' => $LoaiTourID,
                 ':MoTa' => $MoTa,
                 ':NgayTao' => $NgayTao,
                 ':Gia' => $Gia,
                 ':Image' => $Image
             ]);
-            
+
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
@@ -46,30 +46,37 @@ class AdminTour
     }
 
     public function getDetailTour($id)
+{
+    try {
+        $sql = "SELECT tour.*, danh_muc.ten_danh_muc 
+        FROM tour 
+        INNER JOIN danh_muc 
+        ON tour.LoaiTourID = danh_muc.id 
+        WHERE tour.TourID = :TourID"; // SỬA: Thay 'TourID;' bằng ':TourID'
+        
+        $stmt = $this->conn->prepare($sql);
+        // SỬA: Đảm bảo key trong execute khớp với tham số trong SQL
+        $stmt->execute([':TourID' => $id]); 
+        return $stmt->fetch();
+    } catch (Exception $e) {
+        echo "Lỗi" . $e->getMessage();
+    }
+}
+
+    public function delete($id)
     {
         try {
-            $sql = "SELECT * FROM tour WHERE TourID=:TourID";
+            $sql = "DELETE FROM tour WHERE TourID=:TourID";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':TourID' => $id]);
-            return $stmt->fetch();
+            return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-
-    public function delete($id){
-        try{
-            $sql="DELETE FROM tour WHERE TourID=:TourID";
-            $stmt=$this->conn->prepare($sql);
-            $stmt->execute([':TourID'=>$id]);
-            return true;
-        }catch(Exception $e){
-            echo "Lỗi".$e->getMessage();
-        }
-    }
-    public function updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao , $Gia, $Image)
+    public function updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $Image)
     {
-        try{
+        try {
             $sql = "UPDATE tour SET 
             TenTour = :TenTour,
             LoaiTourID = :LoaiTourID,
@@ -77,8 +84,8 @@ class AdminTour
             NgayTao = :NgayTao,
             Gia = :Gia,
             Image = :Image
-            WHERE TourID=:id
-            ";
+            WHERE TourID=:id";
+
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':TenTour' => $TenTour,
@@ -90,8 +97,8 @@ class AdminTour
                 ':id' => $id
             ]);
             return true;
-        }catch(Exception $e){
-            echo "Lỗi:" .$e->getMessage();
+        } catch (Exception $e) {
+            echo "Lỗi:" . $e->getMessage();
             return false;
         }
     }
