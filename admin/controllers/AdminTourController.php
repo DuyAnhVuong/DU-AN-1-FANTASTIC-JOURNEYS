@@ -2,15 +2,18 @@
 class AdminTourController
 {
     public $modelTour;
+    public $modelDanhMuc;
 
     public function __construct()
     {
         $this->modelTour = new AdminTour();
+        $this->modelDanhMuc = new AdminDanhMuc();
     }
 
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
+        
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
@@ -70,6 +73,7 @@ class AdminTourController
             exit();
         }
         $tour = $this->modelTour->getDetailTour($id);
+        $listDanhMuc =$this->modelDanhMuc->getAllDanhMuc();
         if (!$tour) {
             header("Location: " . BASE_URL_ADMIN . '?act=tour');
             exit();
