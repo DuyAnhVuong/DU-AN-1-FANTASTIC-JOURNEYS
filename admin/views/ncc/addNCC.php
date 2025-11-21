@@ -27,7 +27,7 @@ include './views/layout/sidebar.php';
 
 
                 <div class="form-group">
-                  <label for="TourID">Danh mục sản phẩm</label>
+                  <label for="TourID">Tên tour</label>
                   <select id="TourID" name="TourID" class="form-control custom-select">
                     <?php foreach ($listTour as $Tour): ?>
                       <option <?= $Tour['TourID'] == $listNCC['TourID'] ? 'selected' : '' ?>value="<?= $Tour['TourID'] ?>">
