@@ -1,32 +1,23 @@
-<!-- header -->
 <?php
 require './views/layout/header.php';
 ?>
-<!-- Navbar -->
 <?php
 include './views/layout/navbar.php';
 ?>
-<!-- /.navbar -->
-
-<!-- Main Sidebar Container -->
 <?php
 include './views/layout/sidebar.php';
 ?>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Quản lý danh mục sản phẩm</h1>
+          <h1>Quản lý nhà cung cấp</h1>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
-  </section>
+    </div></section>
 
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -34,50 +25,57 @@ include './views/layout/sidebar.php';
 
           <div class="card card-primary">
             <div class="card-header default_cursor_land">
-              <h3 class="card-title default_cursor_land">Thêm danh mục sản phẩm</h3>
+              <h3 class="card-title default_cursor_land">Thêm nhà cung cấp</h3>
             </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form action="<?= BASE_URL_ADMIN . '?act=them-danh-muc' ?>" method="POST">
+            <form action="<?= BASE_URL_ADMIN . '?act=them-ncc' ?>" method="POST">
               <div class="card-body default_cursor_land">
+                
                 <div class="form-group default_cursor_land">
-                  <label>Tên danh mục</label>
-                  <input type="text" class="form-control" name="ten_danh_muc" placeholder="Nhập tên danh mục">
-                  <?php if (isset($errors['ten_danh_muc'])) { ?>
-                    <p class="text-danger"><?= $errors['ten_danh_muc'] ?></p>
+                  <label>Tour ID</label>
+                  <input type="text" class="form-control" name="TourID" placeholder="Nhập ID Tour mà NCC cung cấp dịch vụ" value="<?= isset($_POST['TourID']) ? htmlspecialchars($_POST['TourID']) : '' ?>">
+                  <?php if (isset($errors['TourID'])) { ?>
+                    <p class="text-danger"><?= $errors['TourID'] ?></p>
                   <?php } ?>
                 </div>
+
                 <div class="form-group default_cursor_land">
-                  <label>Mô tả</label>
-                  <textarea name="mo_ta" id="" class="form-control" placeholder="Nhập mô tả"></textarea>
+                  <label>Loại Dịch Vụ</label>
+                  <input type="text" class="form-control" name="LoaiDichVu" placeholder="nhập loại dịch vụ" value="<?= isset($_POST['LoaiDichVu']) ? htmlspecialchars($_POST['LoaiDichVu']) : '' ?>">
+                  <?php if (isset($errors['LoaiDichVu'])) { ?>
+                    <p class="text-danger"><?= $errors['LoaiDichVu'] ?></p>
+                  <?php } ?>
+                </div>
+                
+                <div class="form-group default_cursor_land">
+                  <label>Tên Nhà Cung Cấp</label>
+                  <input type="text" class="form-control" name="TenNCC" placeholder="Nhập tên nhà cung cấp" value="<?= isset($_POST['TenNCC']) ? htmlspecialchars($_POST['TenNCC']) : '' ?>">
+                  <?php if (isset($errors['TenNCC'])) { ?>
+                    <p class="text-danger"><?= $errors['TenNCC'] ?></p>
+                  <?php } ?>
+                </div>
+
+                <div class="form-group default_cursor_land">
+                  <label>Thông Tin Liên Hệ</label>
+                  <textarea name="ThongTinLienHe" class="form-control" placeholder="Nhập thông tin liên hệ "><?= isset($_POST['ThongTinLienHe']) ? htmlspecialchars($_POST['ThongTinLienHe']) : '' ?></textarea>
+                  <?php if (isset($errors['ThongTinLienHe'])) { ?>
+                    <p class="text-danger"><?= $errors['ThongTinLienHe'] ?></p>
+                  <?php } ?>
                 </div>
 
               </div>
-              <!-- /.card-body -->
-
               <div class="card-footer default_cursor_land">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Thêm nhà cung cấp</button>
               </div>
             </form>
           </div>
         </div>
-        <!-- /.col -->
+        </div>
       </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<!-- footer -->
+    </section>
+  </div>
 <?php
 include './views/layout/footer.php';
 ?>
-<!-- endfooter -->
-<!-- Page specific script -->
-<!-- Code injected by live-server -->
-
 </body>
 
 </html>

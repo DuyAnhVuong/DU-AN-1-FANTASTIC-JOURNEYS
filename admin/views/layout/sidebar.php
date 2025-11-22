@@ -58,6 +58,15 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="<?= BASE_URL_ADMIN . '?act=ncc' ?>" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Nhà cung cấp
+
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . '?act=don-hang' ?>" class="nav-link">
             <i class="fa-solid fa-calendar"></i>
             <p>

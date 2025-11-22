@@ -44,10 +44,11 @@ match ($act) {
     'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
 
-    // // route Sản phẩm
-    // 'san-pham' => (new AdminSanPhamController())->danhSachSanPham(),
-    // 'form-them-san-pham' => (new AdminSanPhamController())->formAddSanPham(),
-    // 'them-san-pham' => (new AdminSanPhamController())->postAddSanPham(),
+    // route Sản phẩm
+    'ncc' => (new AdminNCCController())->danhsachNCC(),
+    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
+    'form-them-ncc' => (new AdminNCCController())->formAddNCC(),
+    'them-ncc' => (new AdminNCCController())->postAddNCC(),
     // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
     // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
     // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(),
