@@ -46,7 +46,7 @@ class AdminNCC
     public function getDetailNCC($id)
     {
         try {
-            $sql = "SELECT * FROM nha_cung_cap_tour WHERE NCC_TourID=:NCC_TourID";
+            $sql = "SELECT * FROM nha_cung_cap_tour WHERE NCC_TourID =:NCC_TourID";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':NCC_TourID' => $id]);
             return $stmt->fetch();
@@ -60,7 +60,7 @@ class AdminNCC
         try {
             $sql = "DELETE FROM nha_cung_cap_tour WHERE NCC_TourID=:NCC_TourID";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute(['NCC_TourID' => $id]);
+            $stmt->execute([':NCC_TourID' => $id]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();

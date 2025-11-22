@@ -69,10 +69,10 @@ include './views/layout/sidebar.php';
                           <a href="<?= BASE_URL_ADMIN . '?act=form-sua-ncc&id-ncc=' . $ncc['NCC_TourID'] ?>">
                             <button class="btn btn-warning">Sửa</button>
                           </a>
-                          <a href="<?= BASE_URL_ADMIN . '?act=xoa-ncc&id-ncc=' . $ncc['NCC_TourID'] ?>"
-                            onclick="return confirm('Bạn có đồng ý xóa hay không')">
-                            <button class="btn btn-danger">Xóa</button>
-                          </a>
+                          <a href="<?= BASE_URL_ADMIN . '?act=xoa-ncc&id_ncc=' . $ncc['NCC_TourID'] ?>"
+                          onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                          <button class="btn btn-danger">Xóa</button>
+                        </a>
                         </div>
                       </td>
                     </tr>

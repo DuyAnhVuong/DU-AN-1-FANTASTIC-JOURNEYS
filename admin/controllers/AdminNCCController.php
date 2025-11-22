@@ -69,9 +69,11 @@ class AdminNCCController
     }
     public function deleteNCC()
     {
-        $id = $_GET['id'];
+        $id = $_GET['id_ncc'];
+        
 
         $ncc = $this->modelNCC->getDetailNCC($id);
+        
         if ($ncc) {
             $this->modelNCC->deletecc($id);
         }
