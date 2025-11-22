@@ -11,6 +11,7 @@ require_once './controllers/AdminTaiKhoanController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
+require_once './controllers/AdminKhachHangController.php';
 
 // Require toàn bộ file Models
 
@@ -19,7 +20,7 @@ require_once './models/AdminDanhMuc.php';
 require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
-
+require_once './models/AdminKhachHang.php';
 // Route
 $act = $_GET['act'] ?? '/';
 // if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
@@ -48,8 +49,12 @@ match ($act) {
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
-
-
+    // route khách hàng
+    'khach-hang' => (new AdminKhachHangController())->danhSachKhachHang(),
+    'form-them-khach-hang' => (new AdminKhachHangController())->formAddKhachHang(),
+    'them-khach-hang' => (new AdminKhachHangController())->postAddKhachHang(),
+    'form-sua-khach-hang' => (new AdminKhachHangController())->formEditKhachHang(),
+    'sua-khach-hang' => (new AdminKhachHangController())->postEditKhachHang(),
 
     //  // route đơn hàng
     'tour' => (new AdminTourController())->danhSachTour(),

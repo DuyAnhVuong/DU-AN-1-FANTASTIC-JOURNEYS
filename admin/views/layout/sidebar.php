@@ -37,7 +37,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="<?= BASE_URL_ADMIN . '?act=khach-hang' ?>" class="nav-link">
+            <i class="fa-solid fa-users"></i>
+            <p>
+              Khách hàng Tour
 
+            </p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . "?act=danh-muc" ?>" class="nav-link">
             <i class="fa-solid fa-list"></i>
