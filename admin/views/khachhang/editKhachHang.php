@@ -40,6 +40,7 @@
             <form action="<?= BASE_URL_ADMIN . '?act=sua-khach-hang' ?>" method="POST" enctype="multipart/form-data">
               <div class="card-body default_cursor_land">
                 <div class="form-group default_cursor_land">
+                   <input type="hidden" name="DSSK_ID" value="<?= $khachHang['DSSK_ID'] ?>">
                   <label>Tên khách hàng</label>
                   <input type="text" class="form-control" name="TenKH" placeholder="Nhập tên khách hàng" value="<?= $khachHang['TenKH'] ?>">
                   <?php if (isset($errors['TenKH'])) { ?>

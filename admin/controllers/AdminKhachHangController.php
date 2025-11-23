@@ -37,7 +37,7 @@ class AdminKhachHangController
     public function postEditKhachHang()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id = $_POST['id'];
+            $id = $_POST['DSSK_ID'];
             $ten_khach_hang = $_POST['TenKH'];
             $check_in_status = $_POST['CheckInStatus'];
             $errors = [];
@@ -55,3 +55,4 @@ class AdminKhachHangController
         }
     }
 }
+?>
