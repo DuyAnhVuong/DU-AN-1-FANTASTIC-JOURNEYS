@@ -2,19 +2,23 @@
 class AdminTourController
 {
     public $modelTour;
+    public $modelDanhMuc;
 
     public function __construct()
     {
         $this->modelTour = new AdminTour();
+        $this->modelDanhMuc = new AdminDanhMuc();
     }
 
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
+
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
     {
+        $listTour = $this->modelTour->getAllTour();
         require './views/tour/addTour.php';
 
     }
@@ -70,6 +74,7 @@ class AdminTourController
             exit();
         }
         $tour = $this->modelTour->getDetailTour($id);
+        $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
         if (!$tour) {
             header("Location: " . BASE_URL_ADMIN . '?act=tour');
             exit();
@@ -81,33 +86,25 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['TourID'] ?? '';
-
             $TenTour = $_POST['TenTour'] ?? '';
             $AnhCu = $this->modelTour->getDetailTour($id);
-
-
             $old_file = $AnhCu['Image'];
-
-
-            $Image = $_POST['Image'] ?? '';
+            $Image = $_FILES['Image'] ?? '';
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
-
-
-
-
-
             $errors = [];
 
             if (empty($TenTour)) {
                 $errors['TenTour'] = 'Tên tour không được để trống';
             }
             $_SESSION['error'] = $errors;
+
             if (isset($Image) && $Image['error'] == UPLOAD_ERR_OK) {
                 //upload file  anh mơi len
                 $new_file = uploadFile($Image, './uploads/');
+
                 if (!empty($old_file)) { //nếu có ảnh thì xóa đi
                     deleteFile($old_file);
                 }

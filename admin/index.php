@@ -43,15 +43,13 @@ match ($act) {
     'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
     'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
-
     // route Sản phẩm
     'ncc' => (new AdminNCCController())->danhsachNCC(),
-    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
     'form-them-ncc' => (new AdminNCCController())->formAddNCC(),
     'them-ncc' => (new AdminNCCController())->postAddNCC(),
     // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
     // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
-    // 'xoa-san-pham' => (new AdminSanPhamController())->deleteSanPham(),
+    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
@@ -79,7 +77,7 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-    //route reset password
+//route reset password
 
 //route login 
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),

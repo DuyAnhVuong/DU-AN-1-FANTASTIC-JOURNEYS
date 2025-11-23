@@ -57,11 +57,13 @@ include './views/layout/sidebar.php';
                                         <tr>
                                             <td><?= $key + 1 ?></td>
                                             <td><?= $tourr['TenTour'] ?></td>
-                                           <td>
-                                                <img src="<?= BASE_URL . $tourr['Image'] ?>" style="width:150px; height: 100px;" alt="">
+                                            <td>
+                                                <img src="<?= BASE_URL . $tourr['Image'] ?>"
+                                                    style="width:150px; height: 100px;" alt="">
                                             </td>
-                                            
-                                            <td><?= $tourr['LoaiTourID'] ?></td>
+
+
+                                            <td><?= $tourr['ten_danh_muc'] ?></td>
                                             <td class="mota"><?= $tourr['MoTa'] ?></td>
                                             <td><?= $tourr['NgayTao'] ?></td>
                                             <td><?= $tourr['Gia'] ?></td>
