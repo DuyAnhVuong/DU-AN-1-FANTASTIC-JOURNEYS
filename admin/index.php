@@ -82,6 +82,12 @@ match ($act) {
 
 
 
+//lichttrinh
+'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
+
+
+
+
 
 //route quản lý tài khoản HDV
 // 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),

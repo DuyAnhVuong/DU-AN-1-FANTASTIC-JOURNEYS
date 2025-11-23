@@ -138,4 +138,10 @@ class AdminTourController
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
+
+    public function formDetail(){
+         $id = $_GET['id'];
+        $tour = $this->modelTour->getDetailTour($id);
+        require_once './views/lichtrinh/linhtrinhtour.php';
+    }
 }
