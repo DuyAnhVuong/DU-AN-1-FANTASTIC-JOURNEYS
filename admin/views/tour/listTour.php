@@ -76,12 +76,12 @@ include './views/layout/sidebar.php';
                                                         href="<?= BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $tourr['TourID'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
                                                     </a>
-                                                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-tour&id=' . $tourr['TourID'] ?>"
+                                                    <a href="c ?>"
                                                         onclick="return confirm('Bạn có đồng ý xóa hay không')">
                                                         <button class="btn btn-danger">Xóa</button>
                                                     </a>
 
-                                                    <a href="">
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $tourr['TourID'] ?>">
                                                         <button class="btn btn-primary">Chi tiết</button>
                                                     </a>
                                                 </div>

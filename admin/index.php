@@ -55,6 +55,7 @@ match ($act) {
     'them-khach-hang' => (new AdminKhachHangController())->postAddKhachHang(),
     'form-sua-khach-hang' => (new AdminKhachHangController())->formEditKhachHang(),
     'sua-khach-hang' => (new AdminKhachHangController())->postEditKhachHang(),
+    'xoa-khach-hang' => (new AdminKhachHangController())->deleteKhachHang(),
 
     //  // route đơn hàng
     'tour' => (new AdminTourController())->danhSachTour(),
@@ -64,6 +65,7 @@ match ($act) {
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
+    'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
 
     // route Trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
@@ -78,6 +80,12 @@ match ($act) {
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
 //route reset password
+
+
+
+
+//lichttrinh
+'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
 
 

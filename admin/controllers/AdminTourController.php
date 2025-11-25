@@ -74,6 +74,7 @@ class AdminTourController
             exit();
         }
         $tour = $this->modelTour->getDetailTour($id);
+        $listAnhTour = $this->modelTour->getListAnhTour($id);
         $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
         if (!$tour) {
             header("Location: " . BASE_URL_ADMIN . '?act=tour');
@@ -127,7 +128,7 @@ class AdminTourController
             }
         }
     }
-
+    
     public function deleteTour()
     {
         $id = $_GET['id'];
@@ -138,4 +139,78 @@ class AdminTourController
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
+
+    public function formDetail(){
+         $id = $_GET['id'];
+        $tour = $this->modelTour->getDetailTour($id);
+        $listAnhTour = $this->modelTour->getListAnhTour($id);
+        require_once './views/lichtrinh/linhtrinhtour.php';
+    }
+    // album anh
+    public function postEditAnhTour()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $id = $_POST['TourID'] ?? '';
+
+        // Lấy danh sách ảnh hiện tại
+        $listAnhTourCurrent = $this->modelTour->getListAnhTour($id);
+
+        $img_array = $_FILES['img_array'];
+        $img_delete = $_POST['img_delete'] ?? [];
+        $current_img_ids = $_POST['current_img_ids'] ?? [];
+
+        $upload_file = []; // FIX
+
+        // Xử lý upload file mới + cập nhật file cũ
+        foreach ($img_array['name'] as $key => $value) {
+
+            if ($img_array['error'][$key] == UPLOAD_ERR_OK) {
+
+                $new_file = uploadFileAlbum($img_array, './uploads/', $key);
+
+                if ($new_file) {
+                    $upload_file[] = [
+                        'id' => $current_img_ids[$key] ?? null,  // id ảnh cũ, nếu có
+                        'file' => $new_file
+                    ];
+                }
+            }
+        }
+
+        // Cập nhật hoặc thêm ảnh
+        foreach ($upload_file as $file_info) {
+
+            if ($file_info['id']) {
+
+                // lấy ảnh cũ
+                $old_file = $this->modelTour->getListAnhTour($file_info['id'])['URL'];
+
+                // cập nhật ảnh
+                $this->modelTour->updateAnhTour($file_info['id'], $file_info['file']);
+
+                // xóa file cũ
+                deleteFile($old_file);
+
+            } else {
+                // thêm mới ảnh
+                $this->modelTour->insertAlbumTour($id, $file_info['file']);
+            }
+        }
+
+        // Xóa ảnh bị chọn để xóa
+        foreach ($listAnhTourCurrent as $anh) {
+
+            if (in_array($anh['id'], $img_delete)) {
+
+                deleteFile($anh['URL']);  // chỉ xóa 1 lần
+
+                $this->modelTour->deleteAnhTour($anh['id']);
+            }
+        }
+
+        header("Location:" . BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $id);
+        exit();
+    }
+}
 }

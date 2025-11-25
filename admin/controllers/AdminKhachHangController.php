@@ -54,5 +54,14 @@ class AdminKhachHangController
             }
         }
     }
+    public function deleteKhachHang(){
+        $id = $_GET['id_khach_hang'];
+        $khachHang = $this->modelKhachHang->getDetailKhachHang($id);
+        if ($khachHang) {
+            $this->modelKhachHang->destroyKhachHang($id);
+        }
+        header("location:" . BASE_URL_ADMIN . '?act=khach-hang');
+        exit();
+    }
 }
 ?>
