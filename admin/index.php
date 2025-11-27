@@ -12,6 +12,7 @@ require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
 require_once './controllers/AdminKhachHangController.php';
+require_once './controllers/AdminBookingController.php';
 
 // Require toàn bộ file Models
 
@@ -21,6 +22,7 @@ require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
 require_once './models/AdminKhachHang.php';
+require_once './models/AdminBooking.php';
 // Route
 $act = $_GET['act'] ?? '/';
 // if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
@@ -40,12 +42,14 @@ match ($act) {
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
 
     // // route Sản phẩm
-    'ncc' => (new AdminNCCController())->danhSachNCC(),
+   'ncc' => (new AdminNCCController())->danhSachNCC(),
     'form-them-ncc' => (new AdminNCCController())->formAddNCC(),
     'them-ncc' => (new AdminNCCController())->postAddNCC(),
+    'form-sua-ncc' => (new AdminNCCController())->formEditNCC(),
+    'sua-ncc' => (new AdminNCCController())->postEditNCC(),
+    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
     // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
     // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
-    'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
@@ -77,13 +81,13 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-//route reset password
+    //route reset password
 
 
 
 
-//lichttrinh
-'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
+    //lichttrinh
+    'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
 
 
@@ -100,9 +104,8 @@ match ($act) {
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),
 // 'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
-//route login 
-// 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
-// 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
-// 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
-
+//route booking 
+'list-booking' => (new AdminBookingController())->listBooking(),
+'form-add-booking' => (new AdminBookingController())->formAddBooking(),
+'add-booking' => (new AdminBookingController())->postAddBooking(),
 };

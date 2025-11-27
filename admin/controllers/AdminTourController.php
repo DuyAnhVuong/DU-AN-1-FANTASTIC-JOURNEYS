@@ -13,18 +13,21 @@ class AdminTourController
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
-
+        
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
     {
-        $listTour = $this->modelTour->getAllTour();
+        $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
+        $listTour = ['TourID' => null, 'TenTour' => '', 'LoaiTourID' => null, 'MoTa' => '', 'NgayTao' => '', 'Gia' => null, 'Image' => ''];
+
         require './views/tour/addTour.php';
 
     }
     public function postAddTour()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
             $TenTour = $_POST['TenTour'];
 
             $LoaiTourID = $_POST['LoaiTourID'];

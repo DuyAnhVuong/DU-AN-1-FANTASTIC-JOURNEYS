@@ -96,10 +96,28 @@
                 <p>Tài khoản</p>
               </a>
             </li>
-            <li class="nav-item">
-            </li>
+            
           </ul>
         </li>
+         <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>Quản lí booking</p>
+            <i class="fas fa-angle-left right"></i>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-booking' ?>" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Booking</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-quan-tri' ?>" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Trạng thái booking</p>
+              </a>
+            </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

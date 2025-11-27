@@ -66,5 +66,34 @@ class AdminNCC
             echo "Lỗi" . $e->getMessage();
         }
     }
+
+    public function updateNCC($id, $TourID, $LoaiDichVu, $TenNCC, $ThongTinLienHe)
+    {
+        try {
+            $sql = "UPDATE nha_cung_cap_tour SET 
+            TourID=:TourID, 
+            LoaiDichVu=:LoaiDichVu,
+            TenNCC=:TenNCC,
+            ThongTinLienHe=:ThongTinLienHe  
+            WHERE NCC_TourID=:id";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':TourID' => $TourID,
+                ':LoaiDichVu' => $LoaiDichVu,
+                ':TenNCC' => $TenNCC,
+                ':ThongTinLienHe' => $ThongTinLienHe,
+
+                ':id' => $id
+            ]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
+
+
+
+
 }
 ?>
