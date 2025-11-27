@@ -10,6 +10,8 @@ require_once './controllers/AdminTaiKhoanController.php';
 require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
+require_once './controllers/AdminKhachHangController.php';
+require_once './controllers/AdminYeuCauController.php';
 
 // Require toàn bộ file Models
 
@@ -18,6 +20,10 @@ require_once './models/AdminDanhMuc.php';
 require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
+
+require_once './models/AdminKhachHang.php';
+require_once './models/AdminYeuCau.php';
+
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -53,8 +59,12 @@ match ($act) {
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
-
-
+    // route khách hàng
+    'khach-hang' => (new AdminKhachHangController())->danhSachKhachHang(),
+    'form-them-khach-hang' => (new AdminKhachHangController())->formAddKhachHang(),
+    'them-khach-hang' => (new AdminKhachHangController())->postAddKhachHang(),
+    'form-sua-khach-hang' => (new AdminKhachHangController())->formEditKhachHang(),
+    'sua-khach-hang' => (new AdminKhachHangController())->postEditKhachHang(),
 
     //  // route đơn hàng
     'tour' => (new AdminTourController())->danhSachTour(),
@@ -64,6 +74,15 @@ match ($act) {
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
+
+
+    'yeu-cau-dac-biet','yeu-cau' => (new AdminYeuCauController())->danhSachYeuCau(),
+    'form-sua-yeu-cau' => (new AdminYeuCauController())->formEditYeuCau(),
+    'sua-yeu-cau' => (new AdminYeuCauController())->postEditYeuCau(),
+    'form-them-yeu-cau' => (new AdminYeuCauController())->formAddYeuCau(),
+    'them-yeu-cau' => (new AdminYeuCauController())->postAddYeuCau(),
+    'xoa-yeu-cau' => (new AdminYeuCauController())->deleteYeuCau(),
+
 
     // route Trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
@@ -78,6 +97,24 @@ match ($act) {
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
 //route reset password
+
+
+
+
+
+//lichttrinh
+'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
+
+
+
+
+
+//route quản lý tài khoản HDV
+// 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
+// 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
+// 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
+// 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),
+
 
 //route login 
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),

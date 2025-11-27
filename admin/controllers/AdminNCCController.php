@@ -75,5 +75,6 @@ class AdminNCCController
         exit();
 
     }
+    
 }
 ?>

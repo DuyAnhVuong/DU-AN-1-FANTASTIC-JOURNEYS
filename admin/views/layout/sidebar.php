@@ -37,7 +37,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="<?= BASE_URL_ADMIN . '?act=khach-hang' ?>" class="nav-link">
+            <i class="fa-solid fa-users"></i>
+            <p>
+              Khách hàng Tour
 
+            </p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . "?act=danh-muc" ?>" class="nav-link">
             <i class="fa-solid fa-list"></i>
@@ -61,7 +68,7 @@
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . '?act=ncc' ?>" class="nav-link">
 
-            <i class="nav-icon fas fa-th"></i>
+          
 
             <i class="fa-brands fa-black-tie"></i>
             <p>
@@ -76,6 +83,14 @@
             <i class="fa-solid fa-calendar-check"></i>
             <p>
               Lịch trình tour
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= BASE_URL_ADMIN . '?act=yeu-cau-dac-biet' ?>" class="nav-link">
+            <i class="fa-solid fa-calendar-check"></i>
+            <p>
+             Yêu cầu đặc biệt
             </p>
           </a>
         </li>
