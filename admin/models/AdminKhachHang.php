@@ -63,6 +63,16 @@ class AdminKhachHang
             echo "Lỗi" . $e->getMessage();
         }
     }
-
+    public function destroyKhachHang($id)
+    {
+        try {
+            $sql = "DELETE FROM danh_sach_khach_tour WHERE DSSK_ID=:id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
 }
 ?>

@@ -22,7 +22,11 @@ require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
 
 require_once './models/AdminKhachHang.php';
+
+require_once './models/AdminLichTrinh.php';
+
 require_once './models/AdminYeuCau.php';
+
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -65,6 +69,7 @@ match ($act) {
     'them-khach-hang' => (new AdminKhachHangController())->postAddKhachHang(),
     'form-sua-khach-hang' => (new AdminKhachHangController())->formEditKhachHang(),
     'sua-khach-hang' => (new AdminKhachHangController())->postEditKhachHang(),
+    'xoa-khach-hang' => (new AdminKhachHangController())->deleteKhachHang(),
 
     //  // route đơn hàng
     'tour' => (new AdminTourController())->danhSachTour(),
@@ -74,6 +79,7 @@ match ($act) {
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
+    'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
 
 
     'yeu-cau-dac-biet','yeu-cau' => (new AdminYeuCauController())->danhSachYeuCau(),
@@ -104,7 +110,6 @@ match ($act) {
 
 //lichttrinh
 'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
-
 
 
 
