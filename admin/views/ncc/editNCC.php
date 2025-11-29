@@ -24,7 +24,6 @@ include './views/layout/sidebar.php';
             </div>
             <form action="<?= BASE_URL_ADMIN . '?act=sua-ncc' ?>" method="POST" enctype="multipart/form-data">
               <div class="card-body default_cursor_land">
-
                 <input type="hidden" name="NCC_TourID" value="<?= $listNCC['NCC_TourID'] ?>">
                 <div class="form-group">
 
@@ -32,13 +31,12 @@ include './views/layout/sidebar.php';
                   <select id="TourID" name="TourID" class="form-control custom-select">
                     <?php foreach ($listTour as $Tour): ?>
                       <option selected <?= $Tour['TourID'] == $listNCC['TourID'] ?>value="<?= $Tour['TourID'] ?>">
+
                         <?= $Tour['TenTour'] ?>
                       </option>
                     <?php endforeach; ?>
                   </select>
                 </div>
-
-
                 <div class="form-group">
                   <label>LoaiDichVu</label>
                   <input type="text" class="form-control" name="LoaiDichVu" placeholder="LoaiDichVu"
@@ -83,7 +81,6 @@ include './views/layout/sidebar.php';
       </div>
     </div>
   </section>
-
 </div>
 <!-- /.container-fluid -->
 </section>
