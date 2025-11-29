@@ -89,10 +89,13 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['TourID'] ?? '';
+
             $TenTour = $_POST['TenTour'] ?? '';
+
             $AnhCu = $this->modelTour->getDetailTour($id);
             $old_file = $AnhCu['Image'];
             $Image = $_FILES['Image'] ?? '';
+
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
@@ -134,13 +137,16 @@ class AdminTourController
     public function deleteTour()
     {
         $id = $_GET['id'];
+
         $tour = $this->modelTour->getDetailTour($id);
+
         if ($tour) {
             $this->modelTour->delete($id);
         }
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
+
 //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);

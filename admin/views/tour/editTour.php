@@ -46,16 +46,16 @@ include './views/layout/sidebar.php';
                 </div>
                 <br>
 
-                 <div class="form-group">
-              <label for="LoaiTourID">Danh mục sản phẩm</label>
-              <select id="LoaiTourID" name="LoaiTourID" class="form-control custom-select">
-                <?php foreach ($listDanhMuc as $danhMuc): ?>
-                  <option <?= $danhMuc['id'] == $tour['LoaiTourID'] ? 'selected' : '' ?> value="<?= $danhMuc['id'] ?>">
-                    <?= $danhMuc['ten_danh_muc'] ?>
-                  </option>
-                <?php endforeach; ?>
-              </select>
-            </div>
+                <div class="form-group">
+                  <label for="LoaiTourID">Danh mục sản phẩm</label>
+                  <select id="LoaiTourID" name="LoaiTourID" class="form-control custom-select">
+                    <?php foreach ($listDanhMuc as $danhMuc): ?>
+                      <option <?= $danhMuc['id'] == $tour['LoaiTourID'] ? 'selected' : '' ?> value="<?= $danhMuc['id'] ?>">
+                        <?= $danhMuc['ten_danh_muc'] ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
 
                 <div class="form-group default_cursor_land col-12">
                   <label>Mô tả</label>

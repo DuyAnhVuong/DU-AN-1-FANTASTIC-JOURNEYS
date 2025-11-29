@@ -61,8 +61,6 @@ include './views/layout/sidebar.php';
                                                 <img src="<?= BASE_URL . $tourr['Image'] ?>"
                                                     style="width:150px; height: 100px;" alt="">
                                             </td>
-
-
                                             <td><?= $tourr['ten_danh_muc'] ?></td>
                                             <td class="mota"><?= $tourr['MoTa'] ?></td>
                                             <td><?= $tourr['NgayTao'] ?></td>
@@ -81,7 +79,8 @@ include './views/layout/sidebar.php';
                                                         <button class="btn btn-danger">Xóa</button>
                                                     </a>
 
-                                                    <a href="<?= BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $tourr['TourID'] ?>">
+                                                    <a
+                                                        href="<?= BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $tourr['TourID'] ?>">
                                                         <button class="btn btn-primary">Chi tiết</button>
                                                     </a>
                                                 </div>
