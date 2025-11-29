@@ -46,22 +46,22 @@ class AdminTour
     }
 
     public function getDetailTour($id)
-{
-    try {
-        $sql = "SELECT tour.*, danh_muc.ten_danh_muc 
+    {
+        try {
+            $sql = "SELECT tour.*, danh_muc.ten_danh_muc 
         FROM tour 
         INNER JOIN danh_muc 
         ON tour.LoaiTourID = danh_muc.id 
         WHERE tour.TourID = :TourID"; // SỬA: Thay 'TourID;' bằng ':TourID'
-        
-        $stmt = $this->conn->prepare($sql);
-        // SỬA: Đảm bảo key trong execute khớp với tham số trong SQL
-        $stmt->execute([':TourID' => $id]); 
-        return $stmt->fetch();
-    } catch (Exception $e) {
-        echo "Lỗi" . $e->getMessage();
+
+            $stmt = $this->conn->prepare($sql);
+            // SỬA: Đảm bảo key trong execute khớp với tham số trong SQL
+            $stmt->execute([':TourID' => $id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
     }
-}
 
     public function delete($id)
     {

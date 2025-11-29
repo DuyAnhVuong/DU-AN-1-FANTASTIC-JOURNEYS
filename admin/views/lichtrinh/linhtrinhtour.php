@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col-lg-6 mb-3">
             <label class="form-label">Tên tour</label>
-            <input type="text" class="form-control" value="Tour Du Lịch ABC - 3N2Đ" />
+            <input type="text" class="form-control" value="<?=$tour['TenTour']?>" />
           </div>
           <div class="col-lg-6 mb-3">
             <label class="form-label">Giá người lớn</label>

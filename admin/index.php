@@ -12,6 +12,7 @@ require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
 require_once './controllers/AdminKhachHangController.php';
+require_once './controllers/AdminHuongDanVienController.php';
 
 // Require toàn bộ file Models
 
@@ -21,6 +22,7 @@ require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
 require_once './models/AdminKhachHang.php';
+require_once './models/AdminHuongDanVien.php';
 // Route
 $act = $_GET['act'] ?? '/';
 // if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
@@ -77,26 +79,24 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-//route reset password
+    //route reset password
+
+    //route hướng dẫn viên
+    'huongdanvien' => (new AdminHuongDanVienController())->danhsachHuongDanVien(),
+    'form-them-huongdanvien' => (new AdminHuongDanVienController())->formAddHuongDanVien(),
+    'them-huongdanvien' => (new AdminHuongDanVienController())->postAddHuongDanVien(),
+    'form-sua-huongdanvien' => (new AdminHuongDanVienController())->formEditHuongDanVien(),
+    'sua-huongdanvien' => (new AdminHuongDanVienController())->postEditHuongDanVien(),
+    'xoa-huongdanvien' => (new AdminHuongDanVienController())->deleteHuongDanVien(),
 
 
 
 
+//lichttrinh
+// 'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
-//route quản lý tài khoản HDV
-// 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
-// 'form-sua-hdv' => (new AdminTaiKhoanController())->formEditHDV(),
-// 'sua-hdv' => (new AdminTaiKhoanController())->postEditHDV(),
-// 'chi-tiet-hdv' => (new AdminTaiKhoanController())->detailHDV(),
 
-//route login 
-// 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
-// 'check-login-admin' => (new AdminTaiKhoanController())->login(),
-// 'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
-//route login 
-// 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
-// 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
-// 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
+
 
 };

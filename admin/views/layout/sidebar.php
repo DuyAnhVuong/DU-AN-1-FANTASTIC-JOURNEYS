@@ -83,14 +83,18 @@
             </p>
           </a>
         </li>
+
         <li class="nav-item">
+
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>Quản lí nhân sự</p>
             <i class="fas fa-angle-left right"></i>
           </a>
+
           <ul class="nav nav-treeview">
             <li class="nav-item">
+
               <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-quan-tri' ?>" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Tài khoản</p>
@@ -99,6 +103,22 @@
             <li class="nav-item">
             </li>
           </ul>
+
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+
+              <a href="<?= BASE_URL_ADMIN . '?act=huongdanvien' ?>" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Hướng Dẫn Viên (HDV)</p>
+              </a>
+            </li>
+            <li class="nav-item">
+            </li>
+          </ul>
+
+
+
         </li>
       </ul>
     </nav>

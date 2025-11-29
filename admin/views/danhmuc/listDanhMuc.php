@@ -48,6 +48,7 @@ include './views/layout/sidebar.php';
                     <th>Thao tác</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <?php foreach ($listDanhMuc as $key => $danhMuc): ?>
                     <tr>
@@ -66,7 +67,9 @@ include './views/layout/sidebar.php';
                     </tr>
                   <?php endforeach ?>
                 </tbody>
+
                 </tfoot>
+
               </table>
             </div>
             <!-- /.card-body -->
