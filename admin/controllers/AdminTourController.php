@@ -4,10 +4,12 @@ class AdminTourController
     public $modelTour;
     public $modelDanhMuc;
 
+    public $modelLichTrinh;
     public function __construct()
     {
         $this->modelTour = new AdminTour();
         $this->modelDanhMuc = new AdminDanhMuc();
+        $this->modelLichTrinh = new AdminLichTrinh();
     }
 
     public function danhSachTour()
@@ -139,13 +141,27 @@ class AdminTourController
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
-
+//  public function getDetailLichTrinh(){
+//         $id = $_GET['id'];
+//         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);
+//     }
     public function formDetail(){
-         $id = $_GET['id'];
-        $tour = $this->modelTour->getDetailTour($id);
-        $listAnhTour = $this->modelTour->getListAnhTour($id);
-        require_once './views/lichtrinh/linhtrinhtour.php';
-    }
+    $id = $_GET['id'];
+
+    // lấy thông tin tour
+    $tour = $this->modelTour->getDetailTour($id);
+
+    // lấy lịch trình đúng theo tour (QUAN TRỌNG)
+    $lichtrinh = $this->modelLichTrinh->getLichTrinhTheoTour($id);
+    // var_dump($lichtrinh);
+
+    // lấy album ảnh tour
+    $listAnhTour = $this->modelTour->getListAnhTour($id);
+
+    require_once './views/lichtrinh/linhtrinhtour.php';
+}
+
+   
     // album anh
     public function postEditAnhTour()
 {

@@ -81,12 +81,7 @@ include './views/layout/sidebar.php';
                   <?php if (isset($_SESSION['error']['Gia'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['Gia'] ?></p>
                   <?php } ?>
-                </div>
-                    <div class="form-group col-6">
-                    <label >Album ảnh</label>
-                    <input type="file" class="form-control" name="img_array[]"  multiple  >
-                   
-                  </div>
+                
 
 
 

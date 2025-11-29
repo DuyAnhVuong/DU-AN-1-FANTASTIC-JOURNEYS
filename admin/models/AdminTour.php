@@ -22,6 +22,14 @@ class AdminTour
             echo "Lỗi" . $e->getMessage();
         }
     }
+    public function getLichTrinhTheoTour($tourID)
+{
+    $sql = "SELECT * FROM lich_trinh WHERE TourID = :id ORDER BY Ngay ASC";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([':id' => $tourID]);
+    return $stmt->fetchAll();
+}
+
     public function insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $Image)
     {
         try {
@@ -62,7 +70,6 @@ class AdminTour
         echo "Lỗi" . $e->getMessage();
     }
 }
-
     public function delete($id)
     {
         try {

@@ -76,7 +76,7 @@ include './views/layout/sidebar.php';
                                                         href="<?= BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $tourr['TourID'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>
                                                     </a>
-                                                    <a href="c ?>"
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-tour&id=' . $tourr['TourID'] ?>"
                                                         onclick="return confirm('Bạn có đồng ý xóa hay không')">
                                                         <button class="btn btn-danger">Xóa</button>
                                                     </a>

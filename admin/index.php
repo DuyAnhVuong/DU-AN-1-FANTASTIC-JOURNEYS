@@ -21,6 +21,7 @@ require_once './models/AdminTour.php';
 require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
 require_once './models/AdminKhachHang.php';
+require_once './models/AdminLichTrinh.php';
 // Route
 $act = $_GET['act'] ?? '/';
 // if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
@@ -86,7 +87,6 @@ match ($act) {
 
 //lichttrinh
 'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
-
 
 
 
