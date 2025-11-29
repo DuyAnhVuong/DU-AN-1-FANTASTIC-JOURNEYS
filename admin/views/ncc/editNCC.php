@@ -32,6 +32,7 @@ include './views/layout/sidebar.php';
                   <select id="TourID" name="TourID" class="form-control custom-select">
                     <?php foreach ($listTour as $Tour): ?>
                       <option selected <?= $Tour['TourID'] == $listNCC['TourID'] ?>value="<?= $Tour['TourID'] ?>">
+
                         <?= $Tour['TenTour'] ?>
                       </option>
                     <?php endforeach; ?>
@@ -83,7 +84,6 @@ include './views/layout/sidebar.php';
       </div>
     </div>
   </section>
-
 </div>
 <!-- /.container-fluid -->
 </section>
@@ -99,5 +99,3 @@ include './views/layout/footer.php';
 <!-- Code injected by live-server -->
 
 </body>
-
-</html>

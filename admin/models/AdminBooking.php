@@ -23,11 +23,12 @@ class AdminBooking
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach)
+    public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_TourID)
+// ⚠️ THÊM $NCC_TourID VÀO DANH SÁCH THAM SỐ
 {
     try {
-        // SỬA LỖI: Bỏ dấu nháy đơn quanh các placeholder
-        $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`) VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach);";
+        $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`, `NCC_TourID`) 
+                VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach, :NCC_TourID);";
         
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
@@ -38,25 +39,25 @@ class AdminBooking
             ':Email' => $Email,
             ':NgayVe' => $NgayVe,
             ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
-            ':TongSoKhach' => $TongSoKhach
+            ':TongSoKhach' => $TongSoKhach,
+            ':NCC_TourID' => $NCC_TourID // ⚠️ THÊM THAM SỐ RÀNG BUỘC
         ]);
         return true;
     } catch (Exception $e) {
-        // Nên log lỗi thay vì chỉ echo, nhưng tạm thời để debug
         echo "Lỗi khi chèn Booking: " . $e->getMessage();
     }
 }
-    //     public function getDetailDanhMuc($id)
-//     {
-//         try {
-//             $sql = "SELECT * FROM danh_muc WHERE id=:id";
-//             $stmt = $this->conn->prepare($sql);
-//             $stmt->execute([':id' => $id]);
-//             return $stmt->fetch();
-//         } catch (Exception $e) {
-//             echo "Lỗi" . $e->getMessage();
-//         }
-//     }
+        public function getDetailBooking($id)
+    {
+        try {
+            $sql = "SELECT * FROM booking WHERE BookingID=:id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
 //     public function updateDanhMuc($id, $ten_danh_muc, $mo_ta)
 //     {
 //         try {
@@ -72,16 +73,16 @@ class AdminBooking
 //             echo "Lỗi" . $e->getMessage();
 //         }
 //     }
-//     public function destroyDanhMuc($id){
-//         try{
-//             $sql="DELETE FROM danh_muc WHERE id=:id";
-//             $stmt=$this->conn->prepare($sql);
-//             $stmt->execute([':id'=>$id]);
-//             return true;
-//         }catch(Exception $e){
-//             echo "Lỗi".$e->getMessage();
-//         }
-//     }
+    public function deleteBooking($id){
+        try{
+            $sql="DELETE FROM booking WHERE BookingID=:id";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute([':id'=>$id]);
+            return true;
+        }catch(Exception $e){
+            echo "Lỗi".$e->getMessage();
+        }
+    }
 
 }
 

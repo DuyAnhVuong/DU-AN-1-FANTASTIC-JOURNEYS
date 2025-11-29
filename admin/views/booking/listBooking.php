@@ -87,7 +87,11 @@
               <td><span class="badge bg-success badge-status">Đã cọc</span></td>
               <td class="text-end">
                 <button class="btn btn-sm btn-info text-white">Xem</button>
-                <button class="btn btn-sm btn-danger">Hủy</button>
+                <button class="btn btn-dark text-white">Khách hàng</button>
+                <a href="<?= BASE_URL_ADMIN . '?act=xoa-booking&id=' . $booking['BookingID'] ?>"
+                  onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                  <button class="btn btn-danger">Hủy</button>
+                </a>
               </td>
             </tr>
 
@@ -95,9 +99,9 @@
           <?php endforeach; ?>
         </tbody>
       </table>
-      
+
     </div>
- <a href="<?= BASE_URL_ADMIN ?>">
+    <a href="<?= BASE_URL_ADMIN ?>">
       <button class="btn btn-dark">Quay lại</button>
     </a>
   </div>

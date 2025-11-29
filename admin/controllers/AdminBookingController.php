@@ -3,110 +3,88 @@
         public $modelBooking;
         public $modelTour;
         public $modelNCC;
+        public $modelLichTrinh;
+        public $modelYeuCau;
 
     public function __construct()
     {
         $this->modelBooking = new AdminBooking();
         $this->modelTour = new AdminTour();
         $this->modelNCC = new AdminNCC();
+        $this->modelLichTrinh = new AdminLichTrinhTheoTour();
+        $this->modelYeuCau = new AdminYeuCau();
     }
 
     public function listbooking()
     {
+       
         $listbooking = $this->modelBooking->getAllbooking();
+       
         
         require_once './views/booking/listBooking.php';
     }
 
     public function formAddBooking()
     {
-        
         $listTour = $this->modelTour->getAllTour();
-        $listNCC = $this->modelNCC->getAllNCC();
+        $listNCC = $this->modelNCC->getAllNCC(); 
         $listBooking = ['TourID' => null,'LoaiKhach' => '', 'TenNguoiDat' => '', 'SDT' => null, 'Email' => '', 'NgayVe' => '', 'NgayKhoiHanhDuKien' => '', 'TongSoKhach' => null, 'NCC_TourID' => null ] ;
         require './views/booking/addBooking.php';
 
     }
-     public function postAddBooking()
+    public function postAddBooking()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $TourID = $_POST['TourID'] ?? null;
+        $LoaiKhach = $_POST['LoaiKhach'] ?? null;
+        $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
+        $SDT = $_POST['SDT'] ?? null;
+        $Email = $_POST['Email'] ?? null;
+        $NgayKhoiHanhDuKien = $_POST['NgayKhoiHanhDuKien'] ?? null;
+        $NgayVe = $_POST['NgayVe'] ?? null;
+        $TongSoKhach = $_POST['TongSoKhach'] ?? null;
+        // ⚠️ THÊM DÒNG NÀY:
+        $NCC_TourID = $_POST['NCC_TourID'] ?? null; 
+
+        $errors = [];
+        // ... (Kiểm tra lỗi nếu cần)
+
+        if (empty($errors)) {
+            $this->modelBooking->insertBooking(
+                $TourID,
+                $LoaiKhach,
+                $TenNguoiDat,
+                $SDT,
+                $Email,
+                $NgayKhoiHanhDuKien,
+                $NgayVe,
+                $TongSoKhach,
+                $NCC_TourID // ⚠️ THÊM THAM SỐ VÀO HÀM GỌI
+            );
+
+            // Chuyển hướng thành công
+            header("Location: " . BASE_URL_ADMIN . '?act=list-booking');
+            exit();
+        } 
+        // ...
+    }
+}
+
+        public function deleteBK()
     {
-       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            // SỬA LỖI: Cần nhận dữ liệu POST theo tên 'name', 'email', 'vaitro' 
-            // vì đó là thuộc tính name trong HTML form.
-            $TourID = $_POST['TourID']; 
-              // Lấy tên từ form
-            $LoaiKhach = $_POST['LoaiKhach'];
-            
-            $TenNguoiDat = $_POST['TenNguoiDat'];
-             
-            $SDT = $_POST['SDT'];
-           
-            
-            $Email = $_POST['Email'];
-          
-            $NgayKhoiHanhDuKien = $_POST['NgayKhoiHanhDuKien'];
-           
-            $NgayVe = $_POST['NgayVe'];
-     
-            $TongSoKhach = $_POST['TongSoKhach'];
-     
-            
-            
-
-            $errors = [];
-            if (empty($TourID)) {
-                $errors['TourID'] = 'Tên không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-
-            if (empty($LoaiKhach)) {
-                $errors['LoaiKhach'] = 'Email không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-            if (empty($SDT)) {
-                $errors['SDT'] = 'Email không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-            if (empty($Email)) {
-                $errors['Email'] = 'Email không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-            if (empty($NgayKhoiHanhDuKien)) {
-                $errors['NgayKhoiHanhDuKien'] = 'Ngày khởi hành không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-            if (empty($NgayVe)) {
-                $errors['Ngay$NgayVe'] = 'Ngày về không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-            if (empty($TongSoKhach)) {
-                $errors['TongSoKhach'] = 'Số khách không được để trống'; // Sửa lỗi khóa của lỗi cũng phải khớp
-            }
-
-            // ... (các phần kiểm tra lỗi khác)
-
-            $_SESSION['error'] = $errors; // Gán errors
-
-            if (empty($errors)) {
+        $id = $_GET['id'];
+        
 
 
-                // Tham số truyền vào Model là đúng
-                $this->modelBooking->insertBooking(
-                    $TourID,
-                    $LoaiKhach,
-                    $TenNguoiDat,
-                    $SDT,
-                    $Email,
-                    $NgayKhoiHanhDuKien,
-                    $NgayVe,
-                    $TongSoKhach
+        $booking = $this->modelBooking->getDetailBooking($id);
 
-                );
-
-                // Chuyển hướng thành công
-                header("Location: " . BASE_URL_ADMIN . '?act=list-booking');
-                exit();
-            } else {
-                // SỬA LỖI CHUYỂN HƯỚNG KHI CÓ LỖI (Về form thêm)
-                $_SESSION['flash'] = true;
-                header("Location: " . BASE_URL_ADMIN . '?act=form-add-booking');
-                exit();
-            }
+        if ($booking) {
+            $this->modelBooking->deleteBooking($id);
         }
+        header("location:" . BASE_URL_ADMIN . '?act=list-booking');
+        exit();
+
     }
 
     }

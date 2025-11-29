@@ -67,6 +67,9 @@
         </li>
         <li class="nav-item">
           <a href="<?= BASE_URL_ADMIN . '?act=ncc' ?>" class="nav-link">
+
+          
+
             <i class="fa-brands fa-black-tie"></i>
             <p>
               Nhà cung cấp
@@ -80,6 +83,14 @@
             <i class="fa-solid fa-calendar-check"></i>
             <p>
               Lịch trình tour
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= BASE_URL_ADMIN . '?act=yeu-cau-dac-biet' ?>" class="nav-link">
+            <i class="fa-solid fa-calendar-check"></i>
+            <p>
+             Yêu cầu đặc biệt
             </p>
           </a>
         </li>
