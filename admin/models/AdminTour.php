@@ -22,6 +22,14 @@ class AdminTour
             echo "Lỗi" . $e->getMessage();
         }
     }
+    public function getLichTrinhTheoTour($tourID)
+{
+    $sql = "SELECT * FROM lich_trinh WHERE TourID = :id ORDER BY Ngay ASC";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([':id' => $tourID]);
+    return $stmt->fetchAll();
+}
+
     public function insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $Image)
     {
         try {
@@ -62,6 +70,7 @@ class AdminTour
             echo "Lỗi" . $e->getMessage();
         }
     }
+}
 
     public function delete($id)
     {
@@ -102,4 +111,66 @@ class AdminTour
             return false;
         }
     }
+    public function insertAlbumTour($TourID, $URL)
+{
+    try {
+        $sql = "INSERT INTO hinh_anh_tour(TourID, URL) VALUES (:TourID, :URL)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':TourID' => $TourID,
+            ':URL' => $URL
+        ]);
+        return true;
+
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        return false;
+    }
+}
+
+public function getListAnhTour($id)
+{
+    try {
+        $sql = "SELECT * FROM hinh_anh_tour WHERE TourID=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetchAll();
+
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        return false;
+    }
+}
+
+public function updateAnhTour($id, $new_url)
+{
+    try {
+        $sql = "UPDATE hinh_anh_tour SET URL = :new_url WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':new_url' => $new_url,
+            ':id' => $id
+        ]);
+        return true;
+
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        return false;
+    }
+}
+
+public function deleteAnhTour($id)
+{
+    try {
+        $sql = "DELETE FROM hinh_anh_tour WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return true;
+
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        return false;
+    }
+}
+
 }

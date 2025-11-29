@@ -1,4 +1,4 @@
-<!-- header -->
+
 <?php
 require './views/layout/header.php';
 ?>

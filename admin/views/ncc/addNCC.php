@@ -1,3 +1,4 @@
+
 <!-- header -->
 <?php
 require './views/layout/header.php';
@@ -76,6 +77,7 @@ include './views/layout/sidebar.php';
             </form>
           </div>
         </div>
+
       </div>
     </div>
   </section>

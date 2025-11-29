@@ -81,8 +81,7 @@ include './views/layout/sidebar.php';
                   <?php if (isset($_SESSION['error']['Gia'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['Gia'] ?></p>
                   <?php } ?>
-                </div>
-
+                
 
 
 

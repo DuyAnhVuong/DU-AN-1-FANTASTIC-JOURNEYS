@@ -42,7 +42,6 @@ class AdminNCC
 
 
 
-
     public function getDetailNCC($id)
     {
         try {

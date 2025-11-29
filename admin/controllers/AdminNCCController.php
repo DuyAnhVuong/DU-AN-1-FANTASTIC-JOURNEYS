@@ -3,11 +3,10 @@ class AdminNCCController
 {
     public $modelNCC;
     public $modelTour;
-
-
     public function __construct()
     {
         $this->modelNCC = new AdminNCC();
+
         $this->modelTour = new AdminTour();
     }
     public function danhsachNCC()
@@ -15,7 +14,6 @@ class AdminNCCController
         $listNCC = $this->modelNCC->getAllNCC();
         require_once './views/ncc/listNCC.php';
     }
-
     // Trong AdminNCCController.php
 
     public function formAddNCC()
@@ -25,15 +23,12 @@ class AdminNCCController
 
         // Khởi tạo $listNCC là một mảng rỗng hoặc có khóa an toàn để view không bị lỗi khi truy cập $listNCC['TourID']
         $listNCC = ['TourID' => null, 'LoaiDichVu' => '', 'TenNCC' => '', 'ThongTinLienHe' => ''];
-
         require './views/ncc/addNCC.php';
     }
     public function postAddNCC()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $TourID = $_POST['TourID'];
-
-
             $LoaiDichVu = $_POST['LoaiDichVu'];
             $TenNCC = $_POST['TenNCC'];
             $ThongTinLienHe = $_POST['ThongTinLienHe'];
@@ -81,19 +76,6 @@ class AdminNCCController
         exit();
 
     }
-
-    // public function formEditNCC()
-    // {
-    //     $id = $_GET['id-ncc'];
-    //     $listTour = $this->modelTour->getAllTour();
-    //     $NCC = $this->modelNCC->getDetailNCC($id);
-    //     if ($NCC) {
-    //         require_once './views/ncc/editNCC.php';
-    //     } else {
-    //         header("Location:" . BASE_URL_ADMIN . '?act=ncc');
-    //         exit();
-    //     }
-    // }
 
     public function formEditNCC()
     {
@@ -145,7 +127,5 @@ class AdminNCCController
             }
         }
     }
-
-
 }
 ?>
