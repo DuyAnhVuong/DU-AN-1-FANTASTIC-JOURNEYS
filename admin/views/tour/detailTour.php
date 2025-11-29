@@ -24,15 +24,14 @@ include './views/layout/sidebar.php';
                 </div>
                 <div class="col-sm-2">
                     <form action="" method="POST">
-                            <select name="" id="" class="form-group" disabled>
-                                <?php foreach($listTrangThaiDonHang as $key=>$trangthai): ?>
-                                <option 
-                                <?=$trangthai['id']==$donHang['trang_thai_id']? 'selected':''?>
-                                <?=$trangthai['id']==$donHang['trang_thai_id']? 'selected':''?>
-                                 value="<?= $trangthai['id'];?>"><?= $trangthai['ten_trang_thai'];?>
+                        <select name="" id="" class="form-group" disabled>
+                            <?php foreach ($listTrangThaiDonHang as $key => $trangthai): ?>
+                                <option <?= $trangthai['id'] == $donHang['trang_thai_id'] ? 'selected' : '' ?>
+                                    <?= $trangthai['id'] == $donHang['trang_thai_id'] ? 'selected' : '' ?>
+                                    value="<?= $trangthai['id']; ?>"><?= $trangthai['ten_trang_thai']; ?>
                                 </option>
-                                <?php endforeach ;?>
-                            </select>
+                            <?php endforeach; ?>
+                        </select>
                     </form>
                 </div>
             </div>
@@ -88,7 +87,7 @@ include './views/layout/sidebar.php';
                                     <strong><?= $donHang['ten_nguoi_nhan'] ?></strong><br>
                                     Email: <?= $donHang['email_nguoi_nhan'] ?><br>
                                     Số điện thoại: <?= $donHang['sdt_nguoi_nhan'] ?><br>
-                                    Địa chỉ: <?= $donHang['dia_chi_nguoi_nhan']?>
+                                    Địa chỉ: <?= $donHang['dia_chi_nguoi_nhan'] ?>
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -97,7 +96,7 @@ include './views/layout/sidebar.php';
                                     Mã đơn hàng: <strong><?= $donHang['ma_don_hang'] ?></strong><br>
                                     Đơn giá: <?= $donHang['tong_tien'] ?><br>
                                     Ghi chú: <?= $donHang['ghi_chu'] ?><br>
-                                   Phương thức thanh toán: <?= $donHang['ten_phuong_thuc']?>
+                                    Phương thức thanh toán: <?= $donHang['ten_phuong_thuc'] ?>
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -119,16 +118,16 @@ include './views/layout/sidebar.php';
                                     </thead>
                                     <tbody>
                                         <?php $tong_tien = 0; ?>
-                                        <?php foreach($sanPhamDonHang as $key=>$sanPham) : ?>
-                                        <tr>
-                                            <td><?=$key+1?></td>
-                                            <td><?= $sanPham['ten_san_pham']?></td>
-                                            <td><?= $sanPham['don_gia']?></td>
-                                            <td><?= $sanPham['so_luong']?></td>
-                                            <td><?= $sanPham['thanh_tien']?></td>
-                                        </tr>
-                                        <?php $tong_tien += $sanPham['thanh_tien']; ?>
-                                       <?php endforeach ;?>
+                                        <?php foreach ($sanPhamDonHang as $key => $sanPham): ?>
+                                            <tr>
+                                                <td><?= $key + 1 ?></td>
+                                                <td><?= $sanPham['ten_san_pham'] ?></td>
+                                                <td><?= $sanPham['don_gia'] ?></td>
+                                                <td><?= $sanPham['so_luong'] ?></td>
+                                                <td><?= $sanPham['thanh_tien'] ?></td>
+                                            </tr>
+                                            <?php $tong_tien += $sanPham['thanh_tien']; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -138,23 +137,23 @@ include './views/layout/sidebar.php';
                         <div class="row">
                             <!-- accepted payments column -->
                             <div class="col-6">
-                                 <p class="lead"><strong>Ngày đặt hàng: <?= $donHang['ngay_dat']?></strong></p>
+                                <p class="lead"><strong>Ngày đặt hàng: <?= $donHang['ngay_dat'] ?></strong></p>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
                                             <th style="width:50%">Thành tiền:</th>
                                             <td>
-                                                <?=$tong_tien?>
+                                                <?= $tong_tien ?>
                                             </td>
                                         </tr>
-                                       
+
                                         <tr>
                                             <th>Vẫn chuyển:</th>
                                             <td>200.000</td>
                                         </tr>
                                         <tr>
                                             <th>Tổng tiền:</th>
-                                            <td><?=$tong_tien + 200000  ?></td>
+                                            <td><?= $tong_tien + 200000 ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -164,7 +163,7 @@ include './views/layout/sidebar.php';
                         <!-- /.row -->
 
                         <!-- this row will not appear when printing -->
-                                            
+
                     </div>
                     <!-- /.invoice -->
                 </div><!-- /.col -->
