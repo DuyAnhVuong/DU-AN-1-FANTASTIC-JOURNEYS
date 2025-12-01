@@ -50,7 +50,10 @@ class AdminBooking
         public function getDetailBooking($id)
     {
         try {
-            $sql = "SELECT * FROM booking WHERE BookingID=:id";
+            $sql = "SELECT booking.*, tour.TenTour, tour.TourID, nha_cung_cap_tour.TenNCC
+                FROM booking 
+                INNER JOIN tour ON booking.TourID = tour.TourID
+                INNER JOIN nha_cung_cap_tour ON booking.NCC_TourID = nha_cung_cap_tour.NCC_TourID WHERE BookingID=:id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':id' => $id]);
             return $stmt->fetch();

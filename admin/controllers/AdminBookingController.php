@@ -87,5 +87,11 @@
 
     }
 
+    public function detailBooking(){
+        $id = $_GET['id'];
+        $bk = $this->modelBooking->getDetailBooking($id);
+        require_once 'views/booking/editBooking.php';
+    }
+
     }
 ?>

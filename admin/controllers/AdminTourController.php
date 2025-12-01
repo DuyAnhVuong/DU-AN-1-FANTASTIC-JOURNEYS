@@ -150,9 +150,7 @@ class AdminTourController
         exit();
     }
 
-<<<<<<< HEAD
-    
-=======
+
 //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);
@@ -241,5 +239,5 @@ class AdminTourController
         exit();
     }
 }
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
+
 }

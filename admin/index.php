@@ -11,18 +11,19 @@ require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
 require_once './controllers/AdminKhachHangController.php';
-<<<<<<< HEAD
 require_once './controllers/AdminBookingController.php';
 
 require_once './controllers/AdminYeuCauController.php'; 
 require_once './controllers/AdminLichTrinhTheoTourController.php'; 
 require_once './controllers/AdminXemKhachHangController.php'; 
-=======
+
 
 require_once './controllers/AdminHuongDanVienController.php';
 
 require_once './controllers/AdminYeuCauController.php';
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
+require_once './controllers/AdminTrangThaiController.php';
+
+
 
 
 // Require toàn bộ file Models
@@ -34,25 +35,21 @@ require_once './models/AdminTaiKhoan.php';
 require_once './models/AdminNCC.php';
 
 require_once './models/AdminKhachHang.php';
-<<<<<<< HEAD
+
 
 require_once './models/AdminBooking.php';
 
 require_once './models/AdminYeuCau.php';
 require_once './models/AdminLichTrinhTheoTour.php';
 require_once './models/AdminXemKhachHang.php';
-=======
+
 
 require_once './models/AdminHuongDanVien.php';
 
 
 require_once './models/AdminLichTrinh.php';
+require_once './models/AdminTrangThai.php';
 
-require_once './models/AdminYeuCau.php';
-
-
-
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -87,11 +84,7 @@ match ($act) {
     'form-sua-ncc' => (new AdminNCCController())->formEditNCC(),
     'sua-ncc' => (new AdminNCCController())->postEditNCC(),
     'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
-<<<<<<< HEAD
-    // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
-    // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
-=======
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
+
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
@@ -111,7 +104,7 @@ match ($act) {
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
-    'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
+    // 'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
 
 
     'yeu-cau-dac-biet','yeu-cau' => (new AdminYeuCauController())->danhSachYeuCau(),
@@ -135,10 +128,6 @@ match ($act) {
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
     //route reset password
-<<<<<<< HEAD
-
-=======
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
 
     //route hướng dẫn viên
     'huongdanvien' => (new AdminHuongDanVienController())->danhsachHuongDanVien(),
@@ -152,16 +141,8 @@ match ($act) {
     //lichttrinh
     // 'chi-tiet-lich-trinh-tour' => (new AdminLichTrinhTheoTourController())->listLichTrinh(),
     'chi-tiet-lt' => (new AdminLichTrinhTheoTourController())->getListLichTrinh(),
+    'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
-<<<<<<< HEAD
-
-
-
-
-=======
-//lichttrinh
-// 'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
 
 //route quản lý tài khoản HDV
 // 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
@@ -174,14 +155,18 @@ match ($act) {
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),
 // 'logout-admin' => (new AdminTaiKhoanController())->logout(),
-
-<<<<<<< HEAD
+'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
+'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
+'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
+'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
+'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
+'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
 //route booking 
 'list-booking' => (new AdminBookingController())->listBooking(),
 'form-add-booking' => (new AdminBookingController())->formAddBooking(),
 'add-booking' => (new AdminBookingController())->postAddBooking(),
 'xoa-booking' => (new AdminBookingController())->deleteBK(),
-=======
+'detailBooking' => (new AdminBookingController())->detailBooking(),
 
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
+
 };

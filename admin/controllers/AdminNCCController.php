@@ -79,22 +79,7 @@ class AdminNCCController
 
     }
 
-<<<<<<< HEAD
-    // public function formEditNCC()
-    // {
-    //     $id = $_GET['id-ncc'];
-    //     $listTour = $this->modelTour->getAllTour();
-    //     $NCC = $this->modelNCC->getDetailNCC($id);
-    //     if ($NCC) {
-    //         require_once './views/ncc/editNCC.php';
-    //     } else {
-    //         header("Location:" . BASE_URL_ADMIN . '?act=ncc');
-    //         exit();
-    //     }
-    // }
 
-=======
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
     public function formEditNCC()
     {
         $id = $_GET['id-ncc'] ?? null;
@@ -105,12 +90,6 @@ class AdminNCCController
         }
         $listNCC = $this->modelNCC->getDetailNCC($id);
         $listTour = $this->modelTour->getAllTour();
-<<<<<<< HEAD
-// $listTour = $this->modelTour->getAllTour();
-=======
-
-        // $listTour = $this->modelTour->getAllTour();
->>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254
         // $listNCC = $this->modelNCC->getDetailNCC($id);
         if (!$listNCC) {
             header("Location: " . BASE_URL_ADMIN . '?act=ncc');
