@@ -11,15 +11,9 @@ class AdminYeuCau
     public function getAllYeuCau()
     {
         try {
-            $sql = "SELECT 
-                        ycdb.*, 
-                        kl.HoTen AS TenKhachHang, 
-                        b.MaBooking
-                    FROM yeu_cau_dac_biet ycdb 
-                    INNER JOIN khach_le kl  
-                    ON ycdb.KhachID = kl.KhachID   
-                    INNER JOIN booking b ON ycdb.BookingID = b.BookingID
-                    ORDER BY ycdb.YeuCauID DESC";
+            $sql = "SELECT yeu_cau_dac_biet.*, khach_le.HoTen
+                FROM yeu_cau_dac_biet 
+                INNER JOIN khach_le ON yeu_cau_dac_biet.KhachID = khach_le.KhachID";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
@@ -41,7 +35,7 @@ class AdminYeuCau
             echo "Lỗi: " . $e->getMessage();
         }
     }
-    public function insertYeuCau($KhachID , $BookingID , $LoaiYeuCau, $ChiTiet)
+    public function insertYeuCau($KhachID , $BookingID , $LoaiYeuCau, $ChiTiet) 
     {
         try {
             $sql = "INSERT INTO `yeu_cau_dac_biet` (`KhachID`, `BookingID`, `LoaiYeuCau`, `ChiTiet`) VALUES (:KhachID,:BookingID, :LoaiYeuCau, :ChiTiet)"; 

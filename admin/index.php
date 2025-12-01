@@ -11,7 +11,20 @@ require_once './controllers/AdminBaoCaoThongKeController.php';
 require_once './controllers/AdminTourController.php';
 require_once './controllers/AdminNCCController.php';
 require_once './controllers/AdminKhachHangController.php';
+require_once './controllers/AdminBookingController.php';
+
+require_once './controllers/AdminYeuCauController.php'; 
+require_once './controllers/AdminLichTrinhTheoTourController.php'; 
+require_once './controllers/AdminXemKhachHangController.php'; 
+
+
+require_once './controllers/AdminHuongDanVienController.php';
+
 require_once './controllers/AdminYeuCauController.php';
+require_once './controllers/AdminTrangThaiController.php';
+
+
+
 
 // Require toàn bộ file Models
 
@@ -23,10 +36,19 @@ require_once './models/AdminNCC.php';
 
 require_once './models/AdminKhachHang.php';
 
-require_once './models/AdminLichTrinh.php';
+
+require_once './models/AdminBooking.php';
 
 require_once './models/AdminYeuCau.php';
+require_once './models/AdminLichTrinhTheoTour.php';
+require_once './models/AdminXemKhachHang.php';
 
+
+require_once './models/AdminHuongDanVien.php';
+
+
+require_once './models/AdminLichTrinh.php';
+require_once './models/AdminTrangThai.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -53,13 +75,16 @@ match ($act) {
     'form-sua-danh-muc' => (new AdminDanhMucController())->formEditDanhMuc(),
     'sua-danh-muc' => (new AdminDanhMucController())->postEditDanhMuc(),
     'xoa-danh-muc' => (new AdminDanhMucController())->deleteDanhMuc(),
-    // route Sản phẩm
-    'ncc' => (new AdminNCCController())->danhsachNCC(),
+
+    // // route Sản phẩm
+   'ncc' => (new AdminNCCController())->danhSachNCC(),
+
     'form-them-ncc' => (new AdminNCCController())->formAddNCC(),
     'them-ncc' => (new AdminNCCController())->postAddNCC(),
-    // 'form-sua-san-pham' => (new AdminSanPhamController())->formEditSanPham(),
-    // 'sua-san-pham' => (new AdminSanPhamController())->postEditSanPham(),
+    'form-sua-ncc' => (new AdminNCCController())->formEditNCC(),
+    'sua-ncc' => (new AdminNCCController())->postEditNCC(),
     'xoa-ncc' => (new AdminNCCController())->deleteNCC(),
+
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
@@ -79,7 +104,7 @@ match ($act) {
     // 'chi-tiet-tuor' => (new AdminTuorController())->detailTuor(),
     'form-sua-tour' => (new AdminTourController())->formEditTour(),
     'xoa-tour' => (new AdminTourController())->deleteTour(),
-    'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
+    // 'sua-album-anh-tour' => (new AdminTourController())->postEditAnhTour(),
 
 
     'yeu-cau-dac-biet','yeu-cau' => (new AdminYeuCauController())->danhSachYeuCau(),
@@ -102,16 +127,21 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-//route reset password
+    //route reset password
+
+    //route hướng dẫn viên
+    'huongdanvien' => (new AdminHuongDanVienController())->danhsachHuongDanVien(),
+    'form-them-huongdanvien' => (new AdminHuongDanVienController())->formAddHuongDanVien(),
+    'them-huongdanvien' => (new AdminHuongDanVienController())->postAddHuongDanVien(),
+    'form-sua-huongdanvien' => (new AdminHuongDanVienController())->formEditHuongDanVien(),
+    'sua-huongdanvien' => (new AdminHuongDanVienController())->postEditHuongDanVien(),
+    'xoa-huongdanvien' => (new AdminHuongDanVienController())->deleteHuongDanVien(),
 
 
-
-
-
-//lichttrinh
-'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
-
-
+    //lichttrinh
+    // 'chi-tiet-lich-trinh-tour' => (new AdminLichTrinhTheoTourController())->listLichTrinh(),
+    'chi-tiet-lt' => (new AdminLichTrinhTheoTourController())->getListLichTrinh(),
+    'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
 
 //route quản lý tài khoản HDV
@@ -125,10 +155,18 @@ match ($act) {
 // 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),
 // 'logout-admin' => (new AdminTaiKhoanController())->logout(),
+'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
+'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
+'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
+'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
+'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
+'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
+//route booking 
+'list-booking' => (new AdminBookingController())->listBooking(),
+'form-add-booking' => (new AdminBookingController())->formAddBooking(),
+'add-booking' => (new AdminBookingController())->postAddBooking(),
+'xoa-booking' => (new AdminBookingController())->deleteBK(),
+'detailBooking' => (new AdminBookingController())->detailBooking(),
 
-//route login 
-// 'login-admin'=> (new AdminTaiKhoanController())->formLogin(),
-// 'check-login-admin'=> (new AdminTaiKhoanController())->login(),
-// 'logout-admin'=> (new AdminTaiKhoanController())->logout(),
 
 };

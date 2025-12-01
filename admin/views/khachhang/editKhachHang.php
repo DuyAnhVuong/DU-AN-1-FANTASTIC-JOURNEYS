@@ -87,6 +87,8 @@ include './views/layout/footer.php';
 </body>
 
 </html>
+<<<<<<< HEAD
+=======
 
     <!-- Main content -->
     <section class="content">
@@ -143,3 +145,4 @@ include './views/layout/footer.php';
 
 </body>
 </html>
+>>>>>>> 1f46222933dd6afcbeb4e4023b1f412f3b132254

@@ -47,8 +47,8 @@ include './views/layout/sidebar.php';
                       <tr>
                         <td><?= $key + 1 ?></td>
                         <td><?= $yc['YeuCauID'] ?></td>
-                        <td><?= $yc['TenKhachHang'] ?? 'N/A' ?></td>
-                        <td><?= $yc['MaBooking'] ?? 'N/A' ?></td>
+                        <td><?= $yc['HoTen'] ?? 'N/A' ?></td>
+                        <td><?= $yc['BookingID'] ?? 'N/A' ?></td>
                         <td><?= $yc['LoaiYeuCau'] ?></td>
                         <td><?= $yc['ChiTiet'] ?></td>
 

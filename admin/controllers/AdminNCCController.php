@@ -29,6 +29,8 @@ class AdminNCCController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $TourID = $_POST['TourID'];
+
+
             $LoaiDichVu = $_POST['LoaiDichVu'];
             $TenNCC = $_POST['TenNCC'];
             $ThongTinLienHe = $_POST['ThongTinLienHe'];
@@ -64,10 +66,11 @@ class AdminNCCController
     public function deleteNCC()
     {
         $id = $_GET['id_ncc'];
-        
+
+
 
         $ncc = $this->modelNCC->getDetailNCC($id);
-        
+
         if ($ncc) {
             $this->modelNCC->deletecc($id);
         }
@@ -75,6 +78,55 @@ class AdminNCCController
         exit();
 
     }
-    
+
+
+    public function formEditNCC()
+    {
+        $id = $_GET['id-ncc'] ?? null;
+
+        if (empty($id)) {
+            header("Location: " . BASE_URL_ADMIN . '?act=ncc');
+            exit();
+        }
+        $listNCC = $this->modelNCC->getDetailNCC($id);
+        $listTour = $this->modelTour->getAllTour();
+        // $listNCC = $this->modelNCC->getDetailNCC($id);
+        if (!$listNCC) {
+            header("Location: " . BASE_URL_ADMIN . '?act=ncc');
+            exit();
+        }
+        require_once './views/ncc/editNCC.php';
+        deleteSessionError();
+    }
+
+    public function postEditNCC()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['NCC_TourID'] ?? '';
+            $TourID = $_POST['TourID'] ?? '';
+            $LoaiDichVu = $_POST['LoaiDichVu'] ?? '';
+            $TenNCC = $_POST['TenNCC'] ?? '';
+            $ThongTinLienHe = $_POST['ThongTinLienHe'] ?? '';
+            // $NCC_TourID = $_POST['NCC_TourID'] ?? '';
+            $errors = [];
+
+
+
+            if (empty($errors)) {
+                // Sửa: Hàm updateTour chỉ nhận 5 tham số
+                $this->modelNCC->updateNCC($id, $TourID, $LoaiDichVu, $TenNCC, $ThongTinLienHe);
+
+                // Chuyển hướng
+                header("Location:" . BASE_URL_ADMIN . '?act=ncc');
+                exit();
+            } else {
+                $_SESSION['flash'] = true;
+                // Sửa lỗi chuyển hướng khi có lỗi để tránh lỗi "Undefined array key" nếu bạn dùng $id_quan_tri sau đó.
+                header("Location:" . BASE_URL_ADMIN . '?act=form-sua-ncc&id-ncc' . $id);
+
+                exit();
+            }
+        }
+    }
 }
 ?>

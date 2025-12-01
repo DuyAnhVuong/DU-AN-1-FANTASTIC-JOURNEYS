@@ -15,18 +15,21 @@ class AdminTourController
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
-
+        
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
     {
-        $listTour = $this->modelTour->getAllTour();
+        $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
+        $listTour = ['TourID' => null, 'TenTour' => '', 'LoaiTourID' => null, 'MoTa' => '', 'NgayTao' => '', 'Gia' => null, 'Image' => ''];
+
         require './views/tour/addTour.php';
 
     }
     public function postAddTour()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
             $TenTour = $_POST['TenTour'];
 
             $LoaiTourID = $_POST['LoaiTourID'];
@@ -89,10 +92,13 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['TourID'] ?? '';
+
             $TenTour = $_POST['TenTour'] ?? '';
+
             $AnhCu = $this->modelTour->getDetailTour($id);
             $old_file = $AnhCu['Image'];
             $Image = $_FILES['Image'] ?? '';
+
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
@@ -134,13 +140,17 @@ class AdminTourController
     public function deleteTour()
     {
         $id = $_GET['id'];
+
         $tour = $this->modelTour->getDetailTour($id);
+
         if ($tour) {
             $this->modelTour->delete($id);
         }
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
+
+
 //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);
@@ -229,4 +239,5 @@ class AdminTourController
         exit();
     }
 }
+
 }
