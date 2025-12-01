@@ -71,6 +71,7 @@ class AdminTour
         }
     }
 
+
     public function delete($id)
     {
         try {
@@ -171,5 +172,5 @@ public function deleteAnhTour($id)
         return false;
     }
 }
-
 }
+?>

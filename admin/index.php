@@ -21,6 +21,8 @@ require_once './controllers/AdminXemKhachHangController.php';
 require_once './controllers/AdminHuongDanVienController.php';
 
 require_once './controllers/AdminYeuCauController.php';
+require_once './controllers/AdminTrangThaiController.php';
+
 
 
 
@@ -46,7 +48,7 @@ require_once './models/AdminHuongDanVien.php';
 
 
 require_once './models/AdminLichTrinh.php';
-
+require_once './models/AdminTrangThai.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -154,13 +156,17 @@ match ($act) {
 // 'check-login-admin' => (new AdminTaiKhoanController())->login(),
 // 'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
-
+'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
+'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
+'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
+'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
+'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
+'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
 //route booking 
 'list-booking' => (new AdminBookingController())->listBooking(),
 'form-add-booking' => (new AdminBookingController())->formAddBooking(),
 'add-booking' => (new AdminBookingController())->postAddBooking(),
 'xoa-booking' => (new AdminBookingController())->deleteBK(),
-'detailBooking' => (new AdminBookingController())->detailBooking()
 
 
 };

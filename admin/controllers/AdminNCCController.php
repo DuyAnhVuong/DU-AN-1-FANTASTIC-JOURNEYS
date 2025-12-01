@@ -93,6 +93,7 @@ class AdminNCCController
 // $listTour = $this->modelTour->getAllTour();
 
         // $listTour = $this->modelTour->getAllTour();
+
         // $listNCC = $this->modelNCC->getDetailNCC($id);
         if (!$listNCC) {
             header("Location: " . BASE_URL_ADMIN . '?act=ncc');

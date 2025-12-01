@@ -149,7 +149,6 @@ class AdminTourController
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
-
 //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);

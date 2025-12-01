@@ -42,6 +42,7 @@
                 ':TongSoKhach' => $TongSoKhach,
                 ':NCC_TourID' => $NCC_TourID // ⚠️ THÊM THAM SỐ RÀNG BUỘC
             ]);
+
             return true;
         } catch (Exception $e) {
             echo "Lỗi khi chèn Booking: " . $e->getMessage();

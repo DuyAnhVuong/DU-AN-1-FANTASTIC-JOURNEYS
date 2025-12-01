@@ -78,14 +78,6 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="<?= BASE_URL_ADMIN . '?act=don-hang' ?>" class="nav-link">
-            <i class="fa-solid fa-calendar-check"></i>
-            <p>
-              Lịch trình tour
-            </p>
-          </a>
-        </li>
 
         <li class="nav-item">
 
@@ -144,7 +136,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-quan-tri' ?>" class="nav-link">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-trang-thai' ?>" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Trạng thái booking</p>
               </a>
