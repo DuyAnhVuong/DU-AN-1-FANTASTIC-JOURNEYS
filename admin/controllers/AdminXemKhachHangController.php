@@ -5,7 +5,7 @@ class AdminXemKhachHangController
 
     public function __construct()
     {
-        $this->modelXemKhachHang = new AdminXemKhachHang();
+        // $this->modelXemKhachHang = new AdminXemKhachHang();
     }
 
     public function danhSachDanhMuc()

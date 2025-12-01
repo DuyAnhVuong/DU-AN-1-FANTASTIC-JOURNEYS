@@ -89,7 +89,10 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
                       <input type="text" class="form-control" value="<?= $item['Ngay'] ?>" />
                     </div>
 
-                    
+                    <div class="col-lg-6 mb-3">
+                      <label class="form-label">Thời gian</label>
+                      <input type="text" class="form-control" value="<?= $item['ThoiGian'] ?>" />
+                    </div>
 
                     <div class="col-lg-12 mb-3">
                       <label class="form-label">Điểm đến</label>
@@ -99,7 +102,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
                     <div class="col-lg-12 mb-3">
                       <label class="form-label">Hoạt động</label>
                       <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>" />
-                    </div>
+                    </div> <hr>
                   <?php endforeach; ?>
                 <?php else: ?>
 

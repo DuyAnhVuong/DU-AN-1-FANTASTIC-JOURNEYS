@@ -86,7 +86,9 @@
               <td><?= $booking['Gia'] ?></td>
               <td><span class="badge bg-success badge-status">Đã cọc</span></td>
               <td class="text-end">
-                <button class="btn btn-sm btn-info text-white">Xem</button>
+                <a href="<?= BASE_URL_ADMIN . '?act=detailBooking&id=' . $booking['BookingID'] ?>">
+                  <button class="btn btn-primary">Xem</button>
+                </a>
                 <button class="btn btn-dark text-white">Khách hàng</button>
                 <a href="<?= BASE_URL_ADMIN . '?act=xoa-booking&id=' . $booking['BookingID'] ?>"
                   onclick="return confirm('Bạn có đồng ý xóa hay không')">
@@ -96,6 +98,7 @@
             </tr>
 
 
+
           <?php endforeach; ?>
         </tbody>
       </table>
@@ -103,6 +106,7 @@
     </div>
     <a href="<?= BASE_URL_ADMIN ?>">
       <button class="btn btn-dark">Quay lại</button>
+      
     </a>
   </div>
 

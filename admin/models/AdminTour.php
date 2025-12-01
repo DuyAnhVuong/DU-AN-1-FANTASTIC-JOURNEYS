@@ -70,7 +70,6 @@ class AdminTour
             echo "Lỗi" . $e->getMessage();
         }
     }
-}
 
     public function delete($id)
     {
