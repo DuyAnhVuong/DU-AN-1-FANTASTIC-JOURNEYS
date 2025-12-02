@@ -103,6 +103,8 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
                       <label class="form-label">Hoạt động</label>
                       <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>" />
                     </div>
+                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-lich-trinh&id=' . $item['LichTrinhID'] ?>" class="btn btn-danger" >Xoá lịch trình
+                        </a>
                     <hr>
                   <?php endforeach; ?>
                 <?php else: ?>
@@ -116,7 +118,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
 
           </div>
           <button class="btn btn-primary">Lưu thay đổi</button>
-          <button class="btn btn-danger ms-2">Xóa tour</button>
+          
           <a href="<?= BASE_URL_ADMIN . '?act=tour' ?>">
             <button class="btn btn-dark">Quay lại</button>
           </a>
@@ -129,7 +131,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
 
 
 
-    <div class="admin-box">
+    <!-- <div class="admin-box">
       <h4 class="section-title">Nhà cung cấp</h4>
       <form>
         <div class="mb-3">
@@ -146,7 +148,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
         </div>
         <button class="btn btn-primary">Cập nhật</button>
       </form>
-    </div>
+    </div> -->
 
   </div>
 

@@ -140,9 +140,9 @@ match ($act) {
 
     //lichttrinh
     // 'chi-tiet-lich-trinh-tour' => (new AdminLichTrinhTheoTourController())->listLichTrinh(),
-    'chi-tiet-lt' => (new AdminLichTrinhTheoTourController())->getListLichTrinh(),
-    'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
 
+    'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
+    'xoa-lich-trinh' => (new AdminTourController())->deleteLichTrinh(),
 
 //route quản lý tài khoản HDV
 // 'list-tai-khoan-hdv' => (new AdminTaiKhoanController())->danhSachHDV(),
