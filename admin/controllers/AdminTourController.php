@@ -170,7 +170,15 @@ class AdminTourController
 
     require_once './views/lichtrinh/linhtrinhtour.php';
 }
-
+    public function deleteLichTrinh(){
+        $id = $_GET['id'];
+        $lichtrinh = $this->modelLichTrinh->getDetailLichTrinh($id);
+        if($lichtrinh){
+            $this->modelLichTrinh->delete($id);
+        }
+        header("location: " .BASE_URL_ADMIN. '?act=chi-tiet-lich-trinh&id='.$lichtrinh['TourID']);
+        exit();
+    }
    
     // album anh
     public function postEditAnhTour()

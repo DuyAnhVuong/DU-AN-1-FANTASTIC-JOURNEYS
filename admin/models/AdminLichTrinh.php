@@ -42,6 +42,16 @@ class AdminLichTrinh
         return [];
     }
 }
-
+    public function delete($id)
+    {
+        try {
+            $sql = "DELETE FROM lich_trinh WHERE LichTrinhID = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
 }
 ?>

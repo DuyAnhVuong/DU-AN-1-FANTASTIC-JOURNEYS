@@ -42,7 +42,7 @@ include './views/layout/sidebar.php';
               <div class="card-body default_cursor_land">
                 <div class="form-group default_cursor_land">
                   <label>Booking ID</label>
-                  
+
                   <input type="text" class="form-control" name="BookingID" placeholder="Nhập Booking ID">
                   <?php if (isset($errors['BookingID'])) { ?>
                     <p class="text-danger"><?= $errors['BookingID'] ?></p>
@@ -50,11 +50,19 @@ include './views/layout/sidebar.php';
                 </div>
                 <div class="form-group default_cursor_land">
                   <label>Trạng thái</label>
-                  <input type="text" class="form-control" name="TrangThai" placeholder="Nhập trạng thái">
+                  <select name="TrangThai" class="form-control">
+                    <option value="">-- Chọn trạng thái --</option>
+                    <option value="chờ xác nhận">Chờ xác nhận</option>
+                    <option value="đã cọc">Đã cọc</option>
+                    <option value="hoàn tất">Hoàn tất</option>
+                    <option value="huỷ">Huỷ</option>
+                  </select>
+
                   <?php if (isset($errors['TrangThai'])) { ?>
                     <p class="text-danger"><?= $errors['TrangThai'] ?></p>
                   <?php } ?>
                 </div>
+
                 <div class="form-group default_cursor_land">
                   <label>Thời gian cập nhật</label>
                   <input type="date" class="form-control" name="ThoiGianCapNhat" placeholder="Nhập thời gian cập nhật">

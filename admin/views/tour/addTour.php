@@ -45,7 +45,7 @@ include './views/layout/sidebar.php';
 
                <div class="form-group">
                   <label for="id">Loại tour</label>
-                  <select id="id" name="id" class="form-control custom-select">
+                  <select id="id" name="LoaiTourID" class="form-control custom-select">
                     <?php foreach ($listDanhMuc as $DanhMuc): ?>
                       <option <?= $DanhMuc['id'] == $listTour['TourID'] ? 'selected' : '' ?>value="<?= $DanhMuc['id'] ?>">
                         <?= $DanhMuc['ten_danh_muc'] ?>
