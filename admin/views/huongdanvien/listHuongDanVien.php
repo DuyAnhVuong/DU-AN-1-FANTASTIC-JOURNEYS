@@ -113,8 +113,6 @@
                     <a href="<?= BASE_URL_ADMIN . '?act=form-sua-huongdanvien&id=' . $hdv['HDVID'] ?>">
                       <button class="btn btn-warning">Sửa</button>
                     </a>
-
-
                     <a href="<?= BASE_URL_ADMIN . '?act=xoa-huongdanvien&id_huongdanvien=' . $hdv['HDVID'] ?>"
                       onclick="return confirm('Bạn có đồng ý xóa hay không')">
                       <button class="btn btn-danger">Xóa</button>
@@ -123,10 +121,10 @@
                 </tr>
               <?php endforeach ?>
             </tbody>
-
-
-
           </table>
+          <a href="<?= BASE_URL_ADMIN ?>">
+            <button class="btn btn-dark">Quay lại</button>
+          </a>
         </div>
       </div>
 

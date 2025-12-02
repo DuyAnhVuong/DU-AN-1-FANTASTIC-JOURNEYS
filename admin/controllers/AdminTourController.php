@@ -26,13 +26,10 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $TenTour = $_POST['TenTour'];
-
             $LoaiTourID = $_POST['LoaiTourID'];
-
             $MoTa = $_POST['MoTa'];
             $NgayTao = $_POST['NgayTao'];
             $Gia = $_POST['Gia'];
-
             $Image = $_FILES['Image'] ?? null;
 
             // luu hinh anh vao
@@ -86,13 +83,10 @@ class AdminTourController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['TourID'] ?? '';
-
             $TenTour = $_POST['TenTour'] ?? '';
-
             $AnhCu = $this->modelTour->getDetailTour($id);
             $old_file = $AnhCu['Image'];
             $Image = $_FILES['Image'] ?? '';
-
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
