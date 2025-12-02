@@ -8,7 +8,7 @@ class AdminTrangThai
     }
     public function getAllTrangThai(){
         try{
-            $sql = "SELECT * FROM trang_thai_booking";
+            $sql = "SELECT trang_thai_booking.*, tai_khoan.TenDangNhap FROM trang_thai_booking INNER JOIN tai_khoan ON trang_thai_booking.NguoiCapNhatID = tai_khoan.TaiKhoanID";
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute();

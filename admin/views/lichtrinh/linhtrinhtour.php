@@ -104,7 +104,6 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
                       <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>" />
                     </div>
                     <hr>
-z
                   <?php endforeach; ?>
                 <?php else: ?>
 

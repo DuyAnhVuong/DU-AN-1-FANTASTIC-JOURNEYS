@@ -50,7 +50,7 @@
                   </div>
                   <div class="form-group default_cursor_land">
                     <label >Mô tả</label>
-                    <textarea name="mo_ta" id=""class="form-control" placeholder="Nhập mô tả"><?= $danhMuc['ten_danh_muc']?></textarea>
+                    <textarea name="mo_ta" id=""class="form-control" placeholder="Nhập mô tả"><?= $danhMuc['mo_ta']?></textarea>
                   </div>
                   
                 </div>

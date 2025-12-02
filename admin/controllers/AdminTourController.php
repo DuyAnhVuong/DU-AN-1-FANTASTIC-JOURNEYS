@@ -33,6 +33,7 @@ class AdminTourController
             $TenTour = $_POST['TenTour'];
 
             $LoaiTourID = $_POST['LoaiTourID'];
+            
 
             $MoTa = $_POST['MoTa'];
             $NgayTao = $_POST['NgayTao'];
@@ -100,6 +101,7 @@ class AdminTourController
             $Image = $_FILES['Image'] ?? '';
 
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
+        
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
@@ -149,6 +151,8 @@ class AdminTourController
         header("location:" . BASE_URL_ADMIN . '?act=tour');
         exit();
     }
+
+
 //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);
@@ -168,7 +172,15 @@ class AdminTourController
 
     require_once './views/lichtrinh/linhtrinhtour.php';
 }
-
+    public function deleteLichTrinh(){
+        $id = $_GET['id'];
+        $lichtrinh = $this->modelLichTrinh->getDetailLichTrinh($id);
+        if($lichtrinh){
+            $this->modelLichTrinh->delete($id);
+        }
+        header("location: " .BASE_URL_ADMIN. '?act=chi-tiet-lich-trinh&id='.$lichtrinh['TourID']);
+        exit();
+    }
    
     // album anh
     public function postEditAnhTour()
@@ -237,4 +249,5 @@ class AdminTourController
         exit();
     }
 }
+
 }

@@ -93,41 +93,47 @@
                 </ul>
             </div>
         </div>
-        <form action="<?= BASE_URL_ADMIN . '?act=add-booking' ?>" method="POST">
+        <form action="<?= BASE_URL_ADMIN . '?act=add-booking' ?>" method="POST" enctype="multipart/form-data">
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="card p-3">
                         <div class="section-title">Thông tin khách hàng</div>
-                        <input type="hidden" name="id" value="<?= $Tour['TourID'] ?>">
+                        <input type="hidden" name="id" value="<?= $dtbooking['BookingID'] ?>">
                         <label class="form-label">Tên khách</label>
-                        <input type="text" class="form-control mb-2" name="TenNguoiDat"
-                            placeholder="Nhập Tên Người Đặt">
+                        <input type="text" class="form-control mb-2" name="TenNguoiDat" placeholder="Nhập Tên Người Đặt"
+                            value="<?= $dtbooking['TenNguoiDat'] ?>" disabled>
                         <?php if (isset($_SESSION['error']['TenNguoiDat'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['TenNguoiDat'] ?></p>
                         <?php } ?>
 
                         <label class="form-label">Số lượng khách</label>
-                        <input type="number" class="form-control mb-2" name="TongSoKhach" placeholder="Nhập số khách">
+                        <input type="number" class="form-control mb-2" name="TongSoKhach" placeholder="Nhập số khách"
+                            value="<?= $dtbooking['TongSoKhach'] ?>" disabled>
                         <?php if (isset($_SESSION['error']['TongSoKhach'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['TongSoKhach'] ?></p>
                         <?php } ?>
 
 
                         <label class="form-label">Loại khách</label>
-                        <select class="form-select mb-2" id="customerType" name="LoaiKhach">
-                            <option value="0">Chọn loại khách</option>
-                            <option value="1">Khách lẻ</option>
-                            <option value="2">Khách đoàn</option>
+                        <select class="form-select mb-2" id="customerType" name="LoaiKhach"
+                            value="<?= $dtbooking['LoaiKhach'] ?>" disabled>
+                            <option value="<?= $dtbooking['LoaiKhach'] ?>"><?= $dtbooking['LoaiKhach'] ?></option>
+
                         </select>
 
+
+
+
                         <label class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control mb-2" name="SDT" placeholder="Nhập số điện thoại">
+                        <input type="text" class="form-control mb-2" name="SDT" placeholder="Nhập số điện thoại"
+                            value="<?= $dtbooking['SDT'] ?>" disabled>
                         <?php if (isset($_SESSION['error']['SDT'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['SDT'] ?></p>
                         <?php } ?>
 
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control mb-2" name="Email" placeholder="Nhập email">
+                        <input type="email" class="form-control mb-2" name="Email" placeholder="Nhập email"
+                            value="<?= $dtbooking['Email'] ?>" disabled>
                         <?php if (isset($_SESSION['error']['Email'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['Email'] ?></p>
                         <?php } ?>
@@ -143,30 +149,19 @@
                         <div class="row g-2">
                             <div class="col-12 mb-3">
                                 <label for="TourID">Tên tour</label>
-                                <select id="TourID" name="TourID" class="form-control custom-select">
-                                    <?php foreach ($listTour as $Tour): ?>
-                                        <option <?= $Tour['TourID'] == $listBooking['TourID'] ? 'selected' : '' ?>value="<?= $Tour['TourID'] ?>">
-                                            <?= $Tour['TenTour'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <input type="text" class="form-control mb-2" value="<?= $dtbooking['TenTour'] ?>" disabled>
                             </div>
 
                             <div class="row g-2">
                                 <div class="col-12 mb-3">
-                                    <label for="NCC_TourID">Tên Nhà cung cấp</label>
-                                    <select id="NCC_TourID" name="NCC_TourID" class="form-control custom-select">
-                                        <?php foreach ($listNCC as $NCC): ?>
-                                            <option <?= $NCC['NCC_TourID'] == $listBooking['NCC_TourID'] ? 'selected' : '' ?>value="<?= $NCC['NCC_TourID'] ?>">
-                                                <?= $NCC['TenNCC'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <label for="TourID">Tên nhà cung cấp</label>
+                                    <input type="text" class="form-control mb-2" value="<?= $dtbooking['TenNCC'] ?>" disabled>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label class="form-label">Ngày khởi hành dự kiến</label>
-                                    <input type="date" class="form-control" name="NgayKhoiHanhDuKien" />
+                                    <input type="date" class="form-control" name="NgayKhoiHanhDuKien"
+                                        value="<?= $dtbooking['NgayKhoiHanhDuKien'] ?>" disabled />
                                     <?php if (isset($_SESSION['error']['NgayKhoiHanhDuKien'])) { ?>
                                         <p class="text-danger"><?= $_SESSION['error']['NgayKhoiHanhDuKien'] ?></p>
                                     <?php } ?>
@@ -176,21 +171,31 @@
 
                                 <div class="col-md-3">
                                     <label class="form-label">Ngày về</label>
-                                    <input type="date" class="form-control" name="NgayVe" />
+                                    <input type="date" class="form-control" name="NgayVe" value="<?= $dtbooking['NgayVe'] ?>"
+                                        disabled />
                                     <?php if (isset($_SESSION['error']['NgayVe'])) { ?>
                                         <p class="text-danger"><?= $_SESSION['error']['NgayVe'] ?></p>
                                     <?php } ?>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row g-2">
+                             <!-- <div class="row g-2">
                                 <div class="col-12 mb-3">
-                                    <label for="TrangThaiID">Trạng thái</label>
-                                    <select id="TrangThaiID" name="TrangThaiID" class="form-control custom-select">
-                                        <option value=""><?=$listTrangThai['TrangThai']?> ?></option>
-                                    </select>
-                                </div>
+                                    <label>Trạng thái</label>
+                                    <select name="TrangThaiID" id="trang_thai_selector" class="form-control custom-select" >
+
+                                    <?php foreach ($trang_thai as $key => $tt): ?>
+                                        <option value="<?= $tt['TrangThaiID'] ?>">
+                                            <?= $tt['TrangThai'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+
+                                </select>
+                                </div> -->
+                            <!-- <a href="<?= BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $dtbooking['TourID'] ?>">
+                                <button class="btn btn-primary">Chi tiết</button>
+                            </a> -->
+                        </div>
 
                         <div class="mt-3">
                             <div class="section-title">Thông tin hệ thống</div>
@@ -201,7 +206,9 @@
                     </div>
 
                     <div class="mt-3 d-flex gap-2">
-                        <button type="submit" class="btn btn-success w-100">Xác nhận Booking</button>
+                        <a href="<?= BASE_URL_ADMIN ?>">
+                            <button class="btn btn-dark">Quay lại</button>
+                        </a>
                     </div>
                 </div>
 
