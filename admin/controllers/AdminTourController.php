@@ -33,6 +33,7 @@ class AdminTourController
             $TenTour = $_POST['TenTour'];
 
             $LoaiTourID = $_POST['LoaiTourID'];
+            
 
             $MoTa = $_POST['MoTa'];
             $NgayTao = $_POST['NgayTao'];
@@ -100,6 +101,7 @@ class AdminTourController
             $Image = $_FILES['Image'] ?? '';
 
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
+        
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
