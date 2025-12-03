@@ -19,6 +19,7 @@ class AdminTourController
     public function formAddTour()
     {
         $listTour = $this->modelTour->getAllTour();
+        $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
         require './views/tour/addTour.php';
 
     }
