@@ -1,3 +1,4 @@
+<?php require './views/layout/sidebar.php' ?>
 <!doctype html>
 <html lang="vi">
 

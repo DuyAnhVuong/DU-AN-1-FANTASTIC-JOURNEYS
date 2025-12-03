@@ -15,7 +15,7 @@ class AdminTourController
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
-        
+
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
@@ -29,9 +29,10 @@ class AdminTourController
     public function postAddTour()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+
             $TenTour = $_POST['TenTour'];
             $LoaiTourID = $_POST['LoaiTourID'];
+
             $MoTa = $_POST['MoTa'];
             $NgayTao = $_POST['NgayTao'];
             $Gia = $_POST['Gia'];
@@ -94,6 +95,7 @@ class AdminTourController
             $old_file = $AnhCu['Image'];
             $Image = $_FILES['Image'] ?? '';
             $LoaiTourID = $_POST['LoaiTourID'] ?? '';
+
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
@@ -130,7 +132,7 @@ class AdminTourController
             }
         }
     }
-    
+
     public function deleteTour()
     {
         $id = $_GET['id'];
@@ -145,101 +147,103 @@ class AdminTourController
     }
 
 
-//  public function getDetailLichTrinh(){
+    //  public function getDetailLichTrinh(){
 //         $id = $_GET['id'];
 //         return $lt = $this->modelLichTrinh->getDetailLichTrinh($id);
 //     }
-    public function formDetail(){
-    $id = $_GET['id'];
+    public function formDetail()
+    {
+        $id = $_GET['id'];
 
-    // lấy thông tin tour
-    $tour = $this->modelTour->getDetailTour($id);
+        // lấy thông tin tour
+        $tour = $this->modelTour->getDetailTour($id);
 
-    // lấy lịch trình đúng theo tour (QUAN TRỌNG)
-    $lichtrinh = $this->modelLichTrinh->getLichTrinhTheoTour($id);
-    // var_dump($lichtrinh);
+        // lấy lịch trình đúng theo tour (QUAN TRỌNG)
+        $lichtrinh = $this->modelLichTrinh->getLichTrinhTheoTour($id);
+        // var_dump($lichtrinh);
 
-    // lấy album ảnh tour
-    $listAnhTour = $this->modelTour->getListAnhTour($id);
+        // lấy album ảnh tour
+        $listAnhTour = $this->modelTour->getListAnhTour($id);
 
-    require_once './views/lichtrinh/linhtrinhtour.php';
-}
-    public function deleteLichTrinh(){
+        require_once './views/lichtrinh/linhtrinhtour.php';
+    }
+    public function deleteLichTrinh()
+    {
         $id = $_GET['id'];
         $lichtrinh = $this->modelLichTrinh->getDetailLichTrinh($id);
-        if($lichtrinh){
+        if ($lichtrinh) {
             $this->modelLichTrinh->delete($id);
         }
-        header("location: " .BASE_URL_ADMIN. '?act=chi-tiet-lich-trinh&id='.$lichtrinh['TourID']);
+        header("location: " . BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $lichtrinh['TourID']);
         exit();
     }
-   
+
     // album anh
     public function postEditAnhTour()
-{
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $id = $_POST['TourID'] ?? '';
+            $id = $_POST['TourID'] ?? '';
 
-        // Lấy danh sách ảnh hiện tại
-        $listAnhTourCurrent = $this->modelTour->getListAnhTour($id);
+            // Lấy danh sách ảnh hiện tại
+            $listAnhTourCurrent = $this->modelTour->getListAnhTour($id);
 
-        $img_array = $_FILES['img_array'];
-        $img_delete = $_POST['img_delete'] ?? [];
-        $current_img_ids = $_POST['current_img_ids'] ?? [];
+            $img_array = $_FILES['img_array'];
+            $img_delete = $_POST['img_delete'] ?? [];
+            $current_img_ids = $_POST['current_img_ids'] ?? [];
 
-        $upload_file = []; // FIX
+            $upload_file = []; // FIX
 
-        // Xử lý upload file mới + cập nhật file cũ
-        foreach ($img_array['name'] as $key => $value) {
+            // Xử lý upload file mới + cập nhật file cũ
+            foreach ($img_array['name'] as $key => $value) {
 
-            if ($img_array['error'][$key] == UPLOAD_ERR_OK) {
+                if ($img_array['error'][$key] == UPLOAD_ERR_OK) {
 
-                $new_file = uploadFileAlbum($img_array, './uploads/', $key);
+                    $new_file = uploadFileAlbum($img_array, './uploads/', $key);
 
-                if ($new_file) {
-                    $upload_file[] = [
-                        'id' => $current_img_ids[$key] ?? null,  // id ảnh cũ, nếu có
-                        'file' => $new_file
-                    ];
+                    if ($new_file) {
+                        $upload_file[] = [
+                            'id' => $current_img_ids[$key] ?? null,  // id ảnh cũ, nếu có
+                            'file' => $new_file
+                        ];
+                    }
                 }
             }
-        }
 
-        // Cập nhật hoặc thêm ảnh
-        foreach ($upload_file as $file_info) {
+            // Cập nhật hoặc thêm ảnh
+            foreach ($upload_file as $file_info) {
 
-            if ($file_info['id']) {
+                if ($file_info['id']) {
 
-                // lấy ảnh cũ
-                $old_file = $this->modelTour->getListAnhTour($file_info['id'])['URL'];
+                    // lấy ảnh cũ
+                    $old_file = $this->modelTour->getListAnhTour($file_info['id'])['URL'];
 
-                // cập nhật ảnh
-                $this->modelTour->updateAnhTour($file_info['id'], $file_info['file']);
+                    // cập nhật ảnh
+                    $this->modelTour->updateAnhTour($file_info['id'], $file_info['file']);
 
-                // xóa file cũ
-                deleteFile($old_file);
+                    // xóa file cũ
+                    deleteFile($old_file);
 
-            } else {
-                // thêm mới ảnh
-                $this->modelTour->insertAlbumTour($id, $file_info['file']);
+                } else {
+                    // thêm mới ảnh
+                    $this->modelTour->insertAlbumTour($id, $file_info['file']);
+                }
             }
-        }
 
-        // Xóa ảnh bị chọn để xóa
-        foreach ($listAnhTourCurrent as $anh) {
+            // Xóa ảnh bị chọn để xóa
+            foreach ($listAnhTourCurrent as $anh) {
 
-            if (in_array($anh['id'], $img_delete)) {
+                if (in_array($anh['id'], $img_delete)) {
 
-                deleteFile($anh['URL']);  // chỉ xóa 1 lần
+                    deleteFile($anh['URL']);  // chỉ xóa 1 lần
 
-                $this->modelTour->deleteAnhTour($anh['id']);
+                    $this->modelTour->deleteAnhTour($anh['id']);
+                }
             }
-        }
 
-        header("Location:" . BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $id);
-        exit();
+            header("Location:" . BASE_URL_ADMIN . '?act=form-sua-tour&id=' . $id);
+            exit();
+        }
     }
-}
 
 }

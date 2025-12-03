@@ -1,3 +1,4 @@
+<?php require './views/layout/sidebar.php' ?>
 <?php
 // CẦN ĐẢM BẢO CÁC BIẾN NÀY ĐÃ ĐƯỢC ĐỊNH NGHĨA TRƯỚC KHI CHẠY (MOCK DATA VÀ BASE URL)
 // Vui lòng thay thế các giá trị Mock Data trong phần Logic xử lý của bạn nếu cần
