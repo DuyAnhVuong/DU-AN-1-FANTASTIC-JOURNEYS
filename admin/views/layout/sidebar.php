@@ -136,9 +136,15 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-status' ?>" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Trạng thái</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?= BASE_URL_ADMIN . '?act=list-trang-thai' ?>" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
-                <p>Trạng thái booking</p>
+                <p>Lịch sử thay đổi trạng thái</p>
               </a>
             </li>
       </ul>

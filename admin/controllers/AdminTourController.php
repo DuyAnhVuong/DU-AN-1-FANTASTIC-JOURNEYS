@@ -179,6 +179,21 @@ class AdminTourController
         header("location: " .BASE_URL_ADMIN. '?act=chi-tiet-lich-trinh&id='.$lichtrinh['TourID']);
         exit();
     }
+    public function postThemLichTrinh()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $TourID = $_POST['TourID'] ?? '';
+        $Ngay = $_POST['Ngay'] ?? '';
+        $ThoiGian = $_POST['ThoiGian'] ?? '';
+        $DiemThamQuan = $_POST['DiemThamQuan'] ?? '';
+        $HoatDong = $_POST['HoatDong'] ?? '';
+        $this->modelLichTrinh->insertLichTrinh($TourID, $Ngay, $ThoiGian, $DiemThamQuan, $HoatDong);
+
+        header("Location: " . BASE_URL_ADMIN . "?act=chi-tiet-lich-trinh&id=" . $TourID);
+        exit();
+    }
+}
+
    
     // album anh
     public function postEditAnhTour()
