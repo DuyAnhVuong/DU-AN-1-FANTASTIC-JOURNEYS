@@ -38,8 +38,6 @@ include './views/layout/sidebar.php';
                     <?php endforeach; ?>
                   </select>
                 </div>
-
-
                 <div class="form-group">
                   <label>LoaiDichVu</label>
                   <input type="text" class="form-control" name="LoaiDichVu" placeholder="LoaiDichVu"
