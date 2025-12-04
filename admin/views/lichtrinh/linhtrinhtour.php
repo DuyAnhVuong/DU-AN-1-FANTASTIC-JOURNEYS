@@ -80,101 +80,56 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
             <h4 class="section-title">Lịch trình tour</h4>
 
             <?php if (!empty($lichtrinh)): ?>
-              <div class="accordion" id="accordionLichTrinh">
+              <?php foreach ($lichtrinh as $index => $item): ?>
 
-                <?php foreach ($lichtrinh as $index => $item): ?>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading<?= $index ?>">
-                      <button class="accordion-button collapsed" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse<?= $index ?>"
-                        aria-expanded="false"
-                        aria-controls="collapse<?= $index ?>">
-                        📅 Ngày <?= $item['Ngay'] ?> – <?= $item['ThoiGian'] ?>
-                      </button>
-                    </h2>
+                <!-- Box từng lịch trình -->
+                <div class="card mb-3">
 
-                    <div id="collapse<?= $index ?>" class="accordion-collapse collapse"
-                      aria-labelledby="heading<?= $index ?>"
-                      data-bs-parent="#accordionLichTrinh">
-                      <div class="accordion-body">
+                  <!-- HEADER (Ngày – clickable) -->
+                  <div class="card-header"
+                    style="cursor: pointer;"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#lt<?= $index ?>">
+                    <strong>Ngày <?= $item['Ngay'] ?></strong>
+                  </div>
 
-                        <p><strong>Điểm đến:</strong></p>
-                        <p><?= nl2br($item['DiemThamQuan']) ?></p>
+                  <!-- CONTENT (ẩn/hiện) -->
+                  <div id="lt<?= $index ?>" class="collapse">
+                    <div class="card-body">
 
-                        <p class="mt-2"><strong>Hoạt động:</strong></p>
-                        <p><?= $item['HoatDong'] ?></p>
+                      <div class="row">
+                        <div class="col-lg-6 mb-3">
+                          <label class="form-label">Thời gian</label>
+                          <input type="text" class="form-control" value="<?= $item['ThoiGian'] ?>">
+                        </div>
 
-                        <a href="<?= BASE_URL_ADMIN . '?act=xoa-lich-trinh&id=' . $item['LichTrinhID'] ?>"
-                          class="btn btn-danger btn-sm mt-2">Xoá lịch trình</a>
+                        <div class="col-lg-12 mb-3">
+                          <label class="form-label">Điểm đến</label>
+                          <textarea class="form-control"><?= $item['DiemThamQuan'] ?></textarea>
+                        </div>
 
+                        <div class="col-lg-12 mb-3">
+                          <label class="form-label">Hoạt động</label>
+                          <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>">
+                        </div>
                       </div>
+<a href="<?= BASE_URL_ADMIN . '?act=xoa-lich-trinh&id=' . $item['LichTrinhID'] ?>" class="btn btn-danger">Xóa</a>
                     </div>
                   </div>
-                <?php endforeach; ?>
 
-              </div>
+                </div>
+                
+              <?php endforeach; ?>
             <?php else: ?>
               <p class="text-muted">Không có lịch trình nào cho tour này.</p>
             <?php endif; ?>
-              <hr>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalThemLichTrinh">
-              + Thêm lịch trình
-            </button>
-            <!-- MODAL THÊM LỊCH TRÌNH -->
-            <div class="modal fade" id="modalThemLichTrinh" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
 
-                  <div class="modal-header">
-                    <h5 class="modal-title">Thêm lịch trình mới</h5>
-                    <button type="submit"  class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-
-                  <form  action="<?= BASE_URL_ADMIN . '?act=them-lich-trinh' ?>" method="POST">
-
-                    <div class="modal-body">
-
-                      <input type="hidden" name="TourID" value="<?= $tour['TourID'] ?>">
-                      <div class="row">
-                        <div class="col-lg-6 mb-3">
-                          <label>Ngày</label>
-                          <input type="date" name="Ngay" class="form-control" required>
-                        </div>
-
-                        <div class="col-lg-6 mb-3">
-                          <label>Thời gian</label>
-                          <input type="text" name="ThoiGian" class="form-control" required>
-                        </div>
-
-                        <div class="col-lg-12 mb-3">
-                          <label>Điểm tham quan</label>
-                          <textarea name="DiemThamQuan" class="form-control" rows="3" required></textarea>
-                        </div>
-
-                        <div class="col-lg-12 mb-3">
-                          <label>Hoạt động</label>
-                          <input type="text" name="HoatDong" class="form-control" required>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Lưu</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-            </div>
-
-
+            <a href="<?= BASE_URL_ADMIN . '?act=lichtrinh-add&tour_id=' . $tour['TourID'] ?>"
+              class="btn btn-primary">Thêm lịch trình</a>
           </div>
 
           <button class="btn btn-primary">Lưu thay đổi</button>
-
+          <button class="btn btn-danger ms-2">Xóa tour</button>
           <a href="<?= BASE_URL_ADMIN . '?act=tour' ?>">
             <button class="btn btn-dark">Quay lại</button>
           </a>
@@ -187,7 +142,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
 
 
 
-    <!-- <div class="admin-box">
+    <div class="admin-box">
       <h4 class="section-title">Nhà cung cấp</h4>
       <form>
         <div class="mb-3">
@@ -204,7 +159,7 @@ Hủy trong 7 ngày: hoàn 50%</textarea>
         </div>
         <button class="btn btn-primary">Cập nhật</button>
       </form>
-    </div> -->
+    </div>
 
   </div>
 
