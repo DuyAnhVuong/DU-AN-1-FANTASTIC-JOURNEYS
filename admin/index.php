@@ -54,10 +54,10 @@ require_once './models/AdminTrangThai.php';
 $act = $_GET['act'] ?? '/';
 
 
-// if ($act !== 'login-admin' && $act !== 'check-login-admin' && $act !== 'check-logout-admin') {
-//     // Kiểm tra đăng nhập admin
-//     checkLoginAdmin();
-// }
+if ($act !== 'login-admin' && $act !== 'check-login-admin' && $act !== 'check-logout-admin') {
+    // Kiểm tra đăng nhập admin
+    checkLoginAdmin();
+}
 
 // if($act!== 'login-admin'&& $act!=='check-login-admin' && $act!=='check-logout-admin'){
 //     // Kiểm tra đăng nhập admin
@@ -152,9 +152,9 @@ match ($act) {
 
 
 //route login 
-// 'login-admin' => (new AdminTaiKhoanController())->formLogin(),
-// 'check-login-admin' => (new AdminTaiKhoanController())->login(),
-// 'logout-admin' => (new AdminTaiKhoanController())->logout(),
+'login-admin' => (new AdminTaiKhoanController())->formLogin(),
+'check-login-admin' => (new AdminTaiKhoanController())->login(),
+'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
 'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
 'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),

@@ -118,6 +118,46 @@ public function delete($id){
         echo "Lỗi: " .$e->getMessage();
     }
 }
+
+// public function getTaiKhoanFormEmail($email){
+//     try{
+//         $sql = "SELECT * FROM tai_khoan WHERE email = :email";
+//         $stmt = $this->conn->prepare($sql);
+//         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+//         if(!$stmt->execute()){
+//             print_r($stmt->errorInfo());
+//             return false;
+//         }
+//     }catch(Exception $e){
+//         echo "lỗi".$e->getMessage();
+//         return false;
+//     }
+// }
+
+public function checkLogin($email, $mat_khau){
+    try{
+        $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':Email' => $email]);
+        $user = $stmt->fetch();
+
+     
+        if ($user && ($mat_khau==$user['MatKhauHash'])) { 
+            
+           
+            if ($user['VaiTro'] == 1) {
+                return $user; 
+            } else {
+                return "Tài khoản không có quyền đăng nhập";
+            }
+        } else {
+            return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
+        }
+    }catch(Exception $e){
+        echo "Lỗi" . $e->getMessage();
+        return false;
+    }
+}
 }
 
 

@@ -184,11 +184,6 @@
                                     <label>Trạng thái</label>
                                     <select name="TrangThaiID" id="trang_thai_selector" class="form-control custom-select" >
 
-                                    <?php foreach ($trang_thai as $key => $tt): ?>
-                                        <option value="<?= $tt['TrangThaiID'] ?>">
-                                            <?= $tt['TrangThai'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
 
                                 </select>
                                 </div> -->

@@ -184,13 +184,6 @@
                             </div>
                         </div>
 
-                        <div class="row g-2">
-                                <div class="col-12 mb-3">
-                                    <label for="TrangThaiID">Trạng thái</label>
-                                    <select id="TrangThaiID" name="TrangThaiID" class="form-control custom-select">
-                                        <option value=""><?=$listTrangThai['TrangThai']?> ?></option>
-                                    </select>
-                                </div>
 
                         <div class="mt-3">
                             <div class="section-title">Thông tin hệ thống</div>
