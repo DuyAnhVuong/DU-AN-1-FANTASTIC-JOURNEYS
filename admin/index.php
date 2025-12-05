@@ -186,9 +186,7 @@ match ($act) {
 'list-booking' => (new AdminBookingController())->listBooking(),
 'form-add-booking' => (new AdminBookingController())->formAddBooking(),
 'add-booking' => (new AdminBookingController())->postAddBooking(),
-'xoa-booking' => (new AdminBookingController())->deleteBK(),
 'detailBooking' => (new AdminBookingController())->detailBooking(),
 'huy-booking' => (new AdminBookingController())->cancelBooking(),
-
 
 };

@@ -69,28 +69,28 @@
             <th>Ngày Về</th>
             <th>Tổng số khách</th>
             <th>Tổng tiền</th>
-            <th>Trạng thái</th>
+        
             <th class="text-end">Hành động</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php foreach ($listbooking as $key => $booking):
-              $status_class = ''; // Khởi tạo biến để lưu lớp CSS màu
+            //   $status_class = ''; // Khởi tạo biến để lưu lớp CSS màu
 
-              if ($booking['TrangThai'] == 'Chờ xác nhận') {
-                $status_class = 'bg-warning'; // Màu vàng cho Chờ xác nhận
-              } elseif ($booking['TrangThai'] == 'Đã cọc') {
-                $status_class = 'bg-primary'; // Màu xanh dương cho Đã cọc
-              } elseif ($booking['TrangThai'] == 'Hoàn tất') {
-                $status_class = 'bg-success'; // Màu xanh lá cho Hoàn tất
-              } elseif ($booking['TrangThai'] == 'Hủy') {
-                $status_class = 'bg-danger'; // Màu đỏ cho Hủy
-              } else {
-                // Có thể thêm một màu mặc định nếu trạng thái không khớp với bất kỳ điều kiện nào
-                $status_class = 'bg-secondary'; // Ví dụ: màu xám mặc định
-              }
-            ?>
+            //   if ($booking['TrangThai'] == 'Chờ xác nhận') {
+            //     $status_class = 'bg-warning'; // Màu vàng cho Chờ xác nhận
+            //   } elseif ($booking['TrangThai'] == 'Đã cọc') {
+            //     $status_class = 'bg-primary'; // Màu xanh dương cho Đã cọc
+            //   } elseif ($booking['TrangThai'] == 'Hoàn tất') {
+            //     $status_class = 'bg-success'; // Màu xanh lá cho Hoàn tất
+            //   } elseif ($booking['TrangThai'] == 'Hủy') {
+            //     $status_class = 'bg-danger'; // Màu đỏ cho Hủy
+            //   } else {
+            //     // Có thể thêm một màu mặc định nếu trạng thái không khớp với bất kỳ điều kiện nào
+            //     $status_class = 'bg-secondary'; // Ví dụ: màu xám mặc định
+            //   }
+            // ?>
 
               <td><?= $key + 1 ?></td>
               <td><?= $booking['TenNguoiDat'] ?><br><small class="text-muted"><?= $booking['SDT'] ?></small></td>
@@ -100,11 +100,11 @@
               <td><?= $booking['NgayVe'] ?></td>
               <td><?= $booking['TongSoKhach'] ?></td>
               <td><?= $booking['Gia'] ?></td>
-              <td>
+              <!-- <td>
                 <span class="badge <?= $status_class ?> badge-status">
                   <?= $booking['TrangThai'] ?>
                 </span>
-              </td>
+              </td> -->
              <td class="text-end">
         <a href="<?= BASE_URL_ADMIN . '?act=detailBooking&id=' . $booking['BookingID'] ?>">
          <button class="btn btn-primary">Xem</button>

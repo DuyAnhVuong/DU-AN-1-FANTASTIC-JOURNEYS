@@ -10,7 +10,7 @@ class AdminKhachHangController
     public function danhSachKhachHang()
     {
         $listKhachHang = $this->modelKhachHang->getAllKhachHang();
-        require_once './views/khachhang/listKhachHang.php';
+        require_once './views/khachhang/listKZhachHang.php';
     }
     public function formAddKhachHang()
     {

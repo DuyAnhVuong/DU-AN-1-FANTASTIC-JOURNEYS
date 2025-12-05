@@ -40,7 +40,6 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $TourID = $_POST['TourID'] ?? null;
-        var_dump($TourID);
         $LoaiKhach = $_POST['LoaiKhach'] ?? null;
         $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
         $SDT = $_POST['SDT'] ?? null;
@@ -50,7 +49,6 @@
         $TongSoKhach = $_POST['TongSoKhach'] ?? null;
         // ⚠️ THÊM DÒNG NÀY:
         $NCC_TourID = $_POST['NCC_TourID'] ?? null; 
-        $TrangThaiID = $_POST['TrangThaiID'] ?? null; 
 
         $errors = [];
         // ... (Kiểm tra lỗi nếu cần)
@@ -66,7 +64,7 @@
                 $NgayVe,
                 $TongSoKhach,
                 $NCC_TourID,
-                $TrangThaiID
+                
             );
 
             // Chuyển hướng thành công
@@ -77,21 +75,7 @@
     }
 }
 
-        public function deleteBK()
-    {
-        $id = $_GET['id'];
-        
-
-
-        $booking = $this->modelBooking->getDetailBooking($id);
-
-        if ($booking) {
-            $this->modelBooking->deleteBooking($id);
-        }
-        header("location:" . BASE_URL_ADMIN . '?act=list-booking');
-        exit();
-
-    }
+   
     public function detailBooking()
     {
         $id = $_GET['id'];
@@ -101,22 +85,26 @@
         
     }
 
-    public function cancelBooking()
-    {
-        $id = $_GET['id'] ?? null;
-        
-        if (empty($id)) {
-            // Xử lý lỗi nếu không có ID
-            header("location:" . BASE_URL_ADMIN . '?act=booking');
-            exit();
-        }
-
-        // 1. Cập nhật trạng thái thành 'Hủy'
-        $this->modelBooking->updateStatus($id, 'Hủy'); 
-
-        // 2. Chuyển hướng về trang danh sách Booking
-        header("location:" . BASE_URL_ADMIN . '?act=list-booking');
+    // Mã Controller đã sửa trong AdminBookingController
+public function cancelBooking()
+{
+    // 1. Lấy BookingID từ URL
+    $id = $_GET['id'] ?? null; 
+    
+    // 2. Kiểm tra xem có ID không
+    if (!$id) {
+        // Xử lý lỗi nếu thiếu ID, ví dụ: chuyển hướng về trang danh sách
+        header("location:" . BASE_URL_ADMIN . '?act=list-booking&error=missing_id');
         exit();
     }
+
+    $TrangThaiID = 4; // Giả sử 4 là ID của trạng thái "Hủy"
+    
+    // 3. Gọi hàm cập nhật và truyền cả ID và TrangThaiID
+    $this->modelBooking->cancelBooking($id, $TrangThaiID); // ✅ TRUYỀN CẢ $id
+    
+    header("location:" . BASE_URL_ADMIN . '?act=list-booking');
+    exit();
+}
 }
 ?>
