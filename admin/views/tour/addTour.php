@@ -97,12 +97,14 @@
     }
 
 
+
     .form-select:focus {
       outline: none;
       border-color: #667eea;
       background: #ffffff;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
+
 
     .file-upload-wrapper {
       position: relative;
@@ -111,12 +113,6 @@
       gap: 12px;
     }
 
-                <div class="form-group default_cursor_land col-12">
-                  <label>Giá</label>
-                  <input type="text" class="form-control" name="Gia" placeholder="Nhập giá">
-                  <?php if (isset($_SESSION['error']['Gia'])) { ?>
-                    <p class="text-danger"><?= $_SESSION['error']['Gia'] ?></p>
-                  <?php } ?>
                 
 
 

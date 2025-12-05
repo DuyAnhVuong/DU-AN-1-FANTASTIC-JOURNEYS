@@ -5,6 +5,7 @@
         public $modelNCC;
         public $modelLichTrinh;
         public $modelYeuCau;
+        public $modelTrangThai;
 
     public function __construct()
     {
@@ -13,13 +14,14 @@
         $this->modelNCC = new AdminNCC();
         $this->modelLichTrinh = new AdminLichTrinhTheoTour();
         $this->modelYeuCau = new AdminYeuCau();
+        $this->modelTrangThai = new AdminTrangThai();
     }
 
     public function listbooking()
     {
        
         $listbooking = $this->modelBooking->getAllbooking();
-       
+        
         
         require_once './views/booking/listBooking.php';
     }
@@ -28,6 +30,7 @@
     {
         $listTour = $this->modelTour->getAllTour();
         $listNCC = $this->modelNCC->getAllNCC(); 
+        $listTrangThai = $this->modelTrangThai->getAllTrangThai();
         $listBooking = ['TourID' => null,'LoaiKhach' => '', 'TenNguoiDat' => '', 'SDT' => null, 'Email' => '', 'NgayVe' => '', 'NgayKhoiHanhDuKien' => '', 'TongSoKhach' => null, 'NCC_TourID' => null ] ;
         require './views/booking/addBooking.php';
 
@@ -37,6 +40,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $TourID = $_POST['TourID'] ?? null;
+        var_dump($TourID);
         $LoaiKhach = $_POST['LoaiKhach'] ?? null;
         $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
         $SDT = $_POST['SDT'] ?? null;
@@ -46,6 +50,7 @@
         $TongSoKhach = $_POST['TongSoKhach'] ?? null;
         // ⚠️ THÊM DÒNG NÀY:
         $NCC_TourID = $_POST['NCC_TourID'] ?? null; 
+        $TrangThaiID = $_POST['TrangThaiID'] ?? null; 
 
         $errors = [];
         // ... (Kiểm tra lỗi nếu cần)
@@ -60,7 +65,8 @@
                 $NgayKhoiHanhDuKien,
                 $NgayVe,
                 $TongSoKhach,
-                $NCC_TourID // ⚠️ THÊM THAM SỐ VÀO HÀM GỌI
+                $NCC_TourID,
+                $TrangThaiID
             );
 
             // Chuyển hướng thành công
@@ -86,12 +92,31 @@
         exit();
 
     }
-
-    public function detailBooking(){
+    public function detailBooking()
+    {
         $id = $_GET['id'];
-        $bk = $this->modelBooking->getDetailBooking($id);
-        require_once 'views/booking/editBooking.php';
+        $dtbooking = $this->modelBooking->getDetailBooking($id);
+        $trang_thai = $this->modelTrangThai->getAllTrangThai();
+        require_once './views/booking/detailBooking.php';
+        
     }
 
+    public function cancelBooking()
+    {
+        $id = $_GET['id'] ?? null;
+        
+        if (empty($id)) {
+            // Xử lý lỗi nếu không có ID
+            header("location:" . BASE_URL_ADMIN . '?act=booking');
+            exit();
+        }
+
+        // 1. Cập nhật trạng thái thành 'Hủy'
+        $this->modelBooking->updateStatus($id, 'Hủy'); 
+
+        // 2. Chuyển hướng về trang danh sách Booking
+        header("location:" . BASE_URL_ADMIN . '?act=list-booking');
+        exit();
     }
+}
 ?>

@@ -1,6 +1,8 @@
+<?php require './views/layout/sidebar.php' ?>
 <!doctype html>
 <html lang="vi">
- <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản Trị Danh Mục Tour Du Lịch</title>
@@ -294,80 +296,87 @@
       }
     }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+  </style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
- <body>
+</head>
+
+<body>
   <div class="container">
-   <div class="admin-panel">
-    <header class="header">
-     <h1 id="page-title">Quản Trị Danh Mục Tour Du Lịch</h1>
-     <p>Quản lý và tổ chức các danh mục tour một cách hiệu quả</p>
-    </header>
-    <div class="toolbar">
-     <div class="search-box"><input type="text" placeholder="Tìm kiếm danh mục...">
-     </div>
-     <a href="<?= BASE_URL_ADMIN . '?act=form-them-danh-muc' ?>" style="text-decoration: none;">
-        <button class="btn-primary" id="add-button">
-            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg><span id="add-button-text">Thêm Danh Mục Mới</span> 
-        </button>
-     </a>
+    <div class="admin-panel">
+      <header class="header">
+        <h1 id="page-title">Quản Trị Danh Mục Tour Du Lịch</h1>
+        <p>Quản lý và tổ chức các danh mục tour một cách hiệu quả</p>
+      </header>
+      <div class="toolbar">
+        <div class="search-box"><input type="text" placeholder="Tìm kiếm danh mục...">
+        </div>
+        <a href="<?= BASE_URL_ADMIN . '?act=form-them-danh-muc' ?>" style="text-decoration: none;">
+          <button class="btn-primary" id="add-button">
+            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg><span id="add-button-text">Thêm Danh Mục Mới</span>
+          </button>
+        </a>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên Danh Mục</th>
+              <th>Mô Tả</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($listDanhMuc as $key => $danhMuc): ?>
+              <tr>
+                <td><?= $key + 1 ?></td>
+                <td>
+                  <div class="category-name">
+                    <?= $danhMuc['ten_danh_muc'] ?>
+                  </div>
+                </td>
+                <td>
+                  <div class="category-description">
+                    <?= $danhMuc['mo_ta'] ?>
+                  </div>
+                </td>
+                <td>
+                  <div class="actions">
+                    <a href="<?= BASE_URL_ADMIN . '?act=form-sua-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>">
+                      <button class="btn-edit">Sửa</button>
+                    </a>
+                    <a href="<?= BASE_URL_ADMIN . '?act=xoa-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>"
+                      onclick="return confirm('Bạn có đồng ý xóa hay không')">
+                      <button class="btn-delete">Xóa</button>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <div class="pagination-info">
+          Hiển thị 1-5 trong tổng số X danh mục (Cần PHP tính toán)
+        </div>
+        <div class="pagination-controls">
+          <button class="page-btn">❮ Trước</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">Sau ❯</button>
+        </div>
+      </div>
     </div>
-    <div class="table-container">
-     <table>
-      <thead>
-       <tr>
-        <th>STT</th>
-        <th>Tên Danh Mục</th>
-        <th>Mô Tả</th>
-        <th>Thao Tác</th>
-       </tr>
-      </thead>
-      <tbody>
-       <?php foreach ($listDanhMuc as $key => $danhMuc): ?>
-        <tr>
-         <td><?= $key + 1 ?></td>
-         <td>
-          <div class="category-name">
-           <?= $danhMuc['ten_danh_muc'] ?>
-          </div>
-         </td>
-         <td>
-          <div class="category-description">
-           <?= $danhMuc['mo_ta'] ?>
-          </div>
-         </td>
-         <td>
-          <div class="actions">
-           <a href="<?= BASE_URL_ADMIN . '?act=form-sua-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>">
-            <button class="btn-edit">Sửa</button>
-           </a>
-           <a href="<?= BASE_URL_ADMIN . '?act=xoa-danh-muc&id_danh_muc=' . $danhMuc['id'] ?>"
-            onclick="return confirm('Bạn có đồng ý xóa hay không')">
-            <button class="btn-delete">Xóa</button>
-           </a>
-          </div>
-         </td>
-        </tr>
-       <?php endforeach ?>
-      </tbody>
-     </table>
-    </div>
-    <div class="pagination">
-     <div class="pagination-info">
-      Hiển thị 1-5 trong tổng số X danh mục (Cần PHP tính toán)
-     </div>
-     <div class="pagination-controls">
-        <button class="page-btn">❮ Trước</button> 
-        <button class="page-btn active">1</button> 
-        <button class="page-btn">2</button> 
-        <button class="page-btn">3</button> 
-        <button class="page-btn">Sau ❯</button>
-     </div>
-    </div>
-   </div>
   </div>
   <script>
     const defaultConfig = {
@@ -413,5 +422,6 @@
       });
     }
   </script>
- </body>
+</body>
+
 </html>

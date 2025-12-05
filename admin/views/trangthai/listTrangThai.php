@@ -46,7 +46,7 @@ include './views/layout/sidebar.php';
                     <th>Booking ID</th>
                     <th>Trạng thái booking</th>
                     <th>Thời gian cập nhật</th>
-                    <th>Người cập nhập ID</th>
+                    <th>Người cập nhật</th>
                     <th>Hành động</th>
                   </tr>
                 </thead>
@@ -58,7 +58,7 @@ include './views/layout/sidebar.php';
                       <td><?= $trangThai['BookingID'] ?></td>
                       <td><?= $trangThai['TrangThai'] ?></td>
                       <td><?= $trangThai['ThoiGianCapNhat'] ?></td>
-                      <td><?= $trangThai['NguoiCapNhatID'] ?></td>
+                      <td><?= $trangThai['TenDangNhap'] ?></td>
                       <td>
                         <a href="<?= BASE_URL_ADMIN ?>?act=form-sua-trang-thai&id_trang_thai=<?= $trangThai['TrangThaiID'] ?>">
                           <button class="btn btn-warning">Sửa</button>

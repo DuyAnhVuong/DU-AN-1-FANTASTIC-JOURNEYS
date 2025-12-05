@@ -1,4 +1,4 @@
-<?php 
+<?php
 require './views/layout/header.php';
 include './views/layout/navbar.php';
 include './views/layout/sidebar.php';
@@ -23,13 +23,13 @@ $yc = $yc ?? ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' 
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form action="<?= BASE_URL_ADMIN . '?act=them-yeu-cau' ?>" method="post" enctype="multipart/form-data">
-                        
+                    <form action="<?= BASE_URL_ADMIN . '?act=them-yeu-cau' ?>" method="post"
+                        enctype="multipart/form-data">
+
                         <div class="form-group">
-                            <label for="KhachID">Khách Hàng ID (*)</label>
-                            <input type="number" name="KhachID" id="KhachID" class="form-control" 
-                                value="<?= htmlspecialchars($yc['KhachID']) ?>" 
-                                placeholder="Nhập KhachID">
+                            <label for="KhachID">Tên khách hàng</label>
+                            <input type="number" name="KhachID" id="KhachID" class="form-control"
+                                value="<?= htmlspecialchars($yc['KhachID']) ?>" placeholder="Nhập KhachID">
                             <?php if (isset($errors['KhachID'])): ?>
                                 <small class="text-danger"><?= $errors['KhachID'] ?></small>
                             <?php endif; ?>
@@ -37,9 +37,8 @@ $yc = $yc ?? ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' 
 
                         <div class="form-group">
                             <label for="BookingID">Booking ID (*)</label>
-                            <input type="number" name="BookingID" id="BookingID" class="form-control" 
-                                value="<?= htmlspecialchars($yc['BookingID']) ?>" 
-                                placeholder="Nhập BookingID">
+                            <input type="number" name="BookingID" id="BookingID" class="form-control"
+                                value="<?= htmlspecialchars($yc['BookingID']) ?>" placeholder="Nhập BookingID">
                             <?php if (isset($errors['BookingID'])): ?>
                                 <small class="text-danger"><?= $errors['BookingID'] ?></small>
                             <?php endif; ?>
@@ -47,7 +46,7 @@ $yc = $yc ?? ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' 
 
                         <div class="form-group">
                             <label for="LoaiYeuCau">Loại Yêu Cầu (*)</label>
-                            <input type="text" name="LoaiYeuCau" id="LoaiYeuCau" class="form-control" 
+                            <input type="text" name="LoaiYeuCau" id="LoaiYeuCau" class="form-control"
                                 value="<?= htmlspecialchars($yc['LoaiYeuCau']) ?>"
                                 placeholder="Ví dụ: Ăn kiêng, Hỗ trợ xe lăn...">
                             <?php if (isset($errors['LoaiYeuCau'])): ?>
@@ -73,6 +72,6 @@ $yc = $yc ?? ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' 
     </section>
 </div>
 
-<?php 
+<?php
 include './views/layout/footer.php';
 ?>

@@ -8,7 +8,7 @@ class AdminLichTrinh
     }
     public function getAllLichTrinh(){
         try {
-            $sql = "SELECT lich_trinh.*, tour.TenTour
+            $sql = "SELECT lich_trinh., tour.TenTour
             FROM lich_trinh
             INNER JOIN tour ON lich_trinh.TourID = tour.TourID";
             $stmt = $this->conn->prepare($sql);
@@ -22,7 +22,7 @@ class AdminLichTrinh
     }
     public function getDetailLichTrinh($id){
         try {
-            $sql = "SELECT * FROM lich_trinh WHERE LichTrinhID=:id";
+            $sql = "SELECT FROM lich_trinh WHERE LichTrinhID=:id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':id' => $id]);
             return $stmt->fetch();

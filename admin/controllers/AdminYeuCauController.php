@@ -2,24 +2,24 @@
 class AdminYeuCauController
 {
     public $modelYeuCau;
-    
+
     public function __construct()
     {
-        $this->modelYeuCau = new AdminYeuCau(); 
+        $this->modelYeuCau = new AdminYeuCau();
     }
-    
+
 
     public function danhSachYeuCau()
     {
         $listYeuCau = $this->modelYeuCau->getAllYeuCau();
-       require_once './views/yeucau/listYeuCau.php';
+        require_once './views/yeucau/listYeuCau.php';
     }
     public function formAddYeuCau()
     {
-       
+
         $yc = ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' => ''];
         $errors = [];
-        
+
         require_once './views/yeucau/addYeuCau.php';
     }
 
@@ -28,9 +28,9 @@ class AdminYeuCauController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $KhachID = $_POST['KhachID'];
             $BookingID = $_POST['BookingID'];
-            
+
             $LoaiYeuCau = $_POST['LoaiYeuCau'];
-            
+
             $ChiTiet = $_POST['ChiTiet'];
 
             $errors = [];
@@ -48,13 +48,13 @@ class AdminYeuCauController
             }
 
             if (empty($errors)) {
-                $this->modelYeuCau->insertYeuCau( $KhachID , $BookingID , $LoaiYeuCau, $ChiTiet);
+                $this->modelYeuCau->insertYeuCau($KhachID, $BookingID, $LoaiYeuCau, $ChiTiet);
                 header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
                 exit();
             } else {
                 // Nếu có lỗi, load lại form với dữ liệu cũ và lỗi
                 $_SESSION['flash'] = true;
-                header("Location:" .BASE_URL_ADMIN . '?act=them-yeu-cau');
+                header("Location:" . BASE_URL_ADMIN . '?act=them-yeu-cau');
             }
         }
     }
@@ -88,7 +88,7 @@ class AdminYeuCauController
                 header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
                 exit();
             } else {
-            
+
                 $yeuCauDetail = [
                     'YeuCauID' => $YeuCauID,
                     'LoaiYeuCau' => $LoaiYeuCau,
@@ -101,10 +101,10 @@ class AdminYeuCauController
     public function deleteYeuCau()
     {
         $id = $_GET['id'];
-        
+
 
         $ncc = $this->modelYeuCau->getDetailYeuCau($id);
-        
+
         if ($ncc) {
             $this->modelYeuCau->deleteYeuCau($id);
         }
