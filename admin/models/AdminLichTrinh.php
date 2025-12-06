@@ -53,5 +53,24 @@ class AdminLichTrinh
             echo "Lỗi" . $e->getMessage();
         }
     }
+    public function insertLichTrinh($TourID, $Ngay, $ThoiGian, $DiemThamQuan, $HoatDong)
+    {
+        try {
+            $sql = "INSERT INTO lich_trinh(`TourID`, `Ngay`, `ThoiGian`, `DiemThamQuan`, `HoatDong`)
+            VALUES (:TourID, :Ngay, :ThoiGian, :DiemThamQuan, :HoatDong)";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':TourID' => $TourID,
+                ':Ngay' => $Ngay,
+                ':ThoiGian' => $ThoiGian,
+                ':DiemThamQuan' => $DiemThamQuan,
+                ':HoatDong' => $HoatDong
+            ]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
 }
 ?>
