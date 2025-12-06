@@ -10,10 +10,13 @@
         public function getAllbooking()
         {
             try {
-                $sql = "SELECT booking.*, tour.TenTour, tour.Gia, nha_cung_cap_tour.TenNCC
+                $sql = "SELECT booking.*, tour.TenTour, tour.Gia, ncc_dichvu.Name_DV, ncc_phuongtien.Name_PhuongTien, ncc_khachsan.NameKS,trang_thai.status
                     FROM booking 
                     INNER JOIN tour ON booking.TourID = tour.TourID
-                    INNER JOIN nha_cung_cap_tour ON booking.NCC_TourID = nha_cung_cap_tour.NCC_TourID";
+                    INNER JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
+                    INNER JOIN ncc_phuongtien ON booking.id_pt = ncc_phuongtien.id_pt
+                    INNER JOIN ncc_khachsan ON booking.id_ks = ncc_khachsan.id_ks
+                    INNER JOIN trang_thai ON booking.id_trang_thai = trang_thai.id_trang_thai";
                 $stmt = $this->conn->prepare($sql);
 
                 $stmt->execute();
@@ -23,12 +26,12 @@
                 echo "Lỗi" . $e->getMessage();
             }
         }
-        public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_TourID)
+        public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_KS, $NCC_PT, $NCC_DV, $TrangThaiID)
     // ⚠️ THÊM $NCC_TourID VÀO DANH SÁCH THAM SỐ
     {
         try {
-            $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`, `NCC_TourID`) 
-                    VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach, :NCC_TourID);";
+            $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`, `id_ks`, `id_pt`, `id_dichvu`, `id_trang_thai`) 
+                    VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach, :id_ks, :id_pt, :id_dichvu, :id_trang_thai);";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
@@ -40,7 +43,10 @@
                 ':NgayVe' => $NgayVe,
                 ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
                 ':TongSoKhach' => $TongSoKhach,
-                ':NCC_TourID' => $NCC_TourID,
+                ':id_ks' => $NCC_KS,
+                ':id_pt' => $NCC_PT,
+                ':id_dichvu' => $NCC_DV,
+                ':id_trang_thai' => $TrangThaiID
             ]);
 
             return true;
@@ -51,10 +57,13 @@
             public function getDetailBooking($id)
         {
             try {
-                $sql = "SELECT booking.*, tour.TenTour, tour.TourID, nha_cung_cap_tour.TenNCC
+                $sql = "SELECT booking.*, tour.TenTour, tour.TourID
                     FROM booking 
                     INNER JOIN tour ON booking.TourID = tour.TourID
-                    INNER JOIN nha_cung_cap_tour ON booking.NCC_TourID = nha_cung_cap_tour.NCC_TourID WHERE BookingID=:id";
+                    INNER JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
+                    INNER JOIN ncc_phuongtien ON booking.id_pt = ncc_phuongtien.id_pt
+                    INNER JOIN ncc_khachsan ON booking.id_ks = ncc_khachsan.id_ks
+                    WHERE BookingID =:id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->execute([':id' => $id]);
                 return $stmt->fetch();
@@ -62,24 +71,35 @@
                 echo "Lỗi" . $e->getMessage();
             }
         }
-    //     public function updateDanhMuc($id, $ten_danh_muc, $mo_ta)
-    //     {
-    //         try {
-    //             $sql = "UPDATE danh_muc SET ten_danh_muc=:ten_danh_muc, mo_ta=:mo_ta WHERE id=:id";
-    //             $stmt = $this->conn->prepare($sql);
-    //             $stmt->execute([
-    //                 ':ten_danh_muc' => $ten_danh_muc,
-    //                 ':mo_ta' => $mo_ta,
-    //                 ':id' => $id
-    //             ]);
-    //             return true;
-    //         } catch (Exception $e) {
-    //             echo "Lỗi" . $e->getMessage();
-    //         }
-    //     }
-      
+        
 
-        // Mã Model đã sửa trong AdminBooking
+
+        public function editBooking($id, $TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_KS, $NCC_PT, $NCC_DV, $TrangThaiID){
+            try {
+        // Cập nhật TrangThaiID của Booking có BookingID = :id
+        $sql = "UPDATE booking SET TourID=:TourID, LoaiKhach=:LoaiKhach, TenNguoiDat=:TenNguoiDat, SDT=:SDT, Email=:Email, NgayKhoiHanhDuKien=:NgayKhoiHanhDuKien, NgayVe=:NgayVe, TongSoKhach=:TongSoKhach, id_ks=:id_ks, id_pt=:id_pt, id_dichvu=:id_dichvu, id_trang_thai=:id_trang_thai WHERE BookingID=:id"; 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':TourID' => $TourID,
+            ':LoaiKhach' => $LoaiKhach,
+            ':TenNguoiDat' => $TenNguoiDat,
+            ':SDT' => $SDT,
+            ':Email' => $Email,
+            ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
+            ':NgayVe' => $NgayVe,
+            ':TongSoKhach' => $TongSoKhach,
+            ':id_ks' => $NCC_KS,
+            ':id_pt' => $NCC_PT,
+            ':id_dichvu' => $NCC_DV,
+            ':id_trang_thai' => $TrangThaiID,
+            ':id' => $id
+        ]);
+        return true;
+    } catch (Exception $e) {
+        echo "Lỗi" . $e->getMessage();
+        return false;
+    }
+        } 
 public function cancelBooking($id, $TrangThaiID) // ✅ THÊM $id
 {
     try {

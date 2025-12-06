@@ -152,17 +152,6 @@
                                 </select>
                             </div>
 
-                            <div class="row g-2">
-                                <div class="col-12 mb-3">
-                                    <label for="NCC_TourID">Tên Nhà cung cấp</label>
-                                    <select id="NCC_TourID" name="NCC_TourID" class="form-control custom-select">
-                                        <?php foreach ($listNCC as $NCC): ?>
-                                            <option <?= $NCC['NCC_TourID'] == $listBooking['NCC_TourID'] ? 'selected' : '' ?>value="<?= $NCC['NCC_TourID'] ?>">
-                                                <?= $NCC['TenNCC'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
 
                                 <div class="col-md-3">
                                     <label class="form-label">Ngày khởi hành dự kiến</label>
@@ -182,6 +171,56 @@
                                     <?php } ?>
                                 </div>
                             </div>
+                        
+
+                        <div class="col-md-4">
+                            <label for="id_ks" class="form-label">NCC Khách sạn</label>
+                            <select id="id_ks" name="id_ks" class="form-select">
+                                <option value="">-- Chọn Khách sạn --</option>
+                                <?php foreach ($NCCKS as $nccks): ?>
+                                    <option value="<?= $nccks['id_ks'] ?>">
+                                        <?= $nccks['NameKS'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                         <div class="col-md-4">
+                            <label for="id_dichvu" class="form-label">NCC Dịch vụ</label>
+                            <select id="id_dichvu" name="id_dichvu" class="form-select">
+                                <option value="">-- Chọn Dịch Vụ --</option>
+                                <?php foreach ($NCCDV as $nccDV): ?>
+                                    <option value="<?= $nccDV['id_dichvu'] ?>">
+                                        <?= $nccDV['Name_DV'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                         <div class="col-md-4">
+                            <label for="id_pt" class="form-label">NCC Phương tiện</label>
+                            <select id="id_pt" name="id_pt" class="form-select">
+                                <option value="">-- Chọn Phương Tiện --</option>
+                                <?php foreach ($NCCPT as $nccpt): ?>
+                                    <option value="<?= $nccpt['id_pt'] ?>">
+                                        <?= $nccpt['Name_PhuongTien'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+
+                         <div class="col-md-4">
+                            <label for="id_trang_thai" class="form-label">Trạng thái</label>
+                            <select id="id_trang_thai" name="id_trang_thai" class="form-select">
+                                <option value="">-- Chọn Trạng Thái --</option>
+                                <?php foreach ($listTrangThai as $status): ?>
+                                    <option value="<?= $status['id_trang_thai'] ?>">
+                                        <?= $status['status'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         </div>
 
 

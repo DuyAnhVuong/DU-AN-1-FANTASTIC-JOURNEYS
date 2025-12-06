@@ -68,7 +68,10 @@
             <th>Ngày khởi hành</th>
             <th>Ngày Về</th>
             <th>Tổng số khách</th>
-            <th>Tổng tiền</th>
+            <!-- <th>Tổng tiền</th>
+            <th>NCC Khách sạn</th>
+            <th>NCC Dịch vụ</th> -->
+            <th>NCC Phương tiện</th>
         
             <th class="text-end">Hành động</th>
           </tr>
@@ -99,15 +102,22 @@
               <td><?= $booking['NgayKhoiHanhDuKien'] ?></td>
               <td><?= $booking['NgayVe'] ?></td>
               <td><?= $booking['TongSoKhach'] ?></td>
-              <td><?= $booking['Gia'] ?></td>
+              <td><?= $booking['Gia'] * $booking['TongSoKhach']?></td>
+              <!-- <td><?= $booking['NameKS'] ?></td>
+              <td><?= $booking['Name_DV'] ?></td>
+              <td><?= $booking['Name_PhuongTien'] ?></td> -->
+              <td><?= $booking['status'] ?></td>
               <!-- <td>
                 <span class="badge <?= $status_class ?> badge-status">
                   <?= $booking['TrangThai'] ?>
                 </span>
               </td> -->
              <td class="text-end">
-        <a href="<?= BASE_URL_ADMIN . '?act=detailBooking&id=' . $booking['BookingID'] ?>">
+        <a href="<?= BASE_URL_ADMIN . '?act=detail-booking&id=' . $booking['BookingID'] ?>">
          <button class="btn btn-primary">Xem</button>
+        </a>
+        <a href="<?= BASE_URL_ADMIN . '?act=form-edit-booking&id=' . $booking['BookingID'] ?>">
+         <button class="btn btn-warning">Sửa</button>
         </a>
         <button class="btn btn-dark text-white">Khách hàng</button>
                 <a href="<?= BASE_URL_ADMIN . '?act=huy-booking&id=' . $booking['BookingID'] ?>"
