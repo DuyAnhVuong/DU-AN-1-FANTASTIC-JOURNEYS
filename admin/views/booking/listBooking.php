@@ -77,7 +77,7 @@
           <tr>
             <?php foreach ($listbooking as $key => $booking):
               $status_class = ''; // Khởi tạo biến để lưu lớp CSS màu
-
+            
               if ($booking['TrangThai'] == 'Chờ xác nhận') {
                 $status_class = 'bg-warning'; // Màu vàng cho Chờ xác nhận
               } elseif ($booking['TrangThai'] == 'Đã cọc') {
@@ -90,7 +90,7 @@
                 // Có thể thêm một màu mặc định nếu trạng thái không khớp với bất kỳ điều kiện nào
                 $status_class = 'bg-secondary'; // Ví dụ: màu xám mặc định
               }
-            ?>
+              ?>
 
               <td><?= $key + 1 ?></td>
               <td><?= $booking['TenNguoiDat'] ?><br><small class="text-muted"><?= $booking['SDT'] ?></small></td>
@@ -105,21 +105,27 @@
                   <?= $booking['TrangThai'] ?>
                 </span>
               </td>
-             <td class="text-end">
-        <a href="<?= BASE_URL_ADMIN . '?act=detailBooking&id=' . $booking['BookingID'] ?>">
-         <button class="btn btn-primary">Xem</button>
-        </a>
-        <button class="btn btn-dark text-white">Khách hàng</button>
+              <td class="text-end">
+                <a href="<?= BASE_URL_ADMIN . '?act=detailBooking&id=' . $booking['BookingID'] ?>">
+                  <button class="btn btn-primary">Xem</button>
+                </a>
+
+                <a href="<?= BASE_URL_ADMIN . '?act=xemkhachhang' ?>">
+                  <button class="btn btn-dark text-white">Khách hàng</button>
+                </a>
+
+                <!-- <button class="btn btn-dark text-white">Khách hàng</button> -->
+
                 <a href="<?= BASE_URL_ADMIN . '?act=huy-booking&id=' . $booking['BookingID'] ?>"
-         onclick="return confirm('Bạn có đồng ý HỦY booking này hay không?')">
-         <button class="btn btn-danger">Hủy</button>
-        </a>
-       </td>
-          </tr>
+                  onclick="return confirm('Bạn có đồng ý HỦY booking này hay không?')">
+                  <button class="btn btn-danger">Hủy</button>
+                </a>
+              </td>
+            </tr>
 
 
 
-        <?php endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
       </table>
 
