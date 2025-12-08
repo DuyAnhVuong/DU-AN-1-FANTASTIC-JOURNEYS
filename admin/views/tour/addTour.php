@@ -255,7 +255,39 @@
                  <?php endforeach; ?>
             </select>
         </div>
-
+                  <div class="form-group">
+            <label for="tourType" class="form-label"> Nhà cung cấp phương tiện<span class="required">*</span> </label> 
+            <select id="tourType" name="id_pt" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp phương tiện --</option>
+                 <?php foreach ($listNCCPT as $pt): ?>
+                                        <option value="<?= $pt['id_pt'] ?>">
+                        <?= $pt['Name_PhuongTien'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tourType" class="form-label"> Nhà cung cấp phương tiện<span class="required">*</span> </label> 
+            <select id="tourType" name="id_ks" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp phương tiện --</option>
+                 <?php foreach ($listNCCKS as $ks): ?>
+                                        <option value="<?= $ks['id_ks'] ?>">
+                        <?= $ks['NameKS'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tourType" class="form-label"> Nhà cung cấp phương tiện<span class="required">*</span> </label> 
+            <select id="tourType" name="id_dichvu" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp phương tiện --</option>
+                 <?php foreach ($listNCCDV as $dichvu): ?>
+                                        <option value="<?= $dichvu['id_dichvu'] ?>">
+                        <?= $dichvu['Name_DV'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
         <div class="form-group">
             <label for="tourDescription" class="form-label"> Mô Tả Tour<span class="required">*</span> </label> 
             <textarea id="tourDescription" name="MoTa" class="form-input form-textarea" placeholder="Nhập mô tả chi tiết về tour, lịch trình, điểm đến..."></textarea>

@@ -131,7 +131,9 @@ match ($act) {
 
     'chi-tiet-lich-trinh' => (new AdminTourController())->formDetail(),
     'xoa-lich-trinh' => (new AdminTourController())->deleteLichTrinh(),
-    // 'them-lich-trinh' => (new AdminTourController())->postThemLichTrinh(),
+
+    'form-them-lich-trinh' => (new AdminTourController())->formThemLichTrinh(),
+    'them-lich-trinh' => (new AdminTourController())->postThemLichTrinh(),
 
     'yeu-cau-dac-biet' => (new AdminYeuCauController())->danhSachYeuCau(),
     'form-sua-yeu-cau' => (new AdminYeuCauController())->formEditYeuCau(),
