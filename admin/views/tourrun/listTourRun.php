@@ -58,7 +58,6 @@ include './views/layout/sidebar.php';
                                             <td><?= $tr['TourRunID'] ?></td>
                                             <td><?= $tr['BookingID'] ?></td>
                                             <td><?= $tr['TourID'] ?></td>
-                                            <td><?= $tr['TenNCC'] ?></td>
                                             <td><?= $tr['NgayKhoiHanhThucTe'] ?></td>
                                             <td><?= $tr['NgayKetThuc'] ?></td>
                                             <td><?= $tr['DiemTapTrung'] ?></td>

@@ -114,18 +114,47 @@
             </a>
           </li>
           <li class="nav-item sidebar-item">
+
             <a href="<?= BASE_URL_ADMIN . '?act=tourrun' ?>"
               class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-600 text-left transition-colors text-white">
               <i class="fa-solid fa-plane w-5 h-5"></i>
               <span class="font-medium">Tour run</span>
             </a>
           </li>
-          <li class="nav-item sidebar-item">
-            <a href="<?= BASE_URL_ADMIN . '?act=ncc' ?>"
-              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-600 text-left transition-colors text-white">
-              <i class="fa-brands fa-black-tie w-5 h-5"></i>
-              <span class="font-medium">Nhà cung cấp</span>
-            </a>
+
+          <button onclick="toggleSubmenu('nha-cung-cap')"
+            class="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-indigo-600 text-left transition-colors">
+            <div class="flex items-center gap-3">
+              <i class="nav-icon fas fa-user w-5 h-5"></i>
+              <span class="font-medium">Quản lý Nhà Cung Cấp</span>
+            </div>
+            <i class="fas fa-angle-left right w-4 h-4 transition-transform" id="nha-cung-cap-arrow"></i>
+          </button>
+          <ul id="nha-cung-cap-submenu" class="submenu pl-10 space-y-1">
+
+            <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-ncc-pt' ?>"
+                class="w-full text-left px-4 py-2 hover:bg-indigo-600 rounded-lg transition-colors text-sm text-white flex items-center gap-3">
+                <i class="nav-icon fas fa-user w-4 h-4"></i>
+                Nhà cung cấp phương tiện
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-ncc-ks' ?>"
+                class="w-full text-left px-4 py-2 hover:bg-indigo-600 rounded-lg transition-colors text-sm text-white flex items-center gap-3">
+                <i class="nav-icon fas fa-user w-4 h-4"></i>
+                Nhà cung cấp khách sạn
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= BASE_URL_ADMIN . '?act=list-ncc-dv' ?>"
+                class="w-full text-left px-4 py-2 hover:bg-indigo-600 rounded-lg transition-colors text-sm text-white flex items-center gap-3">
+                <i class="nav-icon fas fa-user w-4 h-4"></i>
+                Nhà cung cấp dịch vụ
+              </a>
+            </li>
+          </ul>
+
           </li>
           <li class="nav-item sidebar-item">
             <a href="<?= BASE_URL_ADMIN . '?act=yeu-cau-dac-biet' ?>"
@@ -180,6 +209,13 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?= BASE_URL_ADMIN . '?act=list-status' ?>"
+                  class="w-full text-left px-4 py-2 hover:bg-indigo-600 rounded-lg transition-colors text-sm text-white flex items-center gap-3">
+                  <i class="nav-icon fas fa-user w-4 h-4"></i>
+                  Trạng thái
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?= BASE_URL_ADMIN . '?act=list-trang-thai' ?>"
                   class="w-full text-left px-4 py-2 hover:bg-indigo-600 rounded-lg transition-colors text-sm text-white flex items-center gap-3">
                   <i class="nav-icon fas fa-user w-4 h-4"></i>
@@ -195,8 +231,8 @@
     <main class="flex-1 overflow-y-auto">
       <header class="bg-white shadow-md px-8 py-4">
         <div class="flex items-center justify-between">
-          <h2 id="page-title" class="text-3xl font-bold text-indigo-900" style="font-family: 'Georgia', serif;">Trang
-            chủ</h2>
+          <h2 id="page-title" class="text-3xl font-bold text-indigo-900" style="font-family: 'Georgia', serif;">
+            Management</h2>
           <div class="flex items-center gap-4">
             <button class="p-2 hover:bg-indigo-50 rounded-full transition-colors">
               <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
@@ -218,9 +254,6 @@
           </div>
         </div>
       </header>
-
-
-
       <script>
         // Hàm chuyển đổi nội dung trang
         function showPage(pageId) {
@@ -234,17 +267,38 @@
           const pageTitleElement = document.getElementById('page-title');
           let title = '';
           switch (pageId) {
-            case 'home': title = 'Trang chủ'; break;
-            case 'customers': title = 'Khách hàng Tour'; break;
-            case 'categories': title = 'Danh mục Tour'; break;
-            case 'tours': title = 'Quản lý Tour'; break;
-            case 'suppliers': title = 'Nhà cung cấp'; break;
-            case 'requests': title = 'Yêu cầu đặc biệt'; break;
-            case 'accounts': title = 'Tài khoản Quản trị'; break;
-            case 'guides': title = 'Hướng dẫn viên'; break;
-            case 'bookings': title = 'Quản lý Booking'; break;
-            case 'booking-status': title = 'Trạng thái Booking'; break;
-            default: title = 'FANTASTIC JOURNEYS';
+            case 'home':
+              title = 'Trang chủ';
+              break;
+            case 'customers':
+              title = 'Khách hàng Tour';
+              break;
+            case 'categories':
+              title = 'Danh mục Tour';
+              break;
+            case 'tours':
+              title = 'Quản lý Tour';
+              break;
+            case 'suppliers':
+              title = 'Nhà cung cấp';
+              break;
+            case 'requests':
+              title = 'Yêu cầu đặc biệt';
+              break;
+            case 'accounts':
+              title = 'Tài khoản Quản trị';
+              break;
+            case 'guides':
+              title = 'Hướng dẫn viên';
+              break;
+            case 'bookings':
+              title = 'Quản lý Booking';
+              break;
+            case 'booking-status':
+              title = 'Trạng thái Booking';
+              break;
+            default:
+              title = 'FANTASTIC JOURNEYS';
           }
           pageTitleElement.textContent = title;
 
@@ -285,11 +339,21 @@
               if (match) {
                 const act = match[1];
                 switch (act) {
-                  case 'khach-hang': pageId = 'customers'; break;
-                  case 'danh-muc': pageId = 'categories'; break;
-                  case 'tour': pageId = 'tours'; break;
-                  case 'ncc': pageId = 'suppliers'; break;
-                  case 'yeu-cau-dac-biet': pageId = 'requests'; break;
+                  case 'khach-hang':
+                    pageId = 'customers';
+                    break;
+                  case 'danh-muc':
+                    pageId = 'categories';
+                    break;
+                  case 'tour':
+                    pageId = 'tours';
+                    break;
+                  case 'ncc':
+                    pageId = 'suppliers';
+                    break;
+                  case 'yeu-cau-dac-biet':
+                    pageId = 'requests';
+                    break;
                   // Submenu items are handled by the inner links
                 }
               }

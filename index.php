@@ -5,7 +5,9 @@ require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
-require_once './controllers/HomeController.php';
+// require_once './controllers/HomeController.php';
+
+
 
 // Require toàn bộ file Models
 // require_once './models/SanPham.php';
@@ -13,6 +15,8 @@ require_once './controllers/HomeController.php';
 // require_once './models/GioHang.php';
 // require_once './models/DonHang.php';
 // require_once './models/DanhMuc.php';
+// require_once './model/Home.php';
+
 
 // Route
 // $act = $_GET['act'] ?? '/';
@@ -56,8 +60,8 @@ require_once './controllers/HomeController.php';
 
 
 // //route login
-// 'login' => (new HomeController())->formLogin(),
-// 'check-login' => (new HomeController())->postLogin(),
 
+
+// };
 // };
 
