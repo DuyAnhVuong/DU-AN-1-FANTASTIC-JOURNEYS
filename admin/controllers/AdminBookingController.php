@@ -131,65 +131,70 @@
             deleteSessionError();
         }
 
-        public function editBooking()
-        {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $id = $_POST['id'] ;
-                $TourID = $_POST['TourID'] ?? null;
-                $LoaiKhach = $_POST['LoaiKhach'] ?? null;
-                $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
-                $SDT = $_POST['SDT'] ?? null;
-                $Email = $_POST['Email'] ?? null;
-                $NgayKhoiHanhDuKien = $_POST['NgayKhoiHanhDuKien'] ?? null;
-                $NgayVe = $_POST['NgayVe'] ?? null;
-                $TongSoKhach = $_POST['TongSoKhach'] ?? null;
-                $NCC_KS = $_POST['id_ks'] ?? null;
-                $NCC_PT = $_POST['id_pt'] ?? null;
-                $NCC_DV = $_POST['id_dichvu'] ?? null;
-                $TrangThaiID = $_POST['id_trang_thai'] ?? null;
+       // ... (Tiếp tục từ dòng 239)
 
-                $errors = [];
-                if (empty($TourID)) {
-                    $errors['Tour'] = 'Tên tour không được để trống';
-                } else if (empty($LoaiKhach)) {
-                    $errors['LoaiKhach'] = 'Loại khách không được để trống';
-                } else if (empty($TenNguoiDat)) {
-                    $errors['TenNguoiDat'] = 'Tên người đặt không được để trống';
-                } else if (empty($SDT)) {
-                    $errors['SDT'] = 'SDT không được để trống';
-                } else if (empty($NgayKhoiHanhDuKien)) {
-                    $errors['NgayKhoiHanhDuKien'] = 'Ngày khởi hành không được để trống';
-                } else if (empty($NgayVe)) {
-                    $errors['NgayVe'] = 'Ngày về không được để trống';
-                } else if (empty($TongSoKhach)) {
-                    $errors['TongSoKhach'] = 'Tổng khách không được để trống';
-                }
-                if (empty($errors)) {
-                    $this->modelBooking->editBooking(
-                        $id,
-                        $TourID,
-                        $LoaiKhach,
-                        $TenNguoiDat,
-                        $SDT,
-                        $Email,
-                        $NgayKhoiHanhDuKien,
-                        $NgayVe,
-                        $TongSoKhach,
-                        $NCC_KS,
-                        $NCC_PT,
-                        $NCC_DV,
-                        $TrangThaiID
-                    );
-                    header("Location:" . BASE_URL_ADMIN . '?act=list-booking');
-                    exit();
-                } else {
-                    $_SESSION['flash'] = true;
-                    // Sửa lỗi chuyển hướng khi có lỗi để tránh lỗi "Undefined array key" nếu bạn dùng $id_quan_tri sau đó.
-                    header("Location:" . BASE_URL_ADMIN . '?act=form-edit-booking&id=' . $id);
-                    exit();
-                }
-            }
-        }
+ public function editBooking()
+ {
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $id = $_POST['id'] ;
+  
+  $TourID = $_POST['TourID'] ?? null;
+  $LoaiKhach = $_POST['LoaiKhach'] ?? null;
+  $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
+  $SDT = $_POST['SDT'] ?? null;
+  $Email = $_POST['Email'] ?? null;
+  $NgayKhoiHanhDuKien = $_POST['NgayKhoiHanhDuKien'] ?? null;
+  $NgayVe = $_POST['NgayVe'] ?? null;
+  $TongSoKhach = $_POST['TongSoKhach'] ?? null;
+  $NCC_KS = $_POST['id_ks'] ?? null;
+  $NCC_PT = $_POST['id_pt'] ?? null;
+  $NCC_DV = $_POST['id_dichvu'] ?? null;
+  $TrangThaiID = $_POST['id_trang_thai'] ?? null;
+
+  $errors = [];
+  if (empty($TourID)) {
+  $errors['Tour'] = 'Tên tour không được để trống';
+  } else if (empty($LoaiKhach)) {
+  $errors['LoaiKhach'] = 'Loại khách không được để trống';
+  } else if (empty($TenNguoiDat)) {
+  $errors['TenNguoiDat'] = 'Tên người đặt không được để trống';
+  } else if (empty($SDT)) {
+  $errors['SDT'] = 'SDT không được để trống';
+  } else if (empty($NgayKhoiHanhDuKien)) {
+  $errors['NgayKhoiHanhDuKien'] = 'Ngày khởi hành không được để trống';
+  } else if (empty($NgayVe)) {
+  $errors['NgayVe'] = 'Ngày về không được để trống';
+  } else if (empty($TongSoKhach)) {
+  $errors['TongSoKhach'] = 'Tổng khách không được để trống';
+  }
+  
+  if (empty($errors)) {
+  $this->modelBooking->editBooking(
+   $id,
+   $TourID,
+   $LoaiKhach,
+   $TenNguoiDat,
+   $SDT,
+   $Email,
+   $NgayKhoiHanhDuKien,
+   $NgayVe,
+   $TongSoKhach,
+   $NCC_KS,
+   $NCC_PT,
+   $NCC_DV,
+   $TrangThaiID
+  );
+  header("Location:" . BASE_URL_ADMIN . '?act=list-booking');
+  exit();
+  } else {
+  $_SESSION['error'] = $errors; // ✅ ĐÃ THÊM: Lưu mảng lỗi vào session
+  $_SESSION['flash'] = true;
+  // Sửa lỗi chuyển hướng khi có lỗi để tránh lỗi "Undefined array key" nếu bạn dùng $id_quan_tri sau đó.
+  header("Location:" . BASE_URL_ADMIN . '?act=form-edit-booking&id=' . $id);
+  exit();
+  }
+ }
+ }
 
         public function cancelBooking()
         {
