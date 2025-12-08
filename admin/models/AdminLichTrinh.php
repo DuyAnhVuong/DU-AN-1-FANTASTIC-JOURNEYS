@@ -22,7 +22,7 @@ class AdminLichTrinh
     }
     public function getDetailLichTrinh($id){
         try {
-            $sql = "SELECT FROM lich_trinh WHERE LichTrinhID=:id";
+            $sql = "SELECT * FROM lich_trinh WHERE LichTrinhID=:id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':id' => $id]);
             return $stmt->fetch();

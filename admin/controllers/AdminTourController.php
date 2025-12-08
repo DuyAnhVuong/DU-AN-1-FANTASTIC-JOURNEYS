@@ -3,25 +3,37 @@ class AdminTourController
 {
     public $modelTour;
     public $modelDanhMuc;
-
+    public $modelNCCPT;
+    public $modelNCCKS;
+    public $modelNCCDV;
     public $modelLichTrinh;
     public function __construct()
     {
         $this->modelTour = new AdminTour();
         $this->modelDanhMuc = new AdminDanhMuc();
+        $this->modelNCCPT = new AdminNCCPT();
+        $this->modelNCCKS = new AdminNCCKS();
+        $this->modelNCCDV = new AdminNCCDV();
         $this->modelLichTrinh = new AdminLichTrinh();
     }
 
     public function danhSachTour()
     {
         $listTour = $this->modelTour->getAllTour();
-
+         // 🎯 Lấy số liệu thống kê
+    $totalTours = $this->modelTour->countAllTours();
+    $domesticTours = $this->modelTour->countDomesticTours();
+    $internationalTours = $this->modelTour->countInternationalTours();
+    $totalRevenue = $this->modelTour->getTotalRevenue();
         require_once './views/tour/listTour.php';
     }
     public function formAddTour()
     {
         $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
-        $listTour = ['TourID' => null, 'TenTour' => '', 'LoaiTourID' => null, 'MoTa' => '', 'NgayTao' => '', 'Gia' => null, 'Image' => ''];
+        $listNCCPT = $this->modelNCCPT->getAllNCCPT();
+        $listNCCKS = $this->modelNCCKS->getAllNCCKS();
+        $listNCCDV = $this->modelNCCDV->getAllNCCDV();
+        $listTour = ['TourID' => null, 'TenTour' => '', 'LoaiTourID' => null, 'MoTa' => '', 'NgayTao' => '', 'Gia' => null, 'Image' => '', 'id_pt' => '', 'id_ks' => '', 'id_dichvu' => ''];
 
         require './views/tour/addTour.php';
 
@@ -38,7 +50,9 @@ class AdminTourController
             $NgayTao = $_POST['NgayTao'];
             $Gia = $_POST['Gia'];
             $Image = $_FILES['Image'] ?? null;
-
+            $id_pt = $_POST['id_pt'];
+            $id_ks = $_POST['id_ks'];
+            $id_dichvu = $_POST['id_dichvu'];
             // luu hinh anh vao
             $file_thumb = uploadFile($Image, './uploads/');
 
@@ -62,7 +76,7 @@ class AdminTourController
                 $errors['Image'] = 'Phải chọn ảnh sản phẩm';
             }
             if (empty($errors)) {
-                $this->modelTour->insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $file_thumb);
+                $this->modelTour->insertTour($TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $file_thumb, $id_pt, $id_ks, $id_dichvu);
                 header("location:" . BASE_URL_ADMIN . '?act=tour');
                 exit();
             } else {
@@ -80,6 +94,9 @@ class AdminTourController
         $tour = $this->modelTour->getDetailTour($id);
         $listAnhTour = $this->modelTour->getListAnhTour($id);
         $listDanhMuc = $this->modelDanhMuc->getAllDanhMuc();
+        $listNCCPT = $this->modelNCCPT->getAllNCCPT();
+        $listNCCKS = $this->modelNCCKS->getAllNCCKS();
+        $listNCCDV = $this->modelNCCDV->getAllNCCDV();
         if (!$tour) {
             header("Location: " . BASE_URL_ADMIN . '?act=tour');
             exit();
@@ -99,6 +116,9 @@ class AdminTourController
             $MoTa = $_POST['MoTa'] ?? '';
             $NgayTao = $_POST['NgayTao'] ?? '';
             $Gia = $_POST['Gia'] ?? '';
+            $id_pt = $_POST['id_pt'] ?? '';
+            $id_ks = $_POST['id_ks'] ?? '';
+            $id_dichvu = $_POST['id_dichvu'] ?? '';
             $errors = [];
 
             if (empty($TenTour)) {
@@ -119,7 +139,7 @@ class AdminTourController
             }
             if (empty($errors)) {
                 // Sửa: Hàm updateTour chỉ nhận 5 tham số
-                $this->modelTour->updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $new_file);
+                $this->modelTour->updateTour($id, $TenTour, $LoaiTourID, $MoTa, $NgayTao, $Gia, $new_file, $id_pt, $id_ks, $id_dichvu);
 
                 // Chuyển hướng
                 header("Location:" . BASE_URL_ADMIN . '?act=tour');
@@ -176,20 +196,29 @@ class AdminTourController
         header("location: " .BASE_URL_ADMIN. '?act=chi-tiet-lich-trinh&id='.$lichtrinh['TourID']);
         exit();
     }
+    public function formThemLichTrinh()
+{  
+    $listTour = $this->modelTour->getAllTour();
+    require_once './views/lichtrinh/addLichTrinh.php';
+}
+
+
     public function postThemLichTrinh()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $TourID = $_POST['TourID'] ?? '';
-        $Ngay = $_POST['Ngay'] ?? '';
-        $ThoiGian = $_POST['ThoiGian'] ?? '';
-        $DiemThamQuan = $_POST['DiemThamQuan'] ?? '';
-        $HoatDong = $_POST['HoatDong'] ?? '';
-        $this->modelLichTrinh->insertLichTrinh($TourID, $Ngay, $ThoiGian, $DiemThamQuan, $HoatDong);
 
-        header("Location: " . BASE_URL_ADMIN . "?act=chi-tiet-lich-trinh&id=" . $TourID);
+        $TenTour = $_POST['TenTour'];
+        $Ngay = $_POST['Ngay'];
+        $ThoiGian = $_POST['ThoiGian'];
+        $DiemThamQuan = $_POST['DiemThamQuan'];
+        $HoatDong = $_POST['HoatDong'];
+        $this->modelLichTrinh->insertLichTrinh($TenTour, $Ngay, $ThoiGian, $DiemThamQuan, $HoatDong);
+
+        header("Location: " . BASE_URL_ADMIN . "?act=tour");
         exit();
     }
 }
+
 
    
     // album anh

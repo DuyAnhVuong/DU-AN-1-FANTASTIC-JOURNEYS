@@ -436,19 +436,19 @@
       <div class="stats-container">
         <div class="stat-card">
           <h3>Tổng Tour</h3>
-          <p>8</p>
+          <p><?= $totalTours ?></p>
         </div>
         <div class="stat-card">
           <h3>Tour Trong Nước</h3>
-          <p>5</p>
+          <p><?= $domesticTours ?></p>
         </div>
         <div class="stat-card">
           <h3>Tour Quốc Tế</h3>
-          <p>3</p>
+          <p><?= $internationalTours ?></p>
         </div>
         <div class="stat-card">
           <h3>Doanh Thu</h3>
-          <p>245M</p>
+          <p><?= number_format($totalRevenue, 0, ',', '.') ?>₫</p>
         </div>
       </div>
       <div class="toolbar">
