@@ -2,10 +2,14 @@
 class AdminYeuCauController
 {
     public $modelYeuCau;
+    public $modelKhachHang;
+    public $modelKhachLe;
 
     public function __construct()
     {
         $this->modelYeuCau = new AdminYeuCau();
+        $this->modelKhachHang = new AdminKhachHang();
+        $this->modelKhachLe = new AdminKhachLe();
     }
 
 
@@ -18,7 +22,7 @@ class AdminYeuCauController
     {
 
         $yc = ['KhachID' => '', 'BookingID' => '', 'LoaiYeuCau' => '', 'ChiTiet' => ''];
-        $errors = [];
+        $KhachLe = $this->modelKhachLe->getAllKhachLe();
 
         require_once './views/yeucau/addYeuCau.php';
     }

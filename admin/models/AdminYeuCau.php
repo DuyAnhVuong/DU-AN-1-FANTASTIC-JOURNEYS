@@ -11,9 +11,10 @@ class AdminYeuCau
     public function getAllYeuCau()
     {
         try {
-            $sql = "SELECT yeu_cau_dac_biet.*, khach_le.HoTen
+            $sql = "SELECT yeu_cau_dac_biet.*, khach_le.HoTen, khach_le.KhachID
                 FROM yeu_cau_dac_biet 
-                INNER JOIN khach_le ON yeu_cau_dac_biet.KhachID = khach_le.KhachID";
+                INNER JOIN khach_le 
+                ON yeu_cau_dac_biet.KhachID = khach_le.KhachID";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
