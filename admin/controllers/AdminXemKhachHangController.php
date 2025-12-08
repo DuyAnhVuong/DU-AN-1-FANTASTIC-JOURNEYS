@@ -2,80 +2,143 @@
 class AdminXemKhachHangController
 {
     public $modelXemKhachHang;
-
+    public $modelTour;
     public function __construct()
     {
-        // $this->modelXemKhachHang = new AdminXemKhachHang();
-    }
+        $this->modelXemKhachHang = new AdminXemKhachHang();
 
-    public function danhSachDanhMuc()
+        $this->modelTour = new AdminTour();
+    }
+    public function danhsachXemKhachHang()
     {
-        // $listDanhMuc = $this->modelXemKhachHang->getXemKhachHang();
+        $listXemKhachHang = $this->modelXemKhachHang->getAllXemKhachHang();
         require_once './views/xemkhachhang/listXemKhachHang.php';
     }
-    // public function formAddDanhMuc()
-    // {
-    //     require_once './views/danhmuc/addDanhMuc.php';
 
-    // }
-    // public function postAddDanhMuc()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $ten_danh_muc = $_POST['ten_danh_muc'];
-    //         $mo_ta = $_POST['mo_ta'];
-    //         $errors = [];
-    //         if (empty($ten_danh_muc)) {
-    //             $errors['ten_danh_muc'] = 'Tên danh mục không được để trống';
-    //         }
-    //         if (empty($errors)) {
-    //             $this->modelDanhMuc->insertDanhMuc($ten_danh_muc, $mo_ta);
-    //             header("location:" . BASE_URL_ADMIN . '?act=danh-muc');
-    //             exit();
-    //         } else {
-    //             require_once './views/danhmuc/listDanhMuc.php';
-    //         }
-    //     }
-    // }
-    // public function formEditDanhMuc()
-    // {
-    //     $id = $_GET['id_danh_muc'];
-    //     $danhMuc = $this->modelDanhMuc->getDetailDanhMuc($id);
-    //     if ($danhMuc) {
-    //         require_once './views/danhmuc/editdanhmuc.php';
-    //     } else {
-    //         header("Location:" . BASE_URL_ADMIN . '?act=danh-muc');
-    //         exit();
-    //     }
-    // }
-    // public function postEditDanhMuc()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $id = $_POST['id'];
-    //         $ten_danh_muc = $_POST['ten_danh_muc'];
-    //         $mo_ta = $_POST['mo_ta'];
-    //         $errors = [];
-    //         if (empty($ten_danh_muc)) {
-    //             $errors['ten_danh_muc'] = 'Tên danh mục không được để trống';
-    //         }
-    //         if (empty($errors)) {
-    //             $this->modelDanhMuc->updateDanhMuc($id, $ten_danh_muc, $mo_ta);
-    //             header("Location:" . BASE_URL_ADMIN . '?act=danh-muc');
-    //             exit();
-    //         } else {
-    //             $danhMuc = ['id' => $id, 'ten_danh_muc' => $ten_danh_muc, 'mo_ta' => $mo_ta];
-    //             require_once './views/danhmuc/editdanhmuc.php';
-    //         }
-    //     }
-    // }
-    // public function deleteDanhMuc()
-    // {
-    //     $id = $_GET['id_danh_muc'];
-    //     $danhMuc = $this->modelDanhMuc->getDetailDanhMuc($id);
-    //     if ($danhMuc) {
-    //         $this->modelDanhMuc->destroyDanhMuc($id);
-    //     }
-    //     header("location:" . BASE_URL_ADMIN . '?act=danh-muc');
-    //     exit();
-    // }   
+    public function formAddXemKhachHang()
+    {
+
+        $listTour = $this->modelTour->getAllTour();
+
+        // Khởi tạo $listXemKhachHang là một mảng rỗng hoặc có khóa an toàn để view không bị lỗi khi truy cập $listXemKhachHang['TourID']
+        $listXemKhachHang = ['Ten_KH' => null, 'SDT' => '', 'BookingID' => '', 'Gioi_Tinh' => '', 'Nam_Sinh' => ''];
+        require './views/xemkhachhang/addXemKhachHang.php';
+    }
+    public function postAddXemKhachHang()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $Ten_KH = $_POST['Ten_KH'];
+            $SDT = $_POST['SDT'];
+            $BookingID = $_POST['BookingID'];
+            $Gioi_Tinh = $_POST['Gioi_Tinh'];
+            $Nam_Sinh = $_POST['Nam_Sinh'];
+
+
+            $errors = [];
+
+            if (empty($Ten_KH)) {
+                $errors['Ten_KH'] = 'Ten_KH không được để trống';
+            }
+
+            if (empty($SDT)) {
+                $errors['SDT'] = 'SDT không được để trống';
+            }
+            if (empty($BookingID)) {
+                $errors['BookingID'] = 'BookingID không được để trống';
+            }
+            if (empty($Gioi_Tinh)) {
+                $errors['Gioi_Tinh'] = 'Gioi_Tinh không được để trống';
+            }
+            if (empty($Nam_Sinh)) {
+                $errors['Nam_Sinh'] = 'Nam_Sinh không được để trống';
+            }
+            if (empty($errors)) {
+                $this->modelXemKhachHang->insertXemKhachHang($Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh);
+                header("location:" . BASE_URL_ADMIN . '?act=xemkhachhang');
+                exit();
+
+            } else {
+                require_once './views/xemkhachhang/addXemKhachHang.php';
+
+
+            }
+
+        }
+    }
+
+    public function formEditXemKhachHang()
+    {
+        $id = $_GET['id-xkh'] ?? null;
+
+        if (empty($id)) {
+            header("Location: " . BASE_URL_ADMIN . '?act=xemkhachhang');
+            exit();
+        }
+        $listXemKhachHang = $this->modelXemKhachHang->getDetailXemKhachHang($id);
+        $listTour = $this->modelTour->getAllTour();
+
+        if (!$listXemKhachHang) {
+            header("Location: " . BASE_URL_ADMIN . '?act=xemkhachhang');
+            exit();
+        }
+        require_once './views/xemkhachhang/editXemKhachHang.php';
+        deleteSessionError();
+    }
+
+    public function postEditXemKhachHang()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['KH_ID'] ?? '';
+
+            $Ten_KH = $_POST['Ten_KH'] ?? '';
+
+            $SDT = $_POST['SDT'] ?? '';
+
+            // CẢNH BÁO: Đã sửa lỗi khoảng trắng 'BookingID ' thành 'BookingID'
+            $BookingID = $_POST['BookingID'] ?? '';
+
+            $Gioi_Tinh = $_POST['Gioi_Tinh'] ?? '';
+            $Nam_Sinh = $_POST['Nam_Sinh'] ?? '';
+
+            $errors = [];
+
+
+            if (empty($errors)) {
+                // KHÔNG CÓ LỖI: Thực hiện cập nhật
+                $this->modelXemKhachHang->updateXemKhachHang($id, $Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh);
+
+                // Chuyển hướng thành công
+                header("Location:" . BASE_URL_ADMIN . '?act=xemkhachhang');
+                exit();
+            } else {
+                // CÓ LỖI: Lưu session và chuyển hướng về form sửa
+                $_SESSION['flash'] = true;
+
+
+                // Dòng này đã được sửa lỗi cú pháp từ câu trả lời trước
+                header("Location:" . BASE_URL_ADMIN . '?act=form-sua-xemkhachhang&id-xkh=' . $id);
+
+                exit();
+            }
+        }
+    }
+
+    public function deleteXemkhachHang()
+    {
+        $id = $_GET['id_xkh'];
+        $xkh = $this->modelXemKhachHang->getDetailXemKhachHang($id);
+
+        if ($xkh) {
+            $this->modelXemKhachHang->delete($id);
+        }
+        header("location:" . BASE_URL_ADMIN . '?act=xemkhachhang');
+        exit();
+
+    }
+
+
+
+
+
 }
 ?>

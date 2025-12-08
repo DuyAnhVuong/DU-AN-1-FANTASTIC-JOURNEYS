@@ -2,32 +2,73 @@
 <?php
 // CẦN ĐẢM BẢO CÁC BIẾN NÀY ĐÃ ĐƯỢC ĐỊNH NGHĨA TRƯỚC KHI CHẠY (MOCK DATA VÀ BASE URL)
 // Vui lòng thay thế các giá trị Mock Data trong phần Logic xử lý của bạn nếu cần
+// Giả định BASE_URL_ADMIN và BASE_URL đã được định nghĩa ở đâu đó (ví dụ: config file)
+
 if (!isset($listHuongDanVien)) {
   // Dữ liệu giả định nếu chưa có
+// TÔI ĐÃ THÊM MỘT HDV CHỨNG CHỈ VÀNG KHÁC VÀ CHUYÊN GIA KHÁC VÀO MOCK DATA
   $listHuongDanVien = [
     [
       'HDVID' => 1,
-      'TenDangNhap' => 'HDV_A',
-      'HoTen' => 'Nguyễn Văn A',
-      'SDT' => '0901234567',
+      'TenDangNhap' => 'hihihaha',
+      'HoTen' => 'Nam Anh Tú',
+      'SDT' => '011111111111',
       'Avatar' => 'assets/images/guide_a.jpg', // Thay thế bằng URL ảnh thật
-      'NgaySinh' => '1990-01-15',
-      'Email' => 'hdv.a@example.com',
-      'ChungChi' => 'Chứng chỉ Vàng',
-      'NgonNgu' => 'Tiếng Anh, Tiếng Pháp',
-      'KinhNghiem' => '5 năm',
-      'PhanLoai' => 'Chuyên Gia'
+      'NgaySinh' => '2025-12-04',
+      'Email' => 'tutu@gmail.com',
+      'ChungChi' => 'Chứng Chỉ Vàng', // Vàng 1
+      'NgonNgu' => 'TIẾNG VIỆT',
+      'KinhNghiem' => '12',
+      'PhanLoai' => 'Trung Cấp'
     ],
-    // ... thêm các HDV khác ...
+    [
+      'HDVID' => 2,
+      'TenDangNhap' => 'fdxnfsrt',
+      'HoTen' => 'nmrsfrmmfnnsrtyj',
+      'SDT' => '045373783783',
+      'Avatar' => 'assets/images/guide_b.jpg', // Thay thế bằng URL ảnh thật
+      'NgaySinh' => '2025-12-01',
+      'Email' => 'xfgndf@gmail.com',
+      'ChungChi' => 'Chứng Chỉ Vàng', // Vàng 2
+      'NgonNgu' => 'TIẾNG HAHA',
+      'KinhNghiem' => '5',
+      'PhanLoai' => 'Trung Cấp'
+    ],
+    [
+      'HDVID' => 3,
+      'TenDangNhap' => 'juykityui',
+      'HoTen' => 'DuyAnhvuong',
+      'SDT' => '2457425734',
+      'Avatar' => 'assets/images/guide_c.jpg', // Thay thế bằng URL ảnh thật
+      'NgaySinh' => '2025-12-01',
+      'Email' => 't6rfr@gmail.com',
+      'ChungChi' => 'Chứng Chỉ Bạc',
+      'NgonNgu' => 'SRYTMSRTY',
+      'KinhNghiem' => '3',
+      'PhanLoai' => 'Chuyên Gia' // Chuyên Gia 1
+    ],
   ];
 }
 
-// Giả định các biến thống kê đã được tính toán (tôi đặt giá trị mặc định để hiển thị)
+// 🎯 LOGIC TÍNH TOÁN STATS THỰC TẾ 🎯
 $tong_hdv = isset($listHuongDanVien) ? count($listHuongDanVien) : 0;
-$hdv_hoat_dong = 3; // Giả định
-$hdv_chuyen_gia = 1; // Giả định
-$hdv_chung_chi_vang = 1; // Giả định
+$hdv_hoat_dong = 3; // Giả định (vì không có trường trạng thái hoạt động thực tế)
 
+$hdv_chuyen_gia = 0;
+$hdv_chung_chi_vang = 0;
+
+// Vòng lặp để đếm Chứng Chỉ Vàng và Phân loại Chuyên Gia
+foreach ($listHuongDanVien as $hdv) {
+  // Đếm Chứng Chỉ Vàng (không phân biệt chữ hoa/thường)
+  if (isset($hdv['ChungChi']) && stripos($hdv['ChungChi'], 'vàng') !== false) {
+    $hdv_chung_chi_vang++;
+  }
+
+  // Đếm Chuyên Gia (không phân biệt chữ hoa/thường)
+  if (isset($hdv['PhanLoai']) && stripos($hdv['PhanLoai'], 'chuyên gia') !== false) {
+    $hdv_chuyen_gia++;
+  }
+}
 ?>
 
 <!doctype html>
@@ -444,7 +485,7 @@ $hdv_chung_chi_vang = 1; // Giả định
 <body>
   <div class="app-wrapper">
     <div class="main-container">
-      <a href="<?= BASE_URL_ADMIN ?>" class="back-button">
+      <a href="<?= BASE_URL_ADMIN ?? '#' ?>" class="back-button">
         <span>◀</span> <span>Quay Lại</span>
       </a>
 
@@ -497,7 +538,7 @@ $hdv_chung_chi_vang = 1; // Giả định
           <input type="text" class="search-field" id="searchInput" placeholder="Tìm kiếm hướng dẫn viên...">
         </div>
 
-        <a href="<?= BASE_URL_ADMIN . '?act=form-them-huongdanvien' ?>" class="action-button btn-add">
+        <a href="<?= BASE_URL_ADMIN . '?act=form-them-huongdanvien' ?? '#' ?>" class="action-button btn-add">
           <span>➕</span> <span>Thêm Hướng Dẫn Viên</span>
         </a>
       </div>
@@ -526,31 +567,27 @@ $hdv_chung_chi_vang = 1; // Giả định
               foreach ($listHuongDanVien as $key => $hdv):
                 // Lấy các giá trị và gán class badge dựa trên giá trị
                 $chungChi = $hdv['ChungChi'] ?? '';
-                $badgeClass = '';
+                $badgeClass = 'badge-beginner'; // Mặc định là beginner
                 if (stripos($chungChi, 'vàng') !== false)
                   $badgeClass = 'badge-gold';
                 else if (stripos($chungChi, 'bạc') !== false)
                   $badgeClass = 'badge-silver';
                 else if (stripos($chungChi, 'đồng') !== false)
                   $badgeClass = 'badge-bronze';
-                else
-                  $badgeClass = 'badge-beginner';
 
                 $phanLoai = $hdv['PhanLoai'] ?? '';
-                $phanLoaiClass = '';
+                $phanLoaiClass = 'badge-beginner'; // Mặc định là beginner
                 if (stripos($phanLoai, 'chuyên gia') !== false)
                   $phanLoaiClass = 'badge-expert';
                 else if (stripos($phanLoai, 'trung cấp') !== false)
                   $phanLoaiClass = 'badge-intermediate';
-                else
-                  $phanLoaiClass = 'badge-beginner';
                 ?>
                 <tr>
                   <td><?= $key + 1 ?></td>
                   <td><strong><?= $hdv['TenDangNhap'] ?></strong></td>
                   <td><?= $hdv['HoTen'] ?><br>(<?= $hdv['SDT'] ?>)</td>
                   <td>
-                    <img src="<?= BASE_URL . $hdv['Avatar'] ?>" class="avatar-img" alt="Avatar">
+                    <img src="<?= BASE_URL . $hdv['Avatar'] ?? '#' ?>" class="avatar-img" alt="Avatar">
                   </td>
                   <td><?= $hdv['NgaySinh'] ?></td>
                   <td><?= $hdv['Email'] ?></td>
@@ -581,11 +618,11 @@ $hdv_chung_chi_vang = 1; // Giả định
 
                   <td>
                     <div class="action-buttons">
-                      <a href="<?= BASE_URL_ADMIN . '?act=form-sua-huongdanvien&id=' . $hdv['HDVID'] ?>"
+                      <a href="<?= BASE_URL_ADMIN . '?act=form-sua-huongdanvien&id=' . $hdv['HDVID'] ?? '#' ?>"
                         class="icon-button btn-edit-icon" title="Chỉnh sửa">
                         ✏️
                       </a>
-                      <a href="<?= BASE_URL_ADMIN . '?act=xoa-huongdanvien&id_huongdanvien=' . $hdv['HDVID'] ?>"
+                      <a href="<?= BASE_URL_ADMIN . '?act=xoa-huongdanvien&id_huongdanvien=' . $hdv['HDVID'] ?? '#' ?>"
                         class="icon-button btn-delete-icon" title="Xóa"
                         onclick="return confirm('Bạn có đồng ý xóa HDV <?= $hdv['HoTen'] ?> hay không')">
                         🗑️
@@ -608,7 +645,7 @@ $hdv_chung_chi_vang = 1; // Giả định
       </div>
 
       <div class="pagination-section">
-        <a href="<?= BASE_URL_ADMIN ?>" class="btn-back-footer">
+        <a href="<?= BASE_URL_ADMIN ?? '#' ?>" class="btn-back-footer">
           <span>◀</span> <span>Quay lại trang chính</span>
         </a>
       </div>

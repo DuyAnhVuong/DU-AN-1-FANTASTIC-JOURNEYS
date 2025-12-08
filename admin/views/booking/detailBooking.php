@@ -93,47 +93,41 @@
                 </ul>
             </div>
         </div>
-        <form action="<?= BASE_URL_ADMIN . '?act=add-booking' ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?= BASE_URL_ADMIN . '?act=detail-booking' ?>" method="POST">
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="card p-3">
                         <div class="section-title">Thông tin khách hàng</div>
-                        <input type="hidden" name="id" value="<?= $dtbooking['BookingID'] ?>">
+                        <input type="hidden" name="id" value="<?= $bk['TourID'] ?>">
                         <label class="form-label">Tên khách</label>
-                        <input type="text" class="form-control mb-2" name="TenNguoiDat" placeholder="Nhập Tên Người Đặt"
-                            value="<?= $dtbooking['TenNguoiDat'] ?>" disabled>
+                        <input type="text" class="form-control mb-2" name="TenNguoiDat"
+                            placeholder="Nhập Tên Người Đặt">
                         <?php if (isset($_SESSION['error']['TenNguoiDat'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['TenNguoiDat'] ?></p>
                         <?php } ?>
 
                         <label class="form-label">Số lượng khách</label>
-                        <input type="number" class="form-control mb-2" name="TongSoKhach" placeholder="Nhập số khách"
-                            value="<?= $dtbooking['TongSoKhach'] ?>" disabled>
+                        <input type="number" class="form-control mb-2" name="TongSoKhach" placeholder="Nhập số khách">
                         <?php if (isset($_SESSION['error']['TongSoKhach'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['TongSoKhach'] ?></p>
                         <?php } ?>
 
 
                         <label class="form-label">Loại khách</label>
-                        <select class="form-select mb-2" id="customerType" name="LoaiKhach"
-                            value="<?= $dtbooking['LoaiKhach'] ?>" disabled>
-                            <option value="<?= $dtbooking['LoaiKhach'] ?>"><?= $dtbooking['LoaiKhach'] ?></option>
-
+                        <select class="form-select mb-2" id="customerType" name="LoaiKhach">
+                            <option value="0">Chọn loại khách</option>
+                            <option value="1">Khách lẻ</option>
+                            <option value="2">Khách đoàn</option>
                         </select>
 
-
-
-
                         <label class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control mb-2" name="SDT" placeholder="Nhập số điện thoại"
-                            value="<?= $dtbooking['SDT'] ?>" disabled>
+                        <input type="text" class="form-control mb-2" name="SDT" placeholder="Nhập số điện thoại">
                         <?php if (isset($_SESSION['error']['SDT'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['SDT'] ?></p>
                         <?php } ?>
 
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control mb-2" name="Email" placeholder="Nhập email"
-                            value="<?= $dtbooking['Email'] ?>" disabled>
+                        <input type="email" class="form-control mb-2" name="Email" placeholder="Nhập email">
                         <?php if (isset($_SESSION['error']['Email'])) { ?>
                             <p class="text-danger"><?= $_SESSION['error']['Email'] ?></p>
                         <?php } ?>
@@ -149,19 +143,19 @@
                         <div class="row g-2">
                             <div class="col-12 mb-3">
                                 <label for="TourID">Tên tour</label>
-                                <input type="text" class="form-control mb-2" value="<?= $dtbooking['TenTour'] ?>" disabled>
+                                <select id="TourID" name="TourID" class="form-control custom-select">
+                                    <?php foreach ($listTour as $Tour): ?>
+                                        <option <?= $Tour['TourID'] == $listBooking['TourID'] ? 'selected' : '' ?>value="<?= $Tour['TourID'] ?>">
+                                            <?= $Tour['TenTour'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
-                            <div class="row g-2">
-                                <div class="col-12 mb-3">
-                                    <label for="TourID">Tên nhà cung cấp</label>
-                                    <input type="text" class="form-control mb-2" value="<?= $dtbooking['TenNCC'] ?>" disabled>
-                                </div>
 
                                 <div class="col-md-3">
                                     <label class="form-label">Ngày khởi hành dự kiến</label>
-                                    <input type="date" class="form-control" name="NgayKhoiHanhDuKien"
-                                        value="<?= $dtbooking['NgayKhoiHanhDuKien'] ?>" disabled />
+                                    <input type="date" class="form-control" name="NgayKhoiHanhDuKien" />
                                     <?php if (isset($_SESSION['error']['NgayKhoiHanhDuKien'])) { ?>
                                         <p class="text-danger"><?= $_SESSION['error']['NgayKhoiHanhDuKien'] ?></p>
                                     <?php } ?>
@@ -171,26 +165,64 @@
 
                                 <div class="col-md-3">
                                     <label class="form-label">Ngày về</label>
-                                    <input type="date" class="form-control" name="NgayVe" value="<?= $dtbooking['NgayVe'] ?>"
-                                        disabled />
+                                    <input type="date" class="form-control" name="NgayVe" />
                                     <?php if (isset($_SESSION['error']['NgayVe'])) { ?>
                                         <p class="text-danger"><?= $_SESSION['error']['NgayVe'] ?></p>
                                     <?php } ?>
                                 </div>
                             </div>
+                        
 
-                             <!-- <div class="row g-2">
-                                <div class="col-12 mb-3">
-                                    <label>Trạng thái</label>
-                                    <select name="TrangThaiID" id="trang_thai_selector" class="form-control custom-select" >
-
-
-                                </select>
-                                </div> -->
-                            <!-- <a href="<?= BASE_URL_ADMIN . '?act=chi-tiet-lich-trinh&id=' . $dtbooking['TourID'] ?>">
-                                <button class="btn btn-primary">Chi tiết</button>
-                            </a> -->
+                        <div class="col-md-4">
+                            <label for="id_ks" class="form-label">NCC Khách sạn</label>
+                            <select id="id_ks" name="id_ks" class="form-select">
+                                <option value="">-- Chọn Khách sạn --</option>
+                                <?php foreach ($NCCKS as $nccks): ?>
+                                    <option value="<?= $nccks['id_ks'] ?>">
+                                        <?= $nccks['NameKS'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
+
+                         <div class="col-md-4">
+                            <label for="id_dichvu" class="form-label">NCC Dịch vụ</label>
+                            <select id="id_dichvu" name="id_dichvu" class="form-select">
+                                <option value="">-- Chọn Dịch Vụ --</option>
+                                <?php foreach ($NCCDV as $nccDV): ?>
+                                    <option value="<?= $nccDV['id_dichvu'] ?>">
+                                        <?= $nccDV['Name_DV'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                         <div class="col-md-4">
+                            <label for="id_pt" class="form-label">NCC Phương tiện</label>
+                            <select id="id_pt" name="id_pt" class="form-select">
+                                <option value="">-- Chọn Phương Tiện --</option>
+                                <?php foreach ($NCCPT as $nccpt): ?>
+                                    <option value="<?= $nccpt['id_pt'] ?>">
+                                        <?= $nccpt['Name_PhuongTien'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+
+                         <div class="col-md-4">
+                            <label for="id_trang_thai" class="form-label">Trạng thái</label>
+                            <select id="id_trang_thai" name="id_trang_thai" class="form-select">
+                                <option value="">-- Chọn Trạng Thái --</option>
+                                <?php foreach ($listTrangThai as $status): ?>
+                                    <option value="<?= $status['id_trang_thai'] ?>">
+                                        <?= $status['status'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        </div>
+
 
                         <div class="mt-3">
                             <div class="section-title">Thông tin hệ thống</div>
@@ -201,9 +233,7 @@
                     </div>
 
                     <div class="mt-3 d-flex gap-2">
-                        <a href="<?= BASE_URL_ADMIN ?>">
-                            <button class="btn btn-dark">Quay lại</button>
-                        </a>
+                        <button type="submit" class="btn btn-success w-100">Xác nhận Booking</button>
                     </div>
                 </div>
 

@@ -28,9 +28,8 @@ class AdminNCCController
     public function postAddNCC()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             $TourID = $_POST['TourID'];
-
-
             $LoaiDichVu = $_POST['LoaiDichVu'];
             $TenNCC = $_POST['TenNCC'];
             $ThongTinLienHe = $_POST['ThongTinLienHe'];
@@ -66,9 +65,6 @@ class AdminNCCController
     public function deleteNCC()
     {
         $id = $_GET['id_ncc'];
-
-
-
         $ncc = $this->modelNCC->getDetailNCC($id);
 
         if ($ncc) {
