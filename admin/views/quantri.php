@@ -2,7 +2,7 @@
 <div id="content-area" class="p-8">
   <div id="home-page" class="page-content">
     <div class="mb-6">
-      
+
       <h3 id="welcome-message" class="text-2xl font-semibold text-gray-800 mb-2"
         style="font-family: 'Arial', sans-serif;">Chào mừng đến với hệ thống quản lý FANTASTIC JOURNEYS</h3>
       <p class="text-gray-600">Dashboard tổng quan về hoạt động kinh doanh tour du lịch</p>

@@ -19,6 +19,7 @@ require_once './controllers/AdminHuongDanVienController.php';
 require_once './controllers/AdminYeuCauController.php';
 require_once './controllers/AdminTrangThaiController.php';
 require_once './controllers/AdminXemKhachHangController.php';
+require_once './controllers/AdminTourRunController.php';
 
 
 
@@ -41,6 +42,7 @@ require_once './models/AdminHuongDanVien.php';
 require_once './models/AdminLichTrinh.php';
 require_once './models/AdminTrangThai.php';
 require_once './models/AdminXemKhachHang.php';
+require_once './models/AdminTourRun.php';
 
 
 // Route
@@ -85,6 +87,14 @@ match ($act) {
     'form-sua-xemkhachhang' => (new AdminXemKhachHangController())->formEditXemKhachHang(),
     'sua-xemkhachhang' => (new AdminXemKhachHangController())->postEditXemKhachHang(),
     'xoa-xemkhachhang' => (new AdminXemKhachHangController())->deleteXemkhachHang(),
+
+    'tourrun' => (new AdminTourRunController())->danhsachTourRun(),
+
+    'form-them-tourrun' => (new AdminTourRunController())->formAddTourRun(),
+    'them-tourrun' => (new AdminTourRunController())->postAddTourRun(),
+    'form-sua-tourrun' => (new AdminTourRunController())->formEditTourRun(),
+    'sua-tourrun' => (new AdminTourRunController())->postEditTourRun(),
+    'xoa-tourrun' => (new AdminTourRunController())->deleteTourRun(),
 
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),

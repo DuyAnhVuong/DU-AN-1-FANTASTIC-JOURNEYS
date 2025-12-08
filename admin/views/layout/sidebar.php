@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="vi">
 
@@ -71,7 +70,7 @@
           <span id="website-name" class="text-xl font-bold" style="font-family: 'Arial Black', sans-serif;">FANTASTIC
             JOURNEYS</span>
         </a>
-        
+
 
         <div class="flex items-center gap-3 border-t border-indigo-600 pt-4 mt-2">
           <div
@@ -79,8 +78,8 @@
             A
           </div>
           <a href="#" class="font-medium text-white block">ADMIN</a>
-          
-          
+
+
         </div>
       </div>
 
@@ -112,6 +111,13 @@
               class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-600 text-left transition-colors text-white">
               <i class="fa-solid fa-plane w-5 h-5"></i>
               <span class="font-medium">Tour</span>
+            </a>
+          </li>
+          <li class="nav-item sidebar-item">
+            <a href="<?= BASE_URL_ADMIN . '?act=tourrun' ?>"
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-600 text-left transition-colors text-white">
+              <i class="fa-solid fa-plane w-5 h-5"></i>
+              <span class="font-medium">Tour run</span>
             </a>
           </li>
           <li class="nav-item sidebar-item">
@@ -204,10 +210,10 @@
                 A
               </div>
               <span class="font-medium text-gray-700">Admin</span>
-               <a class="nav-link" href="<?= BASE_URL_ADMIN . '?act=logout-admin' ?>"
-        onclick="return confirm('Đăng xuất tài khoản ?')">
-        <i class="fas fa-sign-out-alt"></i>
-      </a>
+              <a class="nav-link" href="<?= BASE_URL_ADMIN . '?act=logout-admin' ?>"
+                onclick="return confirm('Đăng xuất tài khoản ?')">
+                <i class="fas fa-sign-out-alt"></i>
+              </a>
             </div>
           </div>
         </div>
