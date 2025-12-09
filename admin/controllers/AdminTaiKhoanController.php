@@ -156,6 +156,7 @@ class AdminTaiKhoanController
     public function deleteQuanTri()
     {
         $id = $_GET['id'];
+
         $taiKhoan = $this->modelTaiKhoan->getDetailTaiKhoan($id);
         if ($taiKhoan) {
             $this->modelTaiKhoan->delete($id);
