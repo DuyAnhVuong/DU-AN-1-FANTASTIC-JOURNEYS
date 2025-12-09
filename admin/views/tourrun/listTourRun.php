@@ -41,10 +41,10 @@ include './views/layout/sidebar.php';
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>TourRunID </th>
-                                        <th>BookingID </th>
-                                        <th>TourID </th>
-                                        <th>TenNCC</th>
+                                        <th>TourRunID</th>
+                                        <th>BookingID</th>
+                                        <th>Tên Tour</th>
+                                        <th>Hướng Dẫn viên</th>
                                         <th>NgayKhoiHanhThucTe</th>
                                         <th>NgayKetThuc</th>
                                         <th>DiemTapTrung</th>
@@ -55,19 +55,15 @@ include './views/layout/sidebar.php';
                                     <?php foreach ($listTourRun as $key => $tr): ?>
                                         <tr>
                                             <td><?= $key + 1 ?></td>
-                                            <td><?= $tr['TourRunID'] ?></td>
                                             <td><?= $tr['BookingID'] ?></td>
-                                            <td><?= $tr['TourID'] ?></td>
+                                            <td><?= $tr['TenTour'] ?></td>
+                                            <td><?= $tr['HoTen'] ?></td>
                                             <td><?= $tr['NgayKhoiHanhThucTe'] ?></td>
                                             <td><?= $tr['NgayKetThuc'] ?></td>
                                             <td><?= $tr['DiemTapTrung'] ?></td>
                                             <td><?= $tr['TrangThaiVanHanh'] ?></td>
-
                                             <td>
                                                 <div class="btn-group">
-
-
-
                                                     <a
                                                         href="<?= BASE_URL_ADMIN . '?act=form-sua-ncc&id-ncc=' . $ncc['NCC_TourID'] ?>">
                                                         <button class="btn btn-warning">Sửa</button>

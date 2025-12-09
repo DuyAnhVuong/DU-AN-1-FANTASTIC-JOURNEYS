@@ -2,7 +2,7 @@
 class AdminXemKhachHangController
 {
     public $modelXemKhachHang;
-    public $modelTour;
+
     public function __construct()
     {
         $this->modelXemKhachHang = new AdminXemKhachHang();
@@ -18,7 +18,7 @@ class AdminXemKhachHangController
     public function formAddXemKhachHang()
     {
 
-        $listTour = $this->modelTour->getAllTour();
+
 
         // Khởi tạo $listXemKhachHang là một mảng rỗng hoặc có khóa an toàn để view không bị lỗi khi truy cập $listXemKhachHang['TourID']
         $listXemKhachHang = ['Ten_KH' => null, 'SDT' => '', 'BookingID' => '', 'Gioi_Tinh' => '', 'Nam_Sinh' => ''];
@@ -75,7 +75,7 @@ class AdminXemKhachHangController
             exit();
         }
         $listXemKhachHang = $this->modelXemKhachHang->getDetailXemKhachHang($id);
-        $listTour = $this->modelTour->getAllTour();
+
 
         if (!$listXemKhachHang) {
             header("Location: " . BASE_URL_ADMIN . '?act=xemkhachhang');
