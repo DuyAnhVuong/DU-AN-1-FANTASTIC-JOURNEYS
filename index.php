@@ -53,6 +53,6 @@ match ($act) {
     
     default => require_once './views/home.php', // Trang mặc định nếu không khớp route
 
-    'danh-sach-tour' => 
+    
 };
 ?>
