@@ -149,6 +149,7 @@ match ($act) {
     'form-them-yeu-cau' => (new AdminYeuCauController())->formAddYeuCau(),
     'them-yeu-cau' => (new AdminYeuCauController())->postAddYeuCau(),
     'xoa-yeu-cau' => (new AdminYeuCauController())->deleteYeuCau(),
+
     //ncc phuong tien
     'list-ncc-pt' => (new AdminNCCPTController())->listNCCPT(),
     'form-them-ncc-pt' => (new AdminNCCPTController())->formAddNCCPT(),
@@ -205,20 +206,20 @@ match ($act) {
     // 'check-loginHDV' => (new AdminTaiKhoanController())->loginHDV(),
     // 'logout-hdv' => (new AdminTaiKhoanController())->logoutHDV(),
 
-'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
-'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
-'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
-'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
-'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
-'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
-//route booking 
-'list-booking' => (new AdminBookingController())->listBooking(),
-'form-add-booking' => (new AdminBookingController())->formAddBooking(),
-'add-booking' => (new AdminBookingController())->postAddBooking(),
-'detail-booking' => (new AdminBookingController())->detailBooking(),
-'form-edit-booking' => (new AdminBookingController())->formEditBooking(),
-'edit-booking' => (new AdminBookingController())->editBooking(),
-'huy-booking' => (new AdminBookingController())->cancelBooking(),
+    'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
+    'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
+    'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
+    'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
+    'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
+    'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
+    //route booking 
+    'list-booking' => (new AdminBookingController())->listBooking(),
+    'form-add-booking' => (new AdminBookingController())->formAddBooking(),
+    'add-booking' => (new AdminBookingController())->postAddBooking(),
+    'detail-booking' => (new AdminBookingController())->detailBooking(),
+    'form-edit-booking' => (new AdminBookingController())->formEditBooking(),
+    'edit-booking' => (new AdminBookingController())->editBooking(),
+    'huy-booking' => (new AdminBookingController())->cancelBooking(),
 
 
 
