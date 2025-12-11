@@ -39,43 +39,40 @@ include './views/layout/sidebar.php';
             <!-- /.card-header -->
             <!-- form start -->
             <form action="<?= BASE_URL_ADMIN . '?act=them-lich-trinh' ?>" method="POST">
-              <div class="card-body default_cursor_land">
-                <div class="form-group default_cursor_land">
-                  <label>Ngày</label>
-                  <input type="text" class="form-control" name="Ngay" placeholder="Nhập ngày">
-                  <?php if (isset($errors['Ngay'])) { ?>
-                    <p class="text-danger"><?= $errors['Ngay'] ?></p>
-                  <?php } ?>
-                </div>
-                <div class="form-group default_cursor_land">
-                  <label>Thời gian</label>
-                  <input type="text" class="form-control" name="ThoiGian" placeholder="Nhập thời gian">
-                  <?php if (isset($errors['ThoiGian'])) { ?>
-                    <p class="text-danger"><?= $errors['ThoiGian'] ?></p>
-                  <?php } ?>
-                </div>
-                <div class="form-group default_cursor_land">
-                  <label>Điểm đến</label>
-                  <textarea name="DiemThamQuan" class="form-control" placeholder="Nhập điểm đến"></textarea>
-                  <?php if (isset($errors['DiemThamQuan'])) { ?>
-                    <p class="text-danger"><?= $errors['DiemThamQuan'] ?></p>
-                  <?php } ?>
-                </div>
-                <div class="form-group default_cursor_land">
-                  <label>Hoạt động</label>
-                  <input type="text" class="form-control" name="HoatDong" placeholder="Nhập hoạt động">
-                  <?php if (isset($errors['HoatDong'])) { ?>
-                    <p class="text-danger"><?= $errors['HoatDong'] ?></p>
-                  <?php } ?>
-                </div>
-
+              <div class="form-group">
+                <label for="TenTour" class="form-label"> Tên tour<span class="required">*</span> </label>
+                <select id="TenTour" name="TenTour" class="form-select">
+                  <option value="">-- Chọn tour --</option>
+                  <?php foreach ($listTour as $tour): ?>
+                    <option value="<?= $tour['TenTour'] ?>">
+                      <?= $tour['TenTour'] ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
               </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer default_cursor_land">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="form-group">
+                <label>Ngày</label>
+                <input type="text" class="form-control" name="Ngay" required>
               </div>
+
+              <div class="form-group">
+                <label>Thời gian</label>
+                <input type="text" class="form-control" name="ThoiGian" required>
+              </div>
+
+              <div class="form-group">
+                <label>Điểm đến</label>
+                <textarea name="DiemThamQuan" class="form-control"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Hoạt động</label>
+                <input type="text" class="form-control" name="HoatDong">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Thêm</button>
             </form>
+
           </div>
         </div>
         <!-- /.col -->

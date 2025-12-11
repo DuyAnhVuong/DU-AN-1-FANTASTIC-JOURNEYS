@@ -482,7 +482,7 @@
             <?php foreach ($listTour as $key => $tourr):
               // Logic giả định để phân biệt loại tour cho class CSS nếu cần (dựa trên tên danh mục)
               $tourTypeClass = (strpos($tourr['ten_danh_muc'], 'Quốc Tế') !== false || strpos($tourr['ten_danh_muc'], 'Châu') !== false) ? 'international' : 'domestic';
-              ?>
+            ?>
               <tr>
                 <td><span class="tour-id"><?= $key + 1 ?></span></td>
                 <td>
@@ -612,3 +612,4 @@
 </body>
 
 </html>
+--- a/file:///d%3A/laragon/www/DU-AN-1-FANTASTIC-JOURNEYS/admin/models/AdminBooking.php
