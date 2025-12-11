@@ -121,6 +121,7 @@ class AdminTaiKhoanController
     public function deleteQuanTri()
     {
         $id = $_GET['id'];
+
         $taiKhoan = $this->modelTaiKhoan->getDetailTaiKhoan($id);
         if ($taiKhoan) {
             $this->modelTaiKhoan->delete($id);
@@ -143,8 +144,8 @@ class AdminTaiKhoanController
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email']; // Sửa từ 'Email' thành 'email' (theo form HTML)
-            $password = $_POST['password']; // Sửa từ 'MatKhauHash' thành 'password' (theo form HTML)
+            $email = $_POST['Email']; // Sửa từ 'Email' thành 'email' (theo form HTML)
+            $password = $_POST['MatKhauHash']; // Sửa từ 'MatKhauHash' thành 'password' (theo form HTML)
 
             // Kiểm tra đăng nhập, hàm này chỉ cho phép VaiTro = 1
             $user = $this->modelTaiKhoan->checkLogin($email, $password);
@@ -164,35 +165,6 @@ class AdminTaiKhoanController
     }
 
     // 2. Đăng nhập HƯỚNG DẪN VIÊN (VaiTro = 2)
-    public function formLoginHDV()
-    {
-        // Hiển thị form, action của form này phải là BASE_URL . '?act=login-hdv'
-        require_once './views/auth/formLogin.php'; 
-        deleteSessionError();
-    }
-
-    public function loginHDV()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email']; // Sửa từ 'Email' thành 'email' (theo form HTML)
-            $password = $_POST['password']; // Sửa từ 'MatKhauHash' thành 'password' (theo form HTML)
-
-            // Kiểm tra đăng nhập, hàm này chỉ cho phép VaiTro khác 1 (giả sử VaiTro = 2)
-            $user = $this->modelTaiKhoan->checkLoginHDV($email, $password);
-
-            if (is_array($user)) { 
-                $_SESSION['user'] = $user;
-                header("Location: " . BASE_URL); // Chuyển hướng đến trang người dùng/HDV
-                unset($_SESSION["error"]);
-                exit();
-            } else { 
-                $_SESSION['error'] = $user;
-                $_SESSION['flash'] = true;
-                header("Location: " . BASE_URL . '?act=login-hdv'); // Về form login HDV
-                exit();
-            }
-        }
-    }
 
 
     public function logout()
@@ -202,10 +174,4 @@ class AdminTaiKhoanController
         exit();
     }
 
-    public function logoutHDV()
-    {
-        unset($_SESSION['user']);
-        header("Location: " . BASE_URL . '?act=login-hdv');
-        exit();
-    }
 }

@@ -146,26 +146,4 @@ class AdminTaiKhoan
     }
 
     // 2. Check Login HƯỚNG DẪN VIÊN (VaiTro = 2)
-    public function checkLoginHDV($email, $mat_khau){
-        try{
-            $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':Email' => $email]);
-            $user = $stmt->fetch();
-
-            if ($user && ($mat_khau == $user['MatKhauHash'])) { 
-                
-                if ($user['VaiTro'] == 2) { // Chỉ cho phép Hướng dẫn viên (VaiTro = 2)
-                    return $user; 
-                } else {
-                    return "Tài khoản không có quyền truy cập Hướng dẫn viên";
-                }
-            } else {
-                return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
-            }
-        }catch(Exception $e){
-            echo "Lỗi: " . $e->getMessage();
-            return false;
-        }
-    }
 }

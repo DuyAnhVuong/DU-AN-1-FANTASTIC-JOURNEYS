@@ -1,5 +1,9 @@
 <?php require './views/layout/sidebar.php' ?>
+<<<<<<< HEAD
 <!doctype html>
+=======
+<!DOCTYPE html>
+>>>>>>> 23a1f38e933522c8edece246a99e26f7a162115c
 <html lang="vi">
 
 <head>

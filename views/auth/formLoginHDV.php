@@ -318,7 +318,7 @@ if (isset($_SESSION['error'])) {
     <?php endif; ?>
    </header>
    
-   <form action="<?= BASE_URL_ADMIN . '?act=check-login-admin' ?>" method="post">
+   <form action="<?= BASE_URL . '?act=check-login-hdv' ?>" method="post">
     <div class="form-group"><label for="email" class="form-label"> Email<span class="required">*</span> </label> 
     <input type="email" id="email" name="Email" class="form-input" placeholder="admin@example.com" required>
     </div>
@@ -331,8 +331,8 @@ if (isset($_SESSION['error'])) {
     </div>
     
     <div class="form-options"><label class="remember-me"> <input type="checkbox" id="rememberMe"> <span>Ghi nhớ đăng nhập</span> </label> <a href="forgot-password.html" class="forgot-password">Quên mật khẩu?</a>
-    </div><button type="submit" class="login-button"> 🔐 Đăng Nhập </button>
-    <a href="<?= BASE_URL . '?act=login-hdv' ?>">🔐 Đăng nhập hướng dẫn viên</a>
+    </div><button type="submit" class="login-button"> 🔐 Đăng Nhập hường dẫn viên</button>
+    
     </div>
    </form>
   </main>

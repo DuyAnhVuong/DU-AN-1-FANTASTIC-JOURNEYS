@@ -26,6 +26,7 @@ require_once './controllers/AdminHuongDanVienController.php';
 require_once './controllers/AdminYeuCauController.php';
 require_once './controllers/AdminTrangThaiController.php';
 require_once './controllers/AdminXemKhachHangController.php';
+require_once './controllers/AdminTourRunController.php';
 
 // Require toàn bộ file Models
 require_once './models/AdminDanhMuc.php';
@@ -49,6 +50,7 @@ require_once './models/AdminKhachLe.php';
 require_once './models/AdminLichTrinh.php';
 require_once './models/AdminTrangThai.php';
 require_once './models/AdminXemKhachHang.php';
+require_once './models/AdminTourRun.php';
 
 
 // Route
@@ -58,21 +60,18 @@ $act = $_GET['act'] ?? '/';
 // --- LOGIC KIỂM TRA ĐĂNG NHẬP ---
 
 // Danh sách các action KHÔNG cần đăng nhập
-$auth_actions = [
-    'login-admin', 
-    'check-login-admin', 
-    'logout-admin',
-    'login-hdv',         // Thêm route HDV
-    'check-loginHDV',    // Thêm route HDV
-    'logout-hdv',        // Thêm route HDV
-];
-
-if (!in_array($act, $auth_actions)) {
-    // Nếu action không nằm trong danh sách miễn trừ, kiểm tra đăng nhập Admin
-    checkLoginAdmin(); 
-    // Ghi chú: Nếu bạn muốn check quyền HDV cho các routes cụ thể, bạn cần tạo hàm checkLoginHDV()
-    // và gọi nó ở phần router cho các routes thuộc HDV.
+if ($act !== 'login-admin' && $act !== 'check-login-admin' && $act !== 'check-logout-admin') {
+    // Kiểm tra đăng nhập admin
+    checkLoginAdmin();
 }
+// elseif ($act !== 'login-hdv' && $act !== 'check-loginHDV' && $act !== 'check-logout-hdv') {
+//     // Kiểm tra đăng nhập HDV
+//     checkLoginHDV();
+// }
+// }else{
+//     // Nếu action nằm trong danh sách miễn trừ, vẫn cần kiểm tra đăng nhập HDV
+//     checkLoginHDV();
+// }
 
 
 // --- ROUTING ---
@@ -102,6 +101,18 @@ match ($act) {
     'form-sua-xemkhachhang' => (new AdminXemKhachHangController())->formEditXemKhachHang(),
     'sua-xemkhachhang' => (new AdminXemKhachHangController())->postEditXemKhachHang(),
     'xoa-xemkhachhang' => (new AdminXemKhachHangController())->deleteXemkhachHang(),
+
+
+    'tourrun' => (new AdminTourRunController())->danhsachTourRun(),
+
+    'form-them-tourrun' => (new AdminTourRunController())->formAddTourRun(),
+    'them-tourrun' => (new AdminTourRunController())->postAddTourRun(),
+    // 'form-sua-tourrun' => (new AdminTourRunController())->formEditTourRun(),
+    // 'sua-tourrun' => (new AdminTourRunController())->postEditTourRun(),
+    // 'xoa-tourrun' => (new AdminTourRunController())->deleteTourRun(),
+
+    // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
+    // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
 
     // route khách hàng
     'khach-hang' => (new AdminKhachHangController())->danhSachKhachHang(),
@@ -157,7 +168,7 @@ match ($act) {
     'xoa-ncc-dv' => (new AdminNCCDVController())->deleteNCCDV(),
     
     // route Trang chủ
-    // '/' => (new AdminBaoCaoThongKeController())->home(),
+    '/' => (new AdminBaoCaoThongKeController())->home(),
 
     // route quản lí tài khoản Admin
     'list-tai-khoan-quan-tri' => (new AdminTaiKhoanController())->listTaiKhoan(),
@@ -181,11 +192,7 @@ match ($act) {
     'check-login-admin' => (new AdminTaiKhoanController())->login(),
     'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
-    // *** BỔ SUNG ROUTE CHO HƯỚNG DẪN VIÊN ***
-    'login-hdv' => (new AdminTaiKhoanController())->formLoginHDV(),
-    'check-loginHDV' => (new AdminTaiKhoanController())->loginHDV(),
-    'logout-hdv' => (new AdminTaiKhoanController())->logoutHDV(),
-    // *** KẾT THÚC BỔ SUNG ***
+    
 
     // route trạng thái
     'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
