@@ -264,7 +264,23 @@
             <header class="header">
                 <div class="header-content">
                     <h1 class="title">Danh Sách Khách Hàng</h1>
-                    <p class="subtitle">Quản lý thông tin khách hàng</p>
+                    <form method="GET" action="" style="margin-bottom:20px;">
+                        <input type="hidden" name="act" value="xemkhachhang">
+
+                        <label for="tour_id" style="font-weight:600; margin-right:10px;">Lọc theo tour:</label>
+
+                        <select name="tour_id" id="tour_id" onchange="this.form.submit()"
+                            style="padding:10px 14px; border-radius:6px; border:1px solid #cbd5e0;">
+                            <option value="">-- Tất cả tour --</option>
+
+                            <?php foreach ($listTour as $tour): ?>
+                                <option value="<?= $tour['TourID'] ?>" <?= isset($_GET['tour_id']) && $_GET['tour_id'] == $tour['TourID'] ? 'selected' : '' ?>>
+                                    <?= $tour['TenTour'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </form>
+
                 </div>
                 <a href="<?= BASE_URL_ADMIN . '?act=form-them-xemkhachhang' ?>">
                     <button class="add-button">
@@ -278,6 +294,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Tên tour</th>
                             <th>Tên khách hàng</th>
                             <th>Số điện thoại</th>
                             <th>Booking ID</th>
@@ -294,6 +311,7 @@
                                 ?>
                                 <tr>
                                     <td class="customer-id"><?= $key + 1 ?></td>
+                                    <td class="tour"><?= $xkh['TenTour'] ?></td>
                                     <td class="customer-name"><?= $xkh['Ten_KH'] ?></td>
                                     <td class="phone-number"><?= $xkh['SDT'] ?></td>
                                     <td><span class="booking-id"><?= $xkh['BookingID'] ?></span></td>

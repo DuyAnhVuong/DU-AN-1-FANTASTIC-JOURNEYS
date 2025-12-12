@@ -9,10 +9,10 @@ class AdminXemKhachHang
     public function getAllXemKhachHang()
     {
         try {
-            $sql = "SELECT khach_hang_theo_tour.*, booking.TongSoKhach 
+            $sql = "SELECT khach_hang_theo_tour.*, booking.TongSoKhach , tour.TenTour
             FROM khach_hang_theo_tour 
-            INNER JOIN booking 
-            ON khach_hang_theo_tour.BookingID = booking.BookingID 
+            INNER JOIN booking ON khach_hang_theo_tour.BookingID = booking.BookingID 
+            INNER JOIN tour ON khach_hang_theo_tour.TourID = tour.TourID
             -- WHERE khach_hang_theo_tour.KH_ID = KH_ID
             ";
             $stmt = $this->conn->prepare($sql);
@@ -23,13 +23,14 @@ class AdminXemKhachHang
         }
     }
 
-    public function insertXemKhachHang($Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh)
+    public function insertXemKhachHang($TourID, $Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh)
     {
         try {
-            $sql = "INSERT INTO khach_hang_theo_tour( Ten_KH,SDT, BookingID, Gioi_Tinh,Nam_Sinh)
-            VALUE (:Ten_KH, :SDT, :BookingID, :Gioi_Tinh, :Nam_Sinh)";
+            $sql = "INSERT INTO khach_hang_theo_tour(TourID , Ten_KH,SDT, BookingID, Gioi_Tinh,Nam_Sinh)
+            VALUE (:TourID ,:Ten_KH, :SDT, :BookingID, :Gioi_Tinh, :Nam_Sinh)";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
+                ':TourID' => $TourID,
                 ':Ten_KH' => $Ten_KH,
                 ':SDT' => $SDT,
                 ':BookingID' => $BookingID,
@@ -58,11 +59,13 @@ class AdminXemKhachHang
 
 
 
-    public function updateXemKhachHang($id, $Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh)
+    public function updateXemKhachHang($id, $TourID, $Ten_KH, $SDT, $BookingID, $Gioi_Tinh, $Nam_Sinh)
     {
         try {
             $sql = "UPDATE khach_hang_theo_tour SET 
-            Ten_KH=:Ten_KH, 
+            TourID=:TourID,
+            Ten_KH=:Ten_KH,
+            Ten_KH=:Ten_KH,
             SDT=:SDT,
             BookingID=:BookingID,
             Gioi_Tinh=:Gioi_Tinh,
@@ -71,6 +74,7 @@ class AdminXemKhachHang
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
+                ':TourID' => $TourID,
                 ':Ten_KH' => $Ten_KH,
                 ':SDT' => $SDT,
                 ':BookingID' => $BookingID,

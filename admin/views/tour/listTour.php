@@ -1,9 +1,7 @@
 <?php require './views/layout/sidebar.php' ?>
-<<<<<<< HEAD
+
 <!doctype html>
-=======
-<!DOCTYPE html>
->>>>>>> 23a1f38e933522c8edece246a99e26f7a162115c
+
 <html lang="vi">
 
 <head>
@@ -486,7 +484,7 @@
             <?php foreach ($listTour as $key => $tourr):
               // Logic giả định để phân biệt loại tour cho class CSS nếu cần (dựa trên tên danh mục)
               $tourTypeClass = (strpos($tourr['ten_danh_muc'], 'Quốc Tế') !== false || strpos($tourr['ten_danh_muc'], 'Châu') !== false) ? 'international' : 'domestic';
-            ?>
+              ?>
               <tr>
                 <td><span class="tour-id"><?= $key + 1 ?></span></td>
                 <td>

@@ -4,24 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // Giả định biến $listXemKhachHang và BASE_URL_ADMIN đã được định nghĩa
-// Ví dụ giả lập dữ liệu để test:
-/*
-$listXemKhachHang = [
-    'KH_ID' => 101,
-    'Ten_KH' => 'Nguyễn Văn An',
-    'SDT' => '0912345678',
-    'BookingID' => 'BK789012',
-    'Gioi_Tinh' => 'Nam',
-    'Nam_Sinh' => '1990-01-01',
-];
-
-// Ví dụ giả lập lỗi từ session sau khi redirect
-if (empty($_SESSION['error'])) {
-    // $_SESSION['error'] = [
-    //     'SDT' => 'Số điện thoại không hợp lệ.',
-    // ];
-}
-*/
 
 // Hàm helper để lấy giá trị từ POST hoặc dữ liệu cũ
 function get_value($field, $data)
@@ -56,7 +38,8 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
     <title>Sửa Khách Hàng</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS CƠ BẢN VÀ RESPONSIVE (Lấy từ layout bạn cung cấp) */
+        /* CSS CƠ BẢN VÀ RESPONSIVE */
+        /* Tông màu chủ đạo mới: Tím (#6a11cb) và Xanh (#2575fc) */
         body {
             box-sizing: border-box;
             margin: 0;
@@ -77,9 +60,8 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
 
         .page-wrapper {
             min-height: 100vh;
-            /* Chỉnh lại để bao phủ hết chiều cao */
-            width: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            /* Tông màu TÍM-XANH MỚI */
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             padding: 40px 20px;
             display: flex;
             align-items: center;
@@ -103,7 +85,8 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
         .form-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            /* Tông màu TÍM-XANH MỚI */
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -111,7 +94,6 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
             margin: 0 auto 16px;
             font-size: 28px;
             color: #ffffff;
-            /* Thêm màu trắng cho icon */
         }
 
         .form-title {
@@ -162,7 +144,9 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
             color: #ef4444;
         }
 
-        .form-input {
+        /* Style chung cho INPUT và SELECT */
+        .form-input,
+        .form-select {
             padding: 14px 16px;
             border: 2px solid #e5e7eb;
             border-radius: 10px;
@@ -171,7 +155,21 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
             color: #1f2937;
             transition: all 0.3s ease;
             background: #ffffff;
+            width: 100%;
+            /* Đảm bảo cả input và select đều rộng 100% */
         }
+
+        /* Cải thiện style cho SELECT */
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            /* Thêm mũi tên tùy chỉnh */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236B7280'%3E%3Cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 1.2em;
+        }
+
 
         /* HIGHLIGHT INPUT LỖI (Kết hợp PHP để highlight sau khi redirect) */
         <?php if (isset($_SESSION['error']['Ten_KH'])) { ?>
@@ -200,10 +198,12 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
         <?php } ?>
         /* End Highlight */
 
-        .form-input:focus {
+        /* Hiệu ứng FOCUS mới (Tím-Xanh) */
+        .form-input:focus,
+        .form-select:focus {
             outline: none;
-            border-color: #f093fb;
-            box-shadow: 0 0 0 4px rgba(240, 147, 251, 0.1);
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.1);
         }
 
         .form-input::placeholder {
@@ -227,7 +227,8 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
             width: 20px;
             height: 20px;
             cursor: pointer;
-            accent-color: #f093fb;
+            /* Tông màu TÍM-XANH MỚI */
+            accent-color: #6a11cb;
         }
 
         .radio-option label {
@@ -283,13 +284,15 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            /* Tông màu TÍM-XANH MỚI */
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: #ffffff;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
+            /* Box shadow Tím-Xanh mới */
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
         }
 
         .btn-primary:active {
@@ -375,6 +378,29 @@ $gioi_tinh_value = get_value('Gioi_Tinh', $listXemKhachHang);
                 </div>
 
                 <input type="hidden" name="KH_ID" value="<?= get_value('KH_ID', $listXemKhachHang) ?>">
+
+                <div class="form-group">
+                    <label for="TourID" class="form-label">Tên Tour<span class="required-mark">*</span>
+                    </label>
+                    <select id="TourID" name="TourID" class="form-select" required>
+                        <option value="">-- Chọn tour --</option>
+                        <?php
+                        // Kiểm tra xem $listTour có tồn tại và là mảng không
+                        if (isset($listTour) && is_array($listTour)): ?>
+                            <?php foreach ($listTour as $Tour): ?>
+                                <?php
+                                $selected = (isset($listXemKhachHang['TourID']) && $Tour['TourID'] == $listXemKhachHang['TourID']) ? 'selected' : '';
+                                ?>
+                                <option value="<?= $Tour['TourID'] ?>" <?= $selected ?>>
+                                    <?= $Tour['TenTour'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                    <div class="form-helper">
+                        Chọn tour sẽ được chạy
+                    </div>
+                </div>
 
                 <div class="form-group full-width">
                     <label for="Ten_KH" class="form-label">

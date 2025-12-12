@@ -268,6 +268,22 @@ if (empty($_SESSION['error'])) {
             <form action="<?= BASE_URL_ADMIN . '?act=them-xemkhachhang' ?>" method="POST" enctype="multipart/form-data"
                 class="form-main" id="customerForm">
 
+                <div class="form-group">
+                    <label for="TourID" class="form-label"> Tên Tour<span class="required-mark">*</span>
+                    </label>
+                    <select id="TourID" name="TourID" class="form-select" required>
+                        <option value="">-- Chọn tour --</option>
+                        <?php foreach ($listTour as $Tour): ?>
+                            <option value="<?= $Tour['TourID'] ?>">
+                                <?= $Tour['TenTour'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="form-helper">
+                        Chọn tour sẽ được chạy
+                    </div>
+                </div>
+
                 <div class="form-group full-width">
                     <label for="Ten_KH" class="form-label">
                         Tên khách hàng <span class="required-mark">*</span>
