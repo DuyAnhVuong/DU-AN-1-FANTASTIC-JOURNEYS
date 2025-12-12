@@ -8,9 +8,9 @@ $yc = $yeuCauDetail;
 $trangThaiHienTai = $yc['TrangThaiDapUng'] ?? 'Chờ xử lý';
 $trangThaiOptions = ['Chờ xử lý', 'Đã xử lý', 'Đã hủy']; // Thêm tùy chọn để quản lý
 
-// Định nghĩa BASE_URL_ADMIN nếu chưa được định nghĩa (thường là trong config)
-if (!defined('BASE_URL_ADMIN')) {
-    define('BASE_URL_ADMIN', ''); // Thay bằng đường dẫn admin thực tế của bạn
+// Định nghĩa BASE_URL nếu chưa được định nghĩa (thường là trong config)
+if (!defined('BASE_URL')) {
+    define('BASE_URL', ''); // Thay bằng đường dẫn admin thực tế của bạn
 }
 
 ?>
@@ -214,7 +214,7 @@ if (!defined('BASE_URL_ADMIN')) {
                 <p class="form-subtitle">Cập nhật thông tin chi tiết và trạng thái yêu cầu</p>
             </div>
 
-            <form action="<?= BASE_URL_ADMIN . '?act=sua-yeu-cau' ?>" method="post">
+            <form action="<?= BASE_URL . '?act=sua-yeu-cau' ?>" method="post">
                 <input type="hidden" name="YeuCauID" value="<?= $yc['YeuCauID'] ?>">
 
                 <div class="form-group">
@@ -249,7 +249,7 @@ if (!defined('BASE_URL_ADMIN')) {
 
 
                 <div class="button-group">
-                    <a href="<?= BASE_URL_ADMIN . '?act=yeu-cau' ?>" class="btn btn-back"> Quay lại danh sách </a>
+                    <a href="<?= BASE_URL . '?act=yeu-cau' ?>" class="btn btn-back"> Quay lại danh sách </a>
                     <button type="submit" class="btn btn-submit"> Cập nhật Yêu Cầu </button>
                 </div>
             </form>

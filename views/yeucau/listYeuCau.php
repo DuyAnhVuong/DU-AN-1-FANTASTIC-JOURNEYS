@@ -330,13 +330,13 @@
 <body>
   <?php
   // Bỏ qua các file layout/header, navbar, sidebar vì đã được thay thế bằng layout HTML/CSS mới
-  // Tuy nhiên, nếu bạn muốn giữ lại các biến PHP như $listYeuCau, BASE_URL_ADMIN, bạn cần đảm bảo
+  // Tuy nhiên, nếu bạn muốn giữ lại các biến PHP như $listYeuCau, BASE_URL, bạn cần đảm bảo
   // chúng được định nghĩa trước khi đoạn code này được thực thi.
-  // Giả định: BASE_URL_ADMIN và $listYeuCau đã được định nghĩa.
+  // Giả định: BASE_URL và $listYeuCau đã được định nghĩa.
   
   // Khai báo lại các biến nếu cần, hoặc giả định chúng đã có.
   $listYeuCau = $listYeuCau ?? [];
-  $BASE_URL_ADMIN = $BASE_URL_ADMIN ?? ''; // Giả định BASE_URL_ADMIN có giá trị
+ // Giả định BASE_URL có giá trị
   
   // Hàm giả định để lấy class badge (vì dữ liệu gốc không có trường trạng thái)
   function get_badge_class($loaiYeuCau)
@@ -362,7 +362,7 @@
           <span class="search-icon">🔍</span>
           <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm yêu cầu...">
         </div>
-        <a href="<?= $BASE_URL_ADMIN . '?act=form-them-yeu-cau' ?>" class="btn btn-primary">
+        <a href="<?= BASE_URL . '?act=form-them-yeu-cau' ?>" class="btn btn-primary">
           <i class="fas fa-plus"></i> ➕ Thêm Yêu Cầu Mới
         </a>
       </div>
@@ -395,11 +395,11 @@
                   <td><?= $yc['ChiTiet'] ?></td>
                   <td>
                     <div class="actions">
-                      <a href="<?= $BASE_URL_ADMIN . '?act=form-sua-yeu-cau&id_yeucau=' . $yc['YeuCauID'] ?>"
+                      <a href="<?= BASE_URL . '?act=form-sua-yeu-cau&id_yeucau=' . $yc['YeuCauID'] ?>"
                         class="btn-action btn-warning" title="Cập nhật">
                         ✏️ Cập nhật
                       </a>
-                      <a href="<?= $BASE_URL_ADMIN . '?act=xoa-yeu-cau&id=' . $yc['YeuCauID'] ?>"
+                      <a href="<?= BASE_URL . '?act=xoa-yeu-cau&id=' . $yc['YeuCauID'] ?>"
                         onclick="return confirm('Bạn có đồng ý xóa yêu cầu <?= $yc['YeuCauID'] ?> hay không')"
                         class="btn-action btn-danger" title="Xóa">
                         🗑️ Xóa
@@ -421,13 +421,14 @@
           <?php if (!empty($listYeuCau)): ?>
             Hiển thị 1-<?= count($listYeuCau) ?> trong tổng số <?= count($listYeuCau) ?> yêu cầu
           <?php else: ?>
-            <a href="<?= BASE_URL ?>" style="text-decoration: none;">
+            
+          <?php endif; ?> <a href="<?= BASE_URL ?>" style="text-decoration: none; margin: 20px;">
               <button type="button" class="btn btn-primary">
                 Quay lại
               </button>
             </a>
-          <?php endif; ?>
         </div>
+       
         <div class="pagination-controls">
           <button class="pagination-btn" disabled>◀ Trước</button>
           <button class="pagination-btn active">1</button>

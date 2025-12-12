@@ -53,12 +53,12 @@ class HDVYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->insertYeuCau($KhachID, $BookingID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
+                header("location:" . BASE_URL . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
                 // Nếu có lỗi, load lại form với dữ liệu cũ và lỗi
                 $_SESSION['flash'] = true;
-                header("Location:" . BASE_URL_ADMIN . '?act=them-yeu-cau-dac-biet');
+                header("Location:" . BASE_URL . '?act=them-yeu-cau-dac-biet');
             }
         }
     }
@@ -89,7 +89,7 @@ class HDVYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->updateYeuCau($YeuCauID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
+                header("location:" . BASE_URL . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
 
@@ -112,7 +112,7 @@ class HDVYeuCauController
         if ($ncc) {
             $this->modelYeuCau->deleteYeuCau($id);
         }
-        header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
+        header("location:" . BASE_URL . '?act=yeu-cau-dac-biet');
         exit();
 
     }

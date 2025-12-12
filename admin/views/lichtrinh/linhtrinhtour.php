@@ -73,7 +73,7 @@
 
   <div class="container py-4">
 
-    <h2 class="page-title">📌 Admin – Chi Tiết Tour</h2>
+    <h2 class="page-title">📌 Admin - Chi Tiết Tour</h2>
 
     <!-- ================== THÔNG TIN TOUR ===================== -->
     <div class="box">

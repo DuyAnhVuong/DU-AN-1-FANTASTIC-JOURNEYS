@@ -6,12 +6,15 @@ class AdminBooking
     {
 
         // Giả định hàm connectDB() tồn tại và hoạt động
-        $this->conn = connectDB(); 
+
+        $this->conn = connectDB();
+
     }
 
     public function getAllbooking()
     {
         try {
+
 
             // Cần đảm bảo các cột NCCID là NOT NULL trong DB hoặc có LEFT JOIN nếu NULL
             $sql = "SELECT 
@@ -23,6 +26,7 @@ class AdminBooking
                         ncc_khachsan.NameKS,
                         trang_thai.status
 
+
                     FROM booking 
                     INNER JOIN tour ON booking.TourID = tour.TourID
                     LEFT JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
@@ -30,6 +34,7 @@ class AdminBooking
                     LEFT JOIN ncc_khachsan ON booking.id_ks = ncc_khachsan.id_ks
                     INNER JOIN trang_thai ON booking.id_trang_thai = trang_thai.id_trang_thai";
             $stmt = $this->conn->prepare($sql);
+
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (Exception $e) {
@@ -94,9 +99,11 @@ class AdminBooking
         }
     }
 
+
     public function editBooking($id, $TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_KS, $NCC_PT, $NCC_DV, $TrangThaiID)
     {
         try {
+
             $sql = "UPDATE `booking` SET 
                         `TourID` = :TourID, 
                         `LoaiKhach` = :LoaiKhach,
@@ -112,15 +119,16 @@ class AdminBooking
                         `id_trang_thai` = :id_trang_thai 
                     WHERE 
                         `booking`.`BookingID` = :id";
-            
+
             $stmt = $this->conn->prepare($sql);
-            
+
             $stmt->execute([
                 ':TourID' => $TourID,
-                ':LoaiKhach' => $LoaiKhach, 
+                ':LoaiKhach' => $LoaiKhach,
                 ':TenNguoiDat' => $TenNguoiDat,
                 ':SDT' => $SDT,
                 ':Email' => $Email,
+
                 ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
                 ':NgayVe' => $NgayVe,
                 ':TongSoKhach' => $TongSoKhach,
@@ -137,7 +145,7 @@ class AdminBooking
             return false;
         }
     }
-    
+
     // Giữ nguyên hàm cancelBooking
     public function cancelBooking($id): bool
     {
@@ -146,10 +154,12 @@ class AdminBooking
         try {
             $sql = "UPDATE booking SET id_trang_thai = :status_id WHERE BookingID = :id";
             $stmt = $this->conn->prepare($sql);
+
             $success = $stmt->execute([
                 ':status_id' => $statusCancelID,
                 ':id' => $id
             ]);
+
 
 
             if ($success && $stmt->rowCount() > 0) {
@@ -159,12 +169,13 @@ class AdminBooking
 
         } catch (Exception $e) {
 
+
             error_log("Lỗi hủy booking: " . $e->getMessage());
             return false;
         }
     }
+
 }
 
 
 ?>
-

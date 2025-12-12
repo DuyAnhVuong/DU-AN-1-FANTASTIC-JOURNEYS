@@ -141,7 +141,11 @@ match ($act) {
     'sua-yeu-cau' => (new AdminYeuCauController())->postEditYeuCau(),
     'form-them-yeu-cau' => (new AdminYeuCauController())->formAddYeuCau(),
     'them-yeu-cau' => (new AdminYeuCauController())->postAddYeuCau(),
+
+
     'xoa-yeu-cau' => (new AdminYeuCauController())->deleteYeuCau(),
+
+
 
 
     'list-ncc-pt' => (new AdminNCCPTController())->listNCCPT(),
@@ -150,7 +154,7 @@ match ($act) {
     'form-sua-ncc-pt' => (new AdminNCCPTController())->formEditNCCPT(),
     'sua-ncc-pt' => (new AdminNCCPTController())->postEditNCCPT(),
     'xoa-ncc-pt' => (new AdminNCCPTController())->deleteNCCPT(),
-    
+
     // ncc khach san
     'list-ncc-ks' => (new AdminNCCKSController())->listNCCKS(),
     'form-them-ncc-ks' => (new AdminNCCKSController())->formAddNCCKS(),
@@ -158,7 +162,7 @@ match ($act) {
     'form-sua-ncc-ks' => (new AdminNCCKSController())->formEditNCCKS(),
     'sua-ncc-ks' => (new AdminNCCKSController())->postEditNCCKS(),
     'xoa-ncc-ks' => (new AdminNCCKSController())->deleteNCCKS(),
-    
+
     // ncc dich vu
     'list-ncc-dv' => (new AdminNCCDVController())->listNCCDV(),
     'form-them-ncc-dv' => (new AdminNCCDVController())->formAddNCCDV(),
@@ -166,7 +170,7 @@ match ($act) {
     'form-sua-ncc-dv' => (new AdminNCCDVController())->formEditNCCDV(),
     'sua-ncc-dv' => (new AdminNCCDVController())->postEditNCCDV(),
     'xoa-ncc-dv' => (new AdminNCCDVController())->deleteNCCDV(),
-    
+
     // route Trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
 
@@ -177,7 +181,7 @@ match ($act) {
     'form-sua-quan-tri' => (new AdminTaiKhoanController())->formEditQuanTri(),
     'sua-quan-tri' => (new AdminTaiKhoanController())->postEditQuanTri(),
     'xoa-quan-tri' => (new AdminTaiKhoanController())->deleteQuanTri(),
-    
+
     // route hướng dẫn viên
     'huongdanvien' => (new AdminHuongDanVienController())->danhsachHuongDanVien(),
     'form-them-huongdanvien' => (new AdminHuongDanVienController())->formAddHuongDanVien(),
@@ -191,6 +195,7 @@ match ($act) {
     'login-admin' => (new AdminTaiKhoanController())->formLogin(),
     'check-login-admin' => (new AdminTaiKhoanController())->login(),
     'logout-admin' => (new AdminTaiKhoanController())->logout(),
+
 
 
     'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
@@ -209,9 +214,15 @@ match ($act) {
     'huy-booking' => (new AdminBookingController())->cancelBooking(),
 
 
+
+
+
+
+    'khach-le' => (new AdminKhachLe())->getAllKhachLe(),
+
     // Khách lẻ
-    'khach-le' => (new AdminKhachLe())->getAllKhachLe(), // Lưu ý: Đây là Model, nên phải gọi qua Controller
-    
+
+
     // Status
 
     'list-status' => (new AdminStatusController())->danhSachStatus(),

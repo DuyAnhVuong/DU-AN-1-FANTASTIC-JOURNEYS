@@ -12,9 +12,9 @@ $KhachLe = $KhachLe ?? [
     // ... Thêm dữ liệu mẫu nếu cần test
 ];
 
-// Định nghĩa BASE_URL_ADMIN nếu chưa được định nghĩa
-if (!defined('BASE_URL_ADMIN')) {
-    define('BASE_URL_ADMIN', ''); // Thay bằng đường dẫn admin thực tế của bạn
+// Định nghĩa BASE_URL nếu chưa được định nghĩa
+if (!defined('BASE_URL')) {
+    define('BASE_URL', ''); // Thay bằng đường dẫn admin thực tế của bạn
 }
 
 ?>
@@ -248,7 +248,7 @@ if (!defined('BASE_URL_ADMIN')) {
                 <p class="page-subtitle">Điền thông tin chi tiết để tạo yêu cầu mới</p>
             </header>
 
-            <form action="<?= BASE_URL_ADMIN . '?act=them-yeu-cau' ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= BASE_URL . '?act=them-yeu-cau' ?>" method="post" enctype="multipart/form-data">
 
                 <div class="input-group">
                     <label for="KhachID" class="input-label"> Tên khách hàng</label>
@@ -295,7 +295,7 @@ if (!defined('BASE_URL_ADMIN')) {
                 <div class="divider"></div>
 
                 <div class="action-buttons">
-                    <a href="<?= BASE_URL_ADMIN . '?act=yeu-cau' ?>" class="action-btn back-btn"> ← Quay lại </a>
+                    <a href="<?= BASE_URL . '?act=yeu-cau' ?>" class="action-btn back-btn"> ← Quay lại </a>
                     <button type="submit" class="action-btn submit-btn"> Thêm Yêu Cầu </button>
                 </div>
             </form>

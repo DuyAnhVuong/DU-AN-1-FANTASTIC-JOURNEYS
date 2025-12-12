@@ -19,7 +19,7 @@ class HDVKhachHangController
     public function postAddKhachHang()
     {
         // Xử lý thêm khách hàng
-        $this->modelKhachHang->insertKhachHang($_POST['TenKH'], $_POST['CheckInStatus']);
+        $this->modelKhachHang->insertKhachHang($_POST['TenKH'], $_POST['CheckInStatus'], $_POST['ThoiGianCapNhat']);
         header('Location: ' . BASE_URL . '?act=khach-hang');
     }
     public function formEditKhachHang()
@@ -40,12 +40,13 @@ class HDVKhachHangController
             $id = $_POST['DSSK_ID'];
             $ten_khach_hang = $_POST['TenKH'];
             $check_in_status = $_POST['CheckInStatus'];
+            $ThoiGianCapNhat = $_POST['ThoiGianCapNhat'];
             $errors = [];
             if (empty($ten_khach_hang)) {
                 $errors['ten_khach_hang'] = 'Tên khách hàng không được để trống';
             }
             if (empty($errors)) {
-                $this->modelKhachHang->updateKhachHang($id, $ten_khach_hang, $check_in_status);
+                $this->modelKhachHang->updateKhachHang($id, $ten_khach_hang, $check_in_status, $ThoiGianCapNhat);
                 header("Location:" . BASE_URL . '?act=khach-hang');
                 exit();
             } else {

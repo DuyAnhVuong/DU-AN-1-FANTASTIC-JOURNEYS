@@ -184,19 +184,32 @@ class AdminBookingController
         // Giữ nguyên logic editBooking (vì nó đã dùng IF độc lập)
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
-
+            var_dump($id);
             $TourID = $_POST['TourID'];
+            var_dump($TourID);
             $LoaiKhach = $_POST['LoaiKhach'];
+            var_dump($LoaiKhach);
             $TenNguoiDat = trim($_POST['TenNguoiDat']);
+            var_dump($TenNguoiDat);
             $SDT = trim($_POST['SDT']);
+            var_dump($SDT);
             $Email = trim($_POST['Email']);
+            var_dump($Email);
             $NgayKhoiHanhDuKien = $_POST['NgayKhoiHanhDuKien'];
+            var_dump($NgayKhoiHanhDuKien);
             $NgayVe = $_POST['NgayVe'];
+            var_dump($NgayVe);
             $TongSoKhach = (int)($_POST['TongSoKhach'] ?? 0);
+            var_dump($TongSoKhach);
             $NCC_KS = $_POST['id_ks'];
+            var_dump($NCC_KS);
             $NCC_PT = $_POST['id_pt'];
+            var_dump($NCC_PT);
             $NCC_DV = $_POST['id_dichvu'];
+            var_dump($NCC_DV);
             $TrangThaiID = $_POST['id_trang_thai'];
+            var_dump($TrangThaiID);
+           
 
             $errors = [];
             

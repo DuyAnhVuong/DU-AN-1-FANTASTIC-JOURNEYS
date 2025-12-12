@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="vi">
 
@@ -346,7 +345,7 @@
             }
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -363,7 +362,7 @@
             </div>
         </header>
 
-        
+
         <div class="stats-row" style="display: none;">
         </div>
 
@@ -424,7 +423,7 @@
 
                             // Tính toán tổng tiền (giả định cột Gia tồn tại)
                             $tong_tien = ($booking['Gia'] ?? 0) * ($booking['TongSoKhach'] ?? 0);
-                    ?>
+                            ?>
 
                             <tr>
                                 <td><span class="booking-id"><?= $key + 1 ?></span></td>
@@ -450,7 +449,7 @@
                                 </td>
                                 <td style="text-align: right;">
                                     <div class="action-buttons">
-                                        
+
                                         <a href="<?= BASE_URL_ADMIN . '?act=form-edit-booking&id=' . $booking['BookingID'] ?>">
                                             <button class="btn-action btn btn-check">✏️ Xem/Sửa</button>
                                         </a>
@@ -467,7 +466,8 @@
                         <?php endforeach;
                     } else { ?>
                         <tr>
-                            <td colspan="10" style="text-align: center; padding: 20px; color: #718096;">Không có dữ liệu booking nào được tìm thấy.</td>
+                            <td colspan="10" style="text-align: center; padding: 20px; color: #718096;">Không có dữ liệu
+                                booking nào được tìm thấy.</td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -475,7 +475,8 @@
         </div>
         <div style="margin-top: 20px;">
             <a href="<?= BASE_URL_ADMIN ?>">
-                <button class="btn-action btn-customer" style="padding: 10px 20px; background: #4a5568;">Quay lại</button>
+                <button class="btn-action btn-customer" style="padding: 10px 20px; background: #4a5568;">Quay
+                    lại</button>
             </a>
         </div>
     </main>
