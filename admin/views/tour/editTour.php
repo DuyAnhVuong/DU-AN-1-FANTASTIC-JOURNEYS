@@ -246,7 +246,39 @@
                 <?php endforeach; ?>
             </select>
         </div>
-
+        <div class="form-group">
+            <label for="id_pt" class="form-label">Nhà cung cấp phương tiện<span class="required">*</span> </label> 
+            <select id="tourType" name="id_pt" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp phương tiện --</option>
+                 <?php foreach ($listNCCPT as $pt): ?>
+                                        <option <?= $pt['id_pt'] == $tour['id_pt'] ? 'selected' : '' ?> value="<?= $pt['id_pt'] ?>">
+                        <?= $pt['Name_PhuongTien'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_ks" class="form-label">Nhà cung cấp khách sạn<span class="required">*</span> </label> 
+            <select id="tourType" name="id_ks" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp khách sạn --</option>
+                 <?php foreach ($listNCCKS as $ks): ?>
+                                        <option <?= $ks['id_ks'] == $tour['id_ks'] ? 'selected' : '' ?> value="<?= $ks['id_ks'] ?>">
+                        <?= $ks['NameKS'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_dichvu" class="form-label">Nhà cung cấp dịch vụ<span class="required">*</span> </label> 
+            <select id="tourType" name="id_dichvu" class="form-select">
+                 <option value="">-- Chọn nhà cung cấp dịch vụ --</option>
+                 <?php foreach ($listNCCDV as $dv): ?>
+                                        <option <?= $dv['id_dichvu'] == $tour['id_dichvu'] ? 'selected' : '' ?> value="<?= $dv['id_dichvu'] ?>">
+                        <?= $dv['Name_DV'] ?>
+                    </option>
+                 <?php endforeach; ?>
+            </select>
+        </div>
         <div class="form-group">
             <label for="MoTa" class="form-label"> Mô tả<span class="required">*</span> </label> 
             <textarea id="MoTa" name="MoTa" class="form-input form-textarea" 

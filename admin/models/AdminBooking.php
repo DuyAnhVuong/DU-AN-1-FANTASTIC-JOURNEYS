@@ -4,20 +4,26 @@ class AdminBooking
     public $conn;
     public function __construct()
     {
+
+        // Giả định hàm connectDB() tồn tại và hoạt động
         $this->conn = connectDB();
+
     }
 
     public function getAllbooking()
     {
         try {
+
             $sql = "SELECT booking.*, tour.TenTour, tour.Gia, ncc_dichvu.Name_DV, ncc_phuongtien.Name_PhuongTien, ncc_khachsan.NameKS,trang_thai.status
+
                     FROM booking 
                     INNER JOIN tour ON booking.TourID = tour.TourID
-                    INNER JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
-                    INNER JOIN ncc_phuongtien ON booking.id_pt = ncc_phuongtien.id_pt
-                    INNER JOIN ncc_khachsan ON booking.id_ks = ncc_khachsan.id_ks
+                    LEFT JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
+                    LEFT JOIN ncc_phuongtien ON booking.id_pt = ncc_phuongtien.id_pt
+                    LEFT JOIN ncc_khachsan ON booking.id_ks = ncc_khachsan.id_ks
                     INNER JOIN trang_thai ON booking.id_trang_thai = trang_thai.id_trang_thai";
             $stmt = $this->conn->prepare($sql);
+
 
             $stmt->execute();
 
@@ -69,9 +75,9 @@ class AdminBooking
             return $stmt->fetch();
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
+
         }
     }
-
 
 
     public function editBooking($id, $TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_KS, $NCC_PT, $NCC_DV, $TrangThaiID)
@@ -79,6 +85,7 @@ class AdminBooking
         try {
             // Cập nhật TrangThaiID của Booking có BookingID = :id
             $sql = "UPDATE booking SET TourID=:TourID, LoaiKhach=:LoaiKhach, TenNguoiDat=:TenNguoiDat, SDT=:SDT, Email=:Email, NgayKhoiHanhDuKien=:NgayKhoiHanhDuKien, NgayVe=:NgayVe, TongSoKhach=:TongSoKhach, id_ks=:id_ks, id_pt=:id_pt, id_dichvu=:id_dichvu, id_trang_thai=:id_trang_thai WHERE BookingID=:id";
+
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':TourID' => $TourID,
@@ -86,6 +93,7 @@ class AdminBooking
                 ':TenNguoiDat' => $TenNguoiDat,
                 ':SDT' => $SDT,
                 ':Email' => $Email,
+
                 ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
                 ':NgayVe' => $NgayVe,
                 ':TongSoKhach' => $TongSoKhach,
@@ -95,6 +103,7 @@ class AdminBooking
                 ':id_trang_thai' => $TrangThaiID,
                 ':id' => $id
             ]);
+
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
@@ -114,10 +123,12 @@ class AdminBooking
             $stmt = $this->conn->prepare($sql);
 
             // Thực thi truy vấn với mảng tham số (giúp chống SQL Injection)
+
             $success = $stmt->execute([
                 ':status_id' => $statusCancelID,
                 ':id' => $id
             ]);
+
 
             // Kiểm tra xem truy vấn có chạy thành công và có hàng nào bị ảnh hưởng không
             if ($success && $stmt->rowCount() > 0) {
@@ -128,10 +139,12 @@ class AdminBooking
 
         } catch (Exception $e) {
             // Ghi lại lỗi thay vì chỉ 'echo' (không nên echo lỗi ra production)
+
             error_log("Lỗi hủy booking: " . $e->getMessage());
             return false;
         }
     }
+
 }
 
 

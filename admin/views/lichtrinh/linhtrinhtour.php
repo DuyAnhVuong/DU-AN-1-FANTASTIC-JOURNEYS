@@ -5,161 +5,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin - Chi Tiết Tour</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
-      background: #eef0f2;
+      background: #EEF1F6;
+      font-family: "Inter", sans-serif;
     }
 
-    .admin-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #1f1f1f;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
     }
 
     .section-title {
-      font-weight: 600;
       font-size: 18px;
-      margin-top: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .tour-image {
+      width: 320px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    .card-header {
+      background: #f5f7fb;
+      font-weight: 600;
+      border-bottom: 1px solid #e2e3e8;
+    }
+
+    .btn-primary {
+      background: #5565fd;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+    }
+
+    .btn-dark {
+      border-radius: 10px;
+      padding: 10px 18px;
+    }
+
+    .btn-danger {
+      border-radius: 10px;
+      padding: 8px 16px;
     }
   </style>
 </head>
 
 <body>
+
   <div class="container py-4">
 
-    <h2 class="mb-4">📌 Admin - Chi Tiết Tour</h2>
+    <h2 class="page-title">📌 Admin – Chi Tiết Tour</h2>
 
-    <div class="admin-box mb-4">
+    <!-- ================== THÔNG TIN TOUR ===================== -->
+    <div class="box">
       <h4 class="section-title">Thông tin tour</h4>
+
       <form>
         <div class="row">
           <div class="col-lg-6 mb-3">
             <label class="form-label">Tên tour</label>
             <input type="text" class="form-control" value="<?= $tour['TenTour'] ?>" />
           </div>
+
           <div class="col-lg-6 mb-3">
             <label class="form-label">Giá</label>
-            <input type="text" class="form-control" value="<?= $tour['Gia'] ?>" />
+            <input type="text" class="form-control" value="<?= number_format($tour['Gia']) . 'đ' ?>" />
           </div>
+
           <div class="col-lg-6 mb-3">
             <label class="form-label">Ngày tạo</label>
             <input type="text" class="form-control" value="<?= $tour['NgayTao'] ?>" />
           </div>
 
-
           <div class="col-lg-6 mb-3">
             <label class="form-label">Loại tour</label>
-            <input type="text" class="form-control" value="<?= $tour['LoaiTourID'] ?>" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <label class="form-label">Mô tả</label>
-            <input type="text" class="form-control" value="<?= $tour['MoTa'] ?>" />
+            <input type="text" class="form-control" value="<?= $tour['ten_danh_muc'] ?>" />
           </div>
 
+          <div class="col-lg-12 mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea class="form-control" rows="2"><?= $tour['MoTa'] ?></textarea>
+          </div>
         </div>
 
+        <!-- HÌNH ẢNH -->
+        <h4 class="section-title mt-4">Hình ảnh tour</h4>
+        <img src="<?= BASE_URL . $tour['Image'] ?>" class="tour-image" alt="">
+      </form>
+    </div>
 
-        <div class="container py-4">
-          <div class="mb-3">
-            <label class="form-label">Chính sách</label>
-            <textarea class="form-control" rows="4">Hủy trước 7 ngày: hoàn 100%
-Hủy trong 7 ngày: hoàn 50%</textarea>
-          </div>
-          <h4 class="section-title">Hình ảnh tour</h4>
-          <div class="admin-box mb-4">
+    <!-- ================== LỊCH TRÌNH ===================== -->
+    <div class="box">
+      <h4 class="section-title">Lịch trình tour</h4>
 
+      <?php if (!empty($lichtrinh)): ?>
+        <?php foreach ($lichtrinh as $index => $item): ?>
 
-            <img src="<?= BASE_URL . $tour['Image'] ?>" style="width:300px; height: 200px; border-radius: 12px;" alt="">
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#lt<?= $index ?>" style="cursor:pointer;">
+              Ngày <?= $item['Ngay'] ?>
+            </div>
 
-          </div>
+            <div id="lt<?= $index ?>" class="collapse">
+              <div class="card-body">
+                <div class="row">
 
-
-          <div class="admin-box mb-4">
-            <h4 class="section-title">Lịch trình tour</h4>
-
-            <?php if (!empty($lichtrinh)): ?>
-              <?php foreach ($lichtrinh as $index => $item): ?>
-
-                <!-- Box từng lịch trình -->
-                <div class="card mb-3">
-
-                  <!-- HEADER (Ngày – clickable) -->
-                  <div class="card-header"
-                    style="cursor: pointer;"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#lt<?= $index ?>">
-                    <strong>Ngày <?= $item['Ngay'] ?></strong>
+                  <div class="col-lg-6 mb-3">
+                    <label class="form-label">Thời gian</label>
+                    <input type="text" class="form-control" value="<?= $item['ThoiGian'] ?>">
                   </div>
 
-                  <!-- CONTENT (ẩn/hiện) -->
-                  <div id="lt<?= $index ?>" class="collapse">
-                    <div class="card-body">
+                  <div class="col-lg-12 mb-3">
+                    <label class="form-label">Điểm tham quan</label>
+                    <textarea class="form-control"><?= $item['DiemThamQuan'] ?></textarea>
+                  </div>
 
-                      <div class="row">
-                        <div class="col-lg-6 mb-3">
-                          <label class="form-label">Thời gian</label>
-                          <input type="text" class="form-control" value="<?= $item['ThoiGian'] ?>">
-                        </div>
-
-                        <div class="col-lg-12 mb-3">
-                          <label class="form-label">Điểm đến</label>
-                          <textarea class="form-control"><?= $item['DiemThamQuan'] ?></textarea>
-                        </div>
-
-                        <div class="col-lg-12 mb-3">
-                          <label class="form-label">Hoạt động</label>
-                          <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>">
-                        </div>
-                      </div>
-<a href="<?= BASE_URL_ADMIN . '?act=xoa-lich-trinh&id=' . $item['LichTrinhID'] ?>" class="btn btn-danger">Xóa</a>
-                    </div>
+                  <div class="col-lg-12 mb-3">
+                    <label class="form-label">Hoạt động</label>
+                    <input type="text" class="form-control" value="<?= $item['HoatDong'] ?>">
                   </div>
 
                 </div>
-                
-              <?php endforeach; ?>
-            <?php else: ?>
-              <p class="text-muted">Không có lịch trình nào cho tour này.</p>
-            <?php endif; ?>
 
-            <a href="<?= BASE_URL_ADMIN . '?act=lichtrinh-add&tour_id=' . $tour['TourID'] ?>"
-              class="btn btn-primary">Thêm lịch trình</a>
+                <a href="<?= BASE_URL_ADMIN . '?act=xoa-lich-trinh&id=' . $item['LichTrinhID'] ?>"
+                  class="btn btn-danger">Xóa</a>
+              </div>
+            </div>
           </div>
 
-          <button class="btn btn-primary">Lưu thay đổi</button>
-          <button class="btn btn-danger ms-2">Xóa tour</button>
-          <a href="<?= BASE_URL_ADMIN . '?act=tour' ?>">
-            <button class="btn btn-dark">Quay lại</button>
-          </a>
-      </form>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p class="text-muted">Không có lịch trình cho tour này.</p>
+      <?php endif; ?>
+
+      <a href="<?= BASE_URL_ADMIN . '?act=form-them-lich-trinh' ?>" class="btn btn-primary mt-2">Thêm lịch trình</a>
     </div>
 
-
-
-
-
-
-
-    <div class="admin-box">
+    <!-- ================== NHÀ CUNG CẤP ===================== -->
+    <div class="box">
       <h4 class="section-title">Nhà cung cấp</h4>
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Tên công ty</label>
-          <input type="text" class="form-control" value="XYZ Travel" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Khách sạn</label>
-          <input type="text" class="form-control" value="Sunrise Hotel 4*" />
-        </div>
-        <div class="mb-3">
+
+      <div class="row">
+
+        <div class="col-lg-6 mb-3">
           <label class="form-label">Phương tiện</label>
-          <input type="text" class="form-control" value="Xe giường nằm / Máy bay" />
+          <input type="text" class="form-control" value="<?= $tour['Name_PhuongTien'] ?>" />
         </div>
-        <button class="btn btn-primary">Cập nhật</button>
-      </form>
+
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">Khách sạn</label>
+          <input type="text" class="form-control" value="<?= $tour['NameKS'] ?>" />
+        </div>
+
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">Dịch vụ</label>
+          <input type="text" class="form-control" value="<?= $tour['Name_DV'] ?>" />
+        </div>
+
+      </div>
     </div>
+
+    <a href="<?= BASE_URL_ADMIN . '?act=tour' ?>">
+      <button class="btn btn-dark">Quay lại</button>
+    </a>
 
   </div>
 

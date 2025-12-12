@@ -298,6 +298,7 @@ if (isset($_SESSION['error'])) {
   </style>
  </head>
  <body>
+  
   <main class="login-container">
    <div class="travel-icons"><span>🏖️</span> <span>🗺️</span> <span>🧳</span>
    </div>
@@ -307,6 +308,8 @@ if (isset($_SESSION['error'])) {
     <div class="admin-icon"><span class="admin-icon-text">🌍</span>
     </div>
     <h1 class="login-title">🎫 Quản Trị Du Lịch</h1>
+
+    
     
     <?php if ($error_message): ?>
         <p class="alert-error"><?= $error_message; ?></p>
@@ -329,6 +332,8 @@ if (isset($_SESSION['error'])) {
     
     <div class="form-options"><label class="remember-me"> <input type="checkbox" id="rememberMe"> <span>Ghi nhớ đăng nhập</span> </label> <a href="forgot-password.html" class="forgot-password">Quên mật khẩu?</a>
     </div><button type="submit" class="login-button"> 🔐 Đăng Nhập </button>
+    <a href="<?= BASE_URL . '?act=login-hdv' ?>">🔐 Đăng nhập hướng dẫn viên</a>
+    </div>
    </form>
   </main>
   

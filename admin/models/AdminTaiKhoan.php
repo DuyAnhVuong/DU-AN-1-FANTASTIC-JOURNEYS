@@ -1,4 +1,6 @@
 <?php
+// Đảm bảo hàm connectDB() đã được định nghĩa và có thể kết nối CSDL
+
 class AdminTaiKhoan
 {
     public $conn;
@@ -6,24 +8,22 @@ class AdminTaiKhoan
     {
         $this->conn = connectDB();
     }
-    //Lay danh sach 
+
+    // --- CRUD CHUNG ---
+
     public function getAllTaiKhoan($vai_tro = null, $keyword = ''): array
     {
-
         try {
-            // Câu SQL cơ bản
             $sql = "SELECT * FROM tai_khoan WHERE 1";
             $params = [];
 
-            // 2. Lọc theo Vai trò (nếu tham số được truyền vào)
             if ($vai_tro !== null) {
-                $sql .= " AND vai_tro = :VaiTro";
+                $sql .= " AND VaiTro = :VaiTro"; // Sửa 'vai_tro' thành 'VaiTro' (giả định tên cột)
                 $params[':VaiTro'] = $vai_tro;
             }
 
-            // 3. Lọc theo Tên/Email (nếu có từ khóa)
             if (!empty($keyword)) {
-                $sql .= " AND (LOWER(ten) LIKE :keyword OR LOWER(email) LIKE :keyword)";
+                $sql .= " AND (LOWER(TenDangNhap) LIKE :keyword OR LOWER(Email) LIKE :keyword)"; // Sửa 'ten' thành 'TenDangNhap', 'email' thành 'Email' (giả định tên cột)
                 $params[':keyword'] = '%' . strtolower($keyword) . '%';
             }
 
@@ -40,18 +40,18 @@ class AdminTaiKhoan
     public function insertTaiKhoan($TenDangNhap, $MatKhauHash, $Email, $VaiTro): bool
     {
         try {
-            // Tên cột đã được sửa trong hình ảnh trước: ten, password, email, vai_tro
+            // Sửa tên cột cho khớp với tên biến PHP và giả định tên cột trong DB
             $sql = "INSERT INTO tai_khoan (TenDangNhap, MatKhauHash, Email, VaiTro) 
-                VALUES (:ho_ten, :password, :email, :chuc_vu_id);";
+                VALUES (:ho_ten, :password, :email, :vaitro);";
 
-            $stmt = $this->conn->prepare(query: $sql);
+            $stmt = $this->conn->prepare($sql);
 
-            $stmt->execute(params: [
-                // Ánh xạ tham số PHP ($ten) với tham số SQL (:TenDangNhap)
+            $stmt->execute([
                 ':ho_ten' => $TenDangNhap,
-                ':password' => $MatKhauHash,
+                // Thực tế, Mật khẩu NÊN được mã hóa bằng password_hash() trước khi insert
+                ':password' => $MatKhauHash, 
                 ':email' => $Email,
-                ':chuc_vu_id' => $VaiTro // Sửa: Dùng :VaiTro trong SQL thay vì :vai_tro
+                ':vaitro' => $VaiTro 
             ]);
 
             return true;
@@ -64,8 +64,7 @@ class AdminTaiKhoan
     public function getDetailTaiKhoan($id)
     {
         try {
-            // Giả sử tên cột ID là TaiKhoanID
-            $sql = "SELECT * FROM tai_khoan WHERE TaiKhoanID= :TaiKhoanID";
+            $sql = "SELECT * FROM tai_khoan WHERE TaiKhoanID= :TaiKhoanID"; // Giả định ID là TaiKhoanID
 
             $stmt = $this->conn->prepare($sql);
 
@@ -73,13 +72,8 @@ class AdminTaiKhoan
                 ':TaiKhoanID' => $id,
             ]);
 
-            // Cần fetch() để lấy chi tiết 1 bản ghi
-            $result = $stmt->fetch();
-
-            // Trả về false nếu không tìm thấy (thay vì null)
-            return $result ?: false;
+            return $stmt->fetch() ?: false;
         } catch (Exception $e) {
-            // Nên log lỗi thay vì echo trực tiếp
             echo "Lỗi: " . $e->getMessage();
             return false;
         }
@@ -88,21 +82,21 @@ class AdminTaiKhoan
     public function updateTaiKhoan($id, $ho_ten, $password, $email, $vaitro)
     {
         try {
-            // Tên tham số trong câu SQL đã đúng. Giả sử ID là TaiKhoanID
             $sql = "UPDATE tai_khoan SET 
                 TenDangNhap =:ho_ten, 
                 MatKhauHash=:password, 
                 Email =:email, 
                 VaiTro= :vaitro 
-                WHERE TaiKhoanID=:id"; // Đã sửa từ :id thành :id
+                WHERE TaiKhoanID=:id";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':ho_ten' => $ho_ten,
-                ':password' => $password,
+                // Thực tế, Mật khẩu NÊN được mã hóa lại nếu $password không rỗng
+                ':password' => $password, 
                 ':email' => $email,
                 ':vaitro' => $vaitro,
-                ':id' => $id // Tham số ID cho WHERE
+                ':id' => $id
             ]);
             return true;
         } catch (Exception $e) {
@@ -110,12 +104,13 @@ class AdminTaiKhoan
             return false;
         }
     }
+    
     public function delete($id)
     {
         try {
             $sql = "DELETE FROM tai_khoan WHERE TaiKhoanID= :TaiKhoanID";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':TaiKhoanID' => $id,]);
+            $stmt->execute([':TaiKhoanID' => $id]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
@@ -123,75 +118,32 @@ class AdminTaiKhoan
     }
 
 
-// public function getTaiKhoanFormEmail($email){
-//     try{
-//         $sql = "SELECT * FROM tai_khoan WHERE email = :email";
-//         $stmt = $this->conn->prepare($sql);
-//         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-//         if(!$stmt->execute()){
-//             print_r($stmt->errorInfo());
-//             return false;
-//         }
-//     }catch(Exception $e){
-//         echo "lỗi".$e->getMessage();
-//         return false;
-//     }
-// }
+    // --- LOGIC ĐĂNG NHẬP PHÂN QUYỀN ---
 
-public function checkLogin($email, $mat_khau){
-    try{
-        $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':Email' => $email]);
-        $user = $stmt->fetch();
+    // 1. Check Login ADMIN (VaiTro = 1)
+    public function checkLogin($email, $mat_khau){
+        try{
+            $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':Email' => $email]);
+            $user = $stmt->fetch();
 
-     
-        if ($user && ($mat_khau==$user['MatKhauHash'])) { 
-            
-           
-            if ($user['VaiTro'] == 1) {
-                return $user; 
+            // Nếu tìm thấy người dùng VÀ mật khẩu KHÔNG được mã hóa (theo mã cũ của bạn)
+            if ($user && ($mat_khau == $user['MatKhauHash'])) { 
+                
+                if ($user['VaiTro'] == 1) { // Chỉ cho phép Admin
+                    return $user; 
+                } else {
+                    return "Tài khoản không có quyền đăng nhập Admin";
+                }
             } else {
-                return "Tài khoản không có quyền đăng nhập";
+                return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
             }
-        } else {
-            return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
+        }catch(Exception $e){
+            echo "Lỗi: " . $e->getMessage();
+            return false;
         }
-    }catch(Exception $e){
-        echo "Lỗi" . $e->getMessage();
-        return false;
     }
+
+    // 2. Check Login HƯỚNG DẪN VIÊN (VaiTro = 2)
 }
-
-
-
-
-// public function checkLoginHDV($email, $mat_khau){
-//     try{
-//         $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
-//         $stmt = $this->conn->prepare($sql);
-//         $stmt->execute([':Email' => $email]);
-//         $user = $stmt->fetch();
-
-     
-//         if ($user && ($mat_khau==$user['MatKhauHash'])) { 
-            
-           
-//             if ($user['VaiTro'] == 2) {
-//                 return $user; 
-//             } else {
-//                 return "Tài khoản không có quyền đăng nhập";
-//             }
-//         } else {
-//             return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
-//         }
-//     }catch(Exception $e){
-//         echo "Lỗi" . $e->getMessage();
-//         return false;
-//     }
-// }
-}
-
-
-
-?>
