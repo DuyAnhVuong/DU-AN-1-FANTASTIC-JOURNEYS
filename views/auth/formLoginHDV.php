@@ -332,6 +332,7 @@ if (isset($_SESSION['error'])) {
     
     <div class="form-options"><label class="remember-me"> <input type="checkbox" id="rememberMe"> <span>Ghi nhớ đăng nhập</span> </label> <a href="forgot-password.html" class="forgot-password">Quên mật khẩu?</a>
     </div><button type="submit" class="login-button"> 🔐 Đăng Nhập hường dẫn viên</button>
+    <a href="<?= BASE_URL_ADMIN . '?act=login-admin' ?>">🔐 Đăng nhập admin</a>
     
     </div>
    </form>

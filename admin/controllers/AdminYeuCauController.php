@@ -53,7 +53,7 @@ class AdminYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->insertYeuCau($KhachID, $BookingID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
                 // Nếu có lỗi, load lại form với dữ liệu cũ và lỗi
