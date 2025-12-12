@@ -1,5 +1,5 @@
 <?php
-class AdminKhachHang
+class HDVKhachHang
 {
     public $conn;
     public function __construct()

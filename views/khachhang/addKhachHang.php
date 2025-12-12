@@ -205,7 +205,7 @@
      <h1>Quản lý khách hàng Tour</h1>
      <p>Thêm khách hàng Tour</p>
     </div>
-    <form action="<?= BASE_URL_ADMIN . '?act=them-khach-hang' ?>" method="POST">
+    <form action="<?= BASE_URL . '?act=them-khach-hang' ?>" method="POST">
      <div class="form-grid">
       <div class="form-group full-width">
        <label for="TenKH">Tên Khách Hàng <span class="required">*</span></label> 

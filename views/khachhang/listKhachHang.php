@@ -1,4 +1,4 @@
-<?php require './views/layout/sidebar.php' ?>
+
 <!doctype html>
 <html lang="vi">
 <head>
@@ -369,7 +369,7 @@
   <div class="checkin-list">
   <div class="list-title-section">
    <h2>Danh sách khách hàng</h2>
-   <a href="<?= BASE_URL_ADMIN . '?act=form-them-khach-hang' ?>" class="btn-add">
+   <a href="<?= BASE_URL . '?act=form-them-khach-hang' ?>" class="btn-add">
    <svg class="btn-icon" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
    </svg> Thêm khách hàng 
    </a>
@@ -434,12 +434,12 @@
    </span>
    </div>
     <div class="action-buttons">
-      <a href="<?= BASE_URL_ADMIN . '?act=form-sua-khach-hang&id_khach_hang=' . $khachHang['DSSK_ID'] ?>"
+      <a href="<?= BASE_URL . '?act=form-sua-khach-hang&id_khach_hang=' . $khachHang['DSSK_ID'] ?>"
         class="btn-action btn-edit">
         <svg class="btn-icon-small" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
         </svg> Sửa 
       </a>
-      <a href="<?= BASE_URL_ADMIN . '?act=xoa-khach-hang&id_khach_hang=' . $khachHang['DSSK_ID'] ?>"
+      <a href="<?= BASE_URL . '?act=xoa-khach-hang&id_khach_hang=' . $khachHang['DSSK_ID'] ?>"
         onclick="return confirm('Bạn có đồng ý xóa khách hàng <?= $khachHang['TenKH'] ?> hay không?')"
         class="btn-action btn-delete">
         Xóa

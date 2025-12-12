@@ -1,5 +1,5 @@
 <?php
-class AdminYeuCauController
+class HDVYeuCauController
 {
     public $modelYeuCau;
     public $modelKhachHang;
@@ -7,9 +7,9 @@ class AdminYeuCauController
 
     public function __construct()
     {
-        $this->modelYeuCau = new AdminYeuCau();
-        $this->modelKhachHang = new AdminKhachHang();
-        $this->modelKhachLe = new AdminKhachLe();
+        $this->modelYeuCau = new HDVYeuCau();
+        // $this->modelKhachHang = new HDVKhachHang();
+        $this->modelKhachLe = new HDVKhachLe();
     }
 
 
@@ -53,12 +53,12 @@ class AdminYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->insertYeuCau($KhachID, $BookingID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
                 // Nếu có lỗi, load lại form với dữ liệu cũ và lỗi
                 $_SESSION['flash'] = true;
-                header("Location:" . BASE_URL_ADMIN . '?act=them-yeu-cau');
+                header("Location:" . BASE_URL_ADMIN . '?act=them-yeu-cau-dac-biet');
             }
         }
     }
@@ -89,7 +89,7 @@ class AdminYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->updateYeuCau($YeuCauID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
 
@@ -112,7 +112,7 @@ class AdminYeuCauController
         if ($ncc) {
             $this->modelYeuCau->deleteYeuCau($id);
         }
-        header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+        header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
         exit();
 
     }

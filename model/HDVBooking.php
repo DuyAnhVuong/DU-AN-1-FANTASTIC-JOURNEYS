@@ -1,5 +1,5 @@
 <?php
-class AdminBooking
+class HDVBooking
 {
     public $conn;
     public function __construct()
