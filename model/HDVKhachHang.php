@@ -1,76 +1,78 @@
 <?php
-class AdminNCCPT
+class HDVKhachHang
 {
     public $conn;
     public function __construct()
     {
         $this->conn = connectDB();
     }
-    public function getAllNCCPT()
+
+    public function getAllKhachHang()
     {
         try {
-            $sql = "SELECT * FROM ncc_phuongtien";
+            $sql = "SELECT * FROM danh_sach_khach_tour";
             $stmt = $this->conn->prepare($sql);
+
             $stmt->execute();
+
             return $stmt->fetchAll();
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertNCCPT($Name_PhuongTien)
+    public function insertKhachHang($TenKH, $CheckInStatus)
     {
         try {
-            $sql = "INSERT INTO ncc_phuongtien(Name_PhuongTien)
-            VALUE(:Name_PhuongTien)";
+            $sql = "INSERT INTO danh_sach_khach_tour(TenKH, CheckInStatus)
+            VALUE (:TenKH, :CheckInStatus)";
+
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
-                ':Name_PhuongTien' => $Name_PhuongTien
+                ':TenKH' => $TenKH,
+                ':CheckInStatus' => $CheckInStatus,
             ]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function getDetailNCCPT($id_pt)
+    public function getDetailKhachHang($id)
     {
         try {
-            $sql = "SELECT * FROM ncc_phuongtien WHERE id_pt=:id_pt";
+            $sql = "SELECT * FROM danh_sach_khach_tour WHERE DSSK_ID=:id";
+            
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id_pt' => $id_pt]);
+            $stmt->execute([':id' => $id]);
             return $stmt->fetch();
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function updateNCCPT($id_pt, $Name_PhuongTien)
+    public function updateKhachHang($id, $TenKH, $CheckInStatus)
     {
         try {
-            $sql = "UPDATE ncc_phuongtien 
-                SET Name_PhuongTien = :Name_PhuongTien 
-                WHERE id_pt = :id_pt";
-
+            $sql = "UPDATE danh_sach_khach_tour SET TenKH=:TenKH, CheckInStatus=:CheckInStatus WHERE DSSK_ID=:id";
             $stmt = $this->conn->prepare($sql);
-
             $stmt->execute([
-                ':Name_PhuongTien' => $Name_PhuongTien,
-                ':id_pt'            => $id_pt
+                ':TenKH' => $TenKH,
+                ':CheckInStatus' => $CheckInStatus,
+                ':id' => $id,
             ]);
-
             return true;
         } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
-            return false;
+            echo "Lỗi" . $e->getMessage();
         }
     }
-    public function destroyNCCPT($id_pt)
+    public function destroyKhachHang($id)
     {
         try {
-            $sql = "DELETE FROM ncc_phuongtien WHERE id_pt=:id_pt";
+            $sql = "DELETE FROM danh_sach_khach_tour WHERE DSSK_ID=:id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id_pt' => $id_pt]);
+            $stmt->execute([':id' => $id]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
 }
+?>

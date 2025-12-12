@@ -1,5 +1,5 @@
 <?php
- class AdminStatus{
+ class HDVStatus{
     public $conn;
     public function __construct(){
         $this->conn = connectDB();

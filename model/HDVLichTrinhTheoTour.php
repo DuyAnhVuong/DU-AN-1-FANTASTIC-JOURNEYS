@@ -1,5 +1,5 @@
 <?php
-class AdminLichTrinhTheoTour
+class HDVLichTrinhTheoTour
 {
     public $conn;
     public function __construct()

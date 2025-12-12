@@ -1,7 +1,7 @@
 <?php
 // Giả định đã có các class AdminBooking, AdminTour, AdminNCCDV, AdminNCCPT, AdminNCCKS, AdminStatus
 
-class AdminBookingController
+class HDVBookingController
 {
     public $modelBooking;
     public $modelTour;
@@ -15,15 +15,14 @@ class AdminBookingController
 
     public function __construct()
     {
-        $this->modelBooking = new AdminBooking();
-        $this->modelTour = new AdminTour();
-        $this->modelNCC = new AdminNCC();
-        $this->modelLichTrinh = new AdminLichTrinhTheoTour();
-        $this->modelYeuCau = new AdminYeuCau();
-        $this->modelStatus = new AdminStatus();
-        $this->modelNCCDV = new AdminNCCDV();
-        $this->modelNCCPT = new AdminNCCPT();
-        $this->modelNCCKS = new AdminNCCKS();
+        $this->modelBooking = new HDVBooking();
+        $this->modelTour = new HDVTour();
+        $this->modelLichTrinh = new HDVLichTrinh();
+        $this->modelYeuCau = new HDVYeuCau();
+        $this->modelStatus = new HDVStatus();
+        $this->modelNCCDV = new HDVNCCDV();
+        $this->modelNCCPT = new HDVNCCPT();
+        $this->modelNCCKS = new HDVNCCKS();
     }
 
     public function listbooking()
@@ -132,13 +131,13 @@ class AdminBookingController
                      $_SESSION['error_message'] = "Lỗi hệ thống: Không thể chèn Booking vào CSDL.";
                 }
                 
-                header("Location: " . BASE_URL_ADMIN . '?act=list-booking');
+                header("Location: " . BASE_URL . '?act=list-booking');
                 exit();
             } else {
                 // Lưu lại tất cả lỗi và dữ liệu đã nhập để quay lại form
                 $_SESSION['error'] = $errors;
                 $_SESSION['old_data'] = $_POST; 
-                header("Location: " . BASE_URL_ADMIN . '?act=form-add-booking');
+                header("Location: " . BASE_URL . '?act=form-add-booking');
                 exit();
             }
         }
@@ -162,7 +161,7 @@ class AdminBookingController
         $listTrangThai = $this->modelStatus->getAllStatus();
         
         if (!$detailBooking) {
-            header("Location:" . BASE_URL_ADMIN . '?act=list-booking');
+            header("Location:" . BASE_URL . '?act=list-booking');
             exit();
         }
         
@@ -229,12 +228,12 @@ class AdminBookingController
                      $_SESSION['error_message'] = "Lỗi hệ thống: Không thể cập nhật Booking.";
                 }
                 
-                header("Location:" . BASE_URL_ADMIN . '?act=list-booking');
+                header("Location:" . BASE_URL . '?act=list-booking');
                 exit();
             } else {
                 $_SESSION['error'] = $errors; 
                 $_SESSION['old_data'] = $_POST;
-                header("Location:" . BASE_URL_ADMIN . '?act=form-edit-booking&id=' . $id);
+                header("Location:" . BASE_URL . '?act=form-edit-booking&id=' . $id);
                 exit();
             }
         }
@@ -261,7 +260,7 @@ class AdminBookingController
                 $_SESSION['error_message'] = "Lỗi: Yêu cầu hủy booking không hợp lệ.";
             }
 
-            header("Location: " . BASE_URL_ADMIN . '?act=list-booking');
+            header("Location: " . BASE_URL . '?act=list-booking');
             exit();
         }
     }

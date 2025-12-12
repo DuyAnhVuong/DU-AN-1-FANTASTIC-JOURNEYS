@@ -3,10 +3,11 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý khách hàng Tour - Thêm mới</title>
+  <title>Sửa Khách Hàng Tour</title>
   <script src="/_sdk/element_sdk.js"></script>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* CSS Styles from the new layout */
     body {
       box-sizing: border-box;
     }
@@ -164,7 +165,7 @@
       width: 20px;
       height: 20px;
     }
-
+    
     .text-danger {
       color: #ef4444;
       font-size: 14px;
@@ -202,14 +203,18 @@
   <div class="main-wrapper">
    <div class="form-container">
     <div class="form-header">
-     <h1>Quản lý khách hàng Tour</h1>
-     <p>Thêm khách hàng Tour</p>
+     <h1>Sửa Khách Hàng Tour</h1>
+     <p>Cập nhật thông tin chi tiết của khách hàng.</p>
     </div>
-    <form action="<?= BASE_URL_ADMIN . '?act=them-khach-hang' ?>" method="POST">
+    
+    <form action="<?= BASE_URL . '?act=sua-khach-hang' ?>" method="POST" enctype="multipart/form-data">
      <div class="form-grid">
+       
+      <input type="hidden" name="DSSK_ID" value="<?= $khachHang['DSSK_ID'] ?? '' ?>">
+
       <div class="form-group full-width">
        <label for="TenKH">Tên Khách Hàng <span class="required">*</span></label> 
-       <input type="text" id="TenKH" name="TenKH" placeholder="Nhập tên khách hàng">
+       <input type="text" id="TenKH" name="TenKH" placeholder="Nhập tên khách hàng" value="<?= $khachHang['TenKH'] ?? '' ?>">
        <?php if (isset($errors['TenKH'])) { ?>
          <p class="text-danger"><?= $errors['TenKH'] ?></p>
        <?php } ?>
@@ -218,16 +223,15 @@
       <div class="form-group">
        <label for="CheckInStatus">Trạng Thái Cập Nhật <span class="required">*</span></label> 
        <select id="CheckInStatus" name="CheckInStatus" required> 
-         <option value="0">Nhập trạng thái cập nhập</option> 
-         <option value="1">Chưa đến</option> 
-         <option value="2">Đã đến</option> 
-         <option value="3">Vắng mặt</option> 
+         <option value="1" <?= (isset($khachHang['CheckInStatus']) && $khachHang['CheckInStatus'] == 1) ? 'selected' : '' ?>>Chưa đến</option>
+         <option value="2" <?= (isset($khachHang['CheckInStatus']) && $khachHang['CheckInStatus'] == 2) ? 'selected' : '' ?>>Đã đến</option>
+         <option value="3" <?= (isset($khachHang['CheckInStatus']) && $khachHang['CheckInStatus'] == 3) ? 'selected' : '' ?>>Vắng mặt</option> 
        </select>
       </div>
 
       <div class="form-group">
        <label for="ThoiGianCapNhat">Thời Gian Cập Nhật <span class="required">*</span></label> 
-       <input type="date" id="ThoiGianCapNhat" name="ThoiGianCapNhat" placeholder="Thời gian cập nhật">
+       <input type="text" id="ThoiGianCapNhat" name="ThoiGianCapNhat" placeholder="Nhập thời gian cập nhật" value="<?= $khachHang['ThoiGianCapNhat'] ?? '' ?>">
        <?php if (isset($errors['ThoiGianCapNhat'])) { ?>
          <p class="text-danger"><?= $errors['ThoiGianCapNhat'] ?></p>
        <?php } ?>
@@ -235,26 +239,23 @@
      </div>
      
      <div class="form-actions">
-
        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
         <svg class="btn-icon" fill="none" stroke="currentColor" viewbox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg> Hủy Bỏ 
-       </button>
-
+       </button> 
        <button type="submit" class="btn btn-primary">
         <svg class="btn-icon" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg> Submit 
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+        </svg> Cập Nhật 
        </button>
      </div>
     </form>
-    </div>
+   </div>
   </div>
   <script>
-    // Khởi tạo SDK (giữ nguyên từ layout gốc)
     const defaultConfig = {
-      form_title: "Quản lý khách hàng Tour"
+      form_title: "Sửa Khách Hàng Tour"
     };
 
     async function onConfigChange(config) {
@@ -280,21 +281,8 @@
       });
     }
 
-    // Thiết lập ngày giờ hiện tại cho input (tương tự như trong layout gốc)
-    const now = new Date();
-    const dateTimeInput = document.getElementById('ThoiGianCapNhat');
-    
-    // Format datetime-local value (YYYY-MM-DDTHH:MM)
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    
-    // Chỉ set giá trị mặc định nếu input chưa có giá trị (ví dụ: sau khi submit form bị lỗi)
-    if (!dateTimeInput.value) {
-      dateTimeInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
-    }
+    // Ghi chú: Logic set ngày/giờ mặc định bằng JS đã bị loại bỏ vì form này là form SỬA, 
+    // và giá trị phải được lấy từ PHP ($khachHang['ThoiGianCapNhat']).
   </script>
  </body>
 </html>

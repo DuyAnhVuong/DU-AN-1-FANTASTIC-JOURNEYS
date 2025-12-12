@@ -205,7 +205,7 @@
      <h1>Quản lý khách hàng Tour</h1>
      <p>Thêm khách hàng Tour</p>
     </div>
-    <form action="<?= BASE_URL_ADMIN . '?act=them-khach-hang' ?>" method="POST">
+    <form action="<?= BASE_URL . '?act=them-khach-hang' ?>" method="POST">
      <div class="form-grid">
       <div class="form-group full-width">
        <label for="TenKH">Tên Khách Hàng <span class="required">*</span></label> 
@@ -235,13 +235,11 @@
      </div>
      
      <div class="form-actions">
-
        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
         <svg class="btn-icon" fill="none" stroke="currentColor" viewbox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg> Hủy Bỏ 
        </button>
-
        <button type="submit" class="btn btn-primary">
         <svg class="btn-icon" fill="none" stroke="currentColor" viewbox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>

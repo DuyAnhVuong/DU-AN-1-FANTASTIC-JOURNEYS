@@ -60,7 +60,7 @@
      </div><!-- User Info -->
      <div class="flex items-center gap-3">
       <div class="text-right hidden sm:block">
-       <p class="text-sm font-medium" id="user-name">Nguyễn Văn A</p>
+       
        <p class="text-xs" id="user-role">Hướng dẫn viên</p>
       </div>
       
@@ -78,7 +78,7 @@
      <h2 id="page-title" class="text-3xl font-bold mb-2">Hướng Dẫn Viên</h2>
      <p id="welcome-text" class="text-lg">Chào mừng trở lại</p>
     </div><!-- Dashboard Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto"><!-- Xem Tour --> <a href="#xem-tour" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto"><!-- Xem Tour --> <a href="<?= BASE_URL . '?act=tour' ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -88,17 +88,17 @@
         <h3 id="view-tour-label" class="text-xl font-semibold mb-1">Xem Tour</h3>
         <p class="text-sm description-text">Xem chi tiết lịch trình và thông tin tour</p>
        </div>
-      </div></a> <!-- Danh Sách Khách --> <a href="#danh-sach-khach" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+      </div></a> <!-- Booking --> <a href="<?= BASE_URL . '?act=list-booking' ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
        </div>
        <div class="flex-1">
-        <h3 id="guest-list-label" class="text-xl font-semibold mb-1">Danh Sách Khách</h3>
-        <p class="text-sm description-text">Quản lý thông tin khách tham gia tour</p>
+        <h3 id="guest-list-label" class="text-xl font-semibold mb-1">Booking</h3>
+        <p class="text-sm description-text">Quản lý thông tin booking tour</p>
        </div>
-      </div></a> <!-- Nhật Ký Tour --> <a href="#nhat-ky-tour" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+      </div></a> <!-- Nhật Ký Tour --> <a href="<?= BASE_URL . '?act=list-nhat-ky' ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -108,7 +108,7 @@
         <h3 id="tour-diary-label" class="text-xl font-semibold mb-1">Nhật Ký Tour</h3>
         <p class="text-sm description-text">Ghi chú và cập nhật tiến độ tour</p>
        </div>
-      </div></a> <!-- Check In --> <a href="#check-in" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+      </div></a> <!-- Check In --> <a href="<?=  BASE_URL . '?act=khach-hang' ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -118,7 +118,7 @@
         <h3 id="check-in-label" class="text-xl font-semibold mb-1">Check In</h3>
         <p class="text-sm description-text">Điểm danh khách tại các điểm dừng</p>
        </div>
-      </div></a> <!-- Yêu Cầu Đặc Biệt --> <a href="#yeu-cau-dac-biet" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+      </div></a> <!-- Yêu Cầu Đặc Biệt --> <a href="<?= BASE_URL . '?act=yeu-cau-dac-biet' ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -128,7 +128,7 @@
         <h3 id="special-requests-label" class="text-xl font-semibold mb-1">Yêu Cầu Đặc Biệt</h3>
         <p class="text-sm description-text">Theo dõi yêu cầu đặc biệt của khách</p>
        </div>
-      </div></a> <!-- Hồ Sơ Cá Nhân --> <a href="#ho-so" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
+      </div></a> <!-- Hồ Sơ Cá Nhân --> <a href="<?=BASE_URL ?> ?>" class="menu-item rounded-xl p-6 shadow-lg border-2 transition-all">
       <div class="flex items-start gap-4">
        <div class="icon-card w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

@@ -1,5 +1,5 @@
 <?php
-class AdminNCCDV
+class HDVNCCDV
 {
     public $conn;
     public function __construct()

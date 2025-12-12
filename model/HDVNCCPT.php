@@ -1,15 +1,15 @@
 <?php
-class AdminNCCKS
+class HDVNCCPT
 {
     public $conn;
     public function __construct()
     {
         $this->conn = connectDB();
     }
-    public function getAllNCCKS()
+    public function getAllNCCPT()
     {
         try {
-            $sql = "SELECT * FROM ncc_khachsan";
+            $sql = "SELECT * FROM ncc_phuongtien";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll();
@@ -17,43 +17,43 @@ class AdminNCCKS
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertNCCKS($NameKS)
+    public function insertNCCPT($Name_PhuongTien)
     {
         try {
-            $sql = "INSERT INTO ncc_khachsan(NameKS)
-            VALUE(:NameKS)";
+            $sql = "INSERT INTO ncc_phuongtien(Name_PhuongTien)
+            VALUE(:Name_PhuongTien)";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
-                ':NameKS' => $NameKS
+                ':Name_PhuongTien' => $Name_PhuongTien
             ]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function getDetailNCCKS($id_ks)
+    public function getDetailNCCPT($id_pt)
     {
         try {
-            $sql = "SELECT * FROM ncc_khachsan WHERE id_ks=:id_ks";
+            $sql = "SELECT * FROM ncc_phuongtien WHERE id_pt=:id_pt";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id_ks' => $id_ks]);
+            $stmt->execute([':id_pt' => $id_pt]);
             return $stmt->fetch();
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function updateNCCKS($id_ks, $NameKS)
+    public function updateNCCPT($id_pt, $Name_PhuongTien)
     {
         try {
-            $sql = "UPDATE ncc_khachsan 
-                SET NameKS = :NameKS 
-                WHERE id_ks = :id_ks";
+            $sql = "UPDATE ncc_phuongtien 
+                SET Name_PhuongTien = :Name_PhuongTien 
+                WHERE id_pt = :id_pt";
 
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([
-                ':NameKS' => $NameKS,
-                ':id_ks'   => $id_ks
+                ':Name_PhuongTien' => $Name_PhuongTien,
+                ':id_pt'            => $id_pt
             ]);
 
             return true;
@@ -62,12 +62,12 @@ class AdminNCCKS
             return false;
         }
     }
-    public function destroyNCCKS($id_ks)
+    public function destroyNCCPT($id_pt)
     {
         try {
-            $sql = "DELETE FROM ncc_khachsan WHERE id_ks=:id_ks";
+            $sql = "DELETE FROM ncc_phuongtien WHERE id_pt=:id_pt";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id_ks' => $id_ks]);
+            $stmt->execute([':id_pt' => $id_pt]);
             return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();

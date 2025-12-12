@@ -1,10 +1,10 @@
 <?php
-class AdminKhachHangController
+class HDVKhachHangController
 {
     public $modelKhachHang;
     public function __construct()
     {
-        $this->modelKhachHang = new AdminKhachHang();
+        $this->modelKhachHang = new HDVKhachHang();
     }
 
     public function danhSachKhachHang()
@@ -20,7 +20,7 @@ class AdminKhachHangController
     {
         // Xử lý thêm khách hàng
         $this->modelKhachHang->insertKhachHang($_POST['TenKH'], $_POST['CheckInStatus']);
-        header('Location: ' . BASE_URL_ADMIN . '?act=khach-hang');
+        header('Location: ' . BASE_URL . '?act=khach-hang');
     }
     public function formEditKhachHang()
     {
@@ -29,7 +29,7 @@ class AdminKhachHangController
         if ($khachHang) {
             require_once './views/khachhang/editKhachHang.php';
         }else{
-            header("Location:" . BASE_URL_ADMIN . '?act=khach-hang');
+            header("Location:" . BASE_URL . '?act=khach-hang');
             exit();
         }
         
@@ -46,7 +46,7 @@ class AdminKhachHangController
             }
             if (empty($errors)) {
                 $this->modelKhachHang->updateKhachHang($id, $ten_khach_hang, $check_in_status);
-                header("Location:" . BASE_URL_ADMIN . '?act=khach-hang');
+                header("Location:" . BASE_URL . '?act=khach-hang');
                 exit();
             } else {
                 $khachHang = ['id' => $id, 'TenKH' => $ten_khach_hang, 'CheckInStatus' => $check_in_status];
@@ -60,7 +60,7 @@ class AdminKhachHangController
         if ($khachHang) {
             $this->modelKhachHang->destroyKhachHang($id);
         }
-        header("location:" . BASE_URL_ADMIN . '?act=khach-hang');
+        header("location:" . BASE_URL . '?act=khach-hang');
         exit();
     }
 }
