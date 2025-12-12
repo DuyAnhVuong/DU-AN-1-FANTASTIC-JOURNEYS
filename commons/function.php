@@ -68,6 +68,12 @@ function checkLoginAdmin(){
         exit();
     }
 }
+function checkLoginHDV(){
+    if(!isset($_SESSION['user'])){
+        header('Location: '.BASE_URL  . '?act=login-hdv');
+        exit();
+    }
+}
 
 function formatPrice($price){
     return number_format($price, 0, ',', '.');

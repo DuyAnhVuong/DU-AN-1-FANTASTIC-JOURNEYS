@@ -4,7 +4,6 @@ class AdminBooking
     public $conn;
     public function __construct()
     {
-
         // Giả định hàm connectDB() tồn tại và hoạt động
         $this->conn = connectDB(); 
     }
@@ -12,7 +11,6 @@ class AdminBooking
     public function getAllbooking()
     {
         try {
-
             // Cần đảm bảo các cột NCCID là NOT NULL trong DB hoặc có LEFT JOIN nếu NULL
             $sql = "SELECT 
                         booking.*, 
@@ -22,7 +20,6 @@ class AdminBooking
                         ncc_phuongtien.Name_PhuongTien, 
                         ncc_khachsan.NameKS,
                         trang_thai.status
-
                     FROM booking 
                     INNER JOIN tour ON booking.TourID = tour.TourID
                     LEFT JOIN ncc_dichvu ON booking.id_dichvu = ncc_dichvu.id_dichvu
@@ -151,20 +148,14 @@ class AdminBooking
                 ':id' => $id
             ]);
 
-
             if ($success && $stmt->rowCount() > 0) {
                 return true;
             }
             return false;
 
         } catch (Exception $e) {
-
             error_log("Lỗi hủy booking: " . $e->getMessage());
             return false;
         }
     }
 }
-
-
-?>
-

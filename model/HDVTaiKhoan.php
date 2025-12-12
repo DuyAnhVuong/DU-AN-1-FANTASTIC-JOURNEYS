@@ -1,7 +1,7 @@
 <?php
 // Đảm bảo hàm connectDB() đã được định nghĩa và có thể kết nối CSDL
 
-class AdminTaiKhoan
+class HDVTaiKhoan
 {
     public $conn;
     public function __construct()
@@ -121,20 +121,22 @@ class AdminTaiKhoan
     // --- LOGIC ĐĂNG NHẬP PHÂN QUYỀN ---
 
     // 1. Check Login ADMIN (VaiTro = 1)
-    public function checkLogin($email, $mat_khau){
+    
+
+    // 2. Check Login HƯỚNG DẪN VIÊN (VaiTro = 2)
+    public function checkLoginHDV($email, $mat_khau){
         try{
             $sql = "SELECT * FROM tai_khoan WHERE Email = :Email";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':Email' => $email]);
             $user = $stmt->fetch();
 
-            // Nếu tìm thấy người dùng VÀ mật khẩu KHÔNG được mã hóa (theo mã cũ của bạn)
             if ($user && ($mat_khau == $user['MatKhauHash'])) { 
                 
-                if ($user['VaiTro'] == 1) { // Chỉ cho phép Admin
+                if ($user['VaiTro'] == 2) { // Chỉ cho phép Hướng dẫn viên (VaiTro = 2)
                     return $user; 
                 } else {
-                    return "Tài khoản không có quyền đăng nhập Admin";
+                    return "Tài khoản không có quyền truy cập Hướng dẫn viên";
                 }
             } else {
                 return "Bạn nhập sai thông tin mật khẩu hoặc tài khoản";
@@ -144,6 +146,4 @@ class AdminTaiKhoan
             return false;
         }
     }
-
-    // 2. Check Login HƯỚNG DẪN VIÊN (VaiTro = 2)
 }
