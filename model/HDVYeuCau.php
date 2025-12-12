@@ -1,5 +1,5 @@
 <?php
-class AdminYeuCau
+class HDVYeuCau
 {
     public $conn;
     public function __construct()

@@ -1,5 +1,5 @@
 <?php
-class AdminTourController
+class HDVTourController
 {
     public $modelTour;
     public $modelDanhMuc;
@@ -9,12 +9,12 @@ class AdminTourController
     public $modelLichTrinh;
     public function __construct()
     {
-        $this->modelTour = new AdminTour();
-        $this->modelDanhMuc = new AdminDanhMuc();
-        $this->modelNCCPT = new AdminNCCPT();
-        $this->modelNCCKS = new AdminNCCKS();
-        $this->modelNCCDV = new AdminNCCDV();
-        $this->modelLichTrinh = new AdminLichTrinh();
+        $this->modelTour = new HDVTour();
+        // $this->modelDanhMuc = new HDVDanhMuc();
+        // $this->modelNCCPT = new HDVNCCPT();
+        // $this->modelNCCKS = new HDVNCCKS();
+        // $this->modelNCCDV = new HDVNCCDV();
+        $this->modelLichTrinh = new HDVLichTrinh();
     }
 
     public function danhSachTour()

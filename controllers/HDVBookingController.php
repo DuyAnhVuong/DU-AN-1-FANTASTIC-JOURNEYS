@@ -1,7 +1,7 @@
 <?php
 // Giả định đã có các class AdminBooking, AdminTour, AdminNCCDV, AdminNCCPT, AdminNCCKS, AdminStatus
 
-class AdminBookingController
+class HDVBookingController
 {
     public $modelBooking;
     public $modelTour;
@@ -15,15 +15,15 @@ class AdminBookingController
 
     public function __construct()
     {
-        $this->modelBooking = new AdminBooking();
-        $this->modelTour = new AdminTour();
-        $this->modelNCC = new AdminNCC();
-        $this->modelLichTrinh = new AdminLichTrinhTheoTour();
-        $this->modelYeuCau = new AdminYeuCau();
-        $this->modelStatus = new AdminStatus();
-        $this->modelNCCDV = new AdminNCCDV();
-        $this->modelNCCPT = new AdminNCCPT();
-        $this->modelNCCKS = new AdminNCCKS();
+        $this->modelBooking = new HDVBooking();
+        $this->modelTour = new HDVTour();
+        // $this->modelNCC = new HDVNCC();
+        // $this->modelLichTrinh = new HDVLichTrinhTheoTour();
+        // $this->modelYeuCau = new HDVYeuCau();
+        // $this->modelStatus = new HDVStatus();
+        // $this->modelNCCDV = new HDVNCCDV();
+        // $this->modelNCCPT = new HDVNCCPT();
+        // $this->modelNCCKS = new HDVNCCKS();
     }
 
     public function listbooking()

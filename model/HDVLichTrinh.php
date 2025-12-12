@@ -1,5 +1,5 @@
 <?php
-class AdminLichTrinh
+class HDVLichTrinh
 {
     public $conn;
     public function __construct()

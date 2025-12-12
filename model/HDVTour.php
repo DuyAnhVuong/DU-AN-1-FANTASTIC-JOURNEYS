@@ -1,5 +1,5 @@
 <?php
-class AdminTour
+class HDVTour
 {
     public $conn;
     public function __construct()
