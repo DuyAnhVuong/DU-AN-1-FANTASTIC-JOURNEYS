@@ -107,9 +107,9 @@ match ($act) {
 
     'form-them-tourrun' => (new AdminTourRunController())->formAddTourRun(),
     'them-tourrun' => (new AdminTourRunController())->postAddTourRun(),
-    // 'form-sua-tourrun' => (new AdminTourRunController())->formEditTourRun(),
-    // 'sua-tourrun' => (new AdminTourRunController())->postEditTourRun(),
-    // 'xoa-tourrun' => (new AdminTourRunController())->deleteTourRun(),
+    'form-sua-tourrun' => (new AdminTourRunController())->formEditTourRun(),
+    'sua-tourrun' => (new AdminTourRunController())->postEditTourRun(),
+    'xoa-tourrun' => (new AdminTourRunController())->deleteTourRun(),
 
     // 'sua-album-anh-san-pham' => (new AdminSanPhamController())->postEditAnhSanPham(),
     // 'chi-tiet-san-pham' => (new AdminSanPhamController())->detailSanPham(),
@@ -142,8 +142,8 @@ match ($act) {
     'form-them-yeu-cau' => (new AdminYeuCauController())->formAddYeuCau(),
     'them-yeu-cau' => (new AdminYeuCauController())->postAddYeuCau(),
     'xoa-yeu-cau' => (new AdminYeuCauController())->deleteYeuCau(),
-    
-    // ncc phuong tien
+
+
     'list-ncc-pt' => (new AdminNCCPTController())->listNCCPT(),
     'form-them-ncc-pt' => (new AdminNCCPTController())->formAddNCCPT(),
     'them-ncc-pt' => (new AdminNCCPTController())->postAddNCCPT(),
@@ -192,17 +192,14 @@ match ($act) {
     'check-login-admin' => (new AdminTaiKhoanController())->login(),
     'logout-admin' => (new AdminTaiKhoanController())->logout(),
 
-    
 
-    // route trạng thái
     'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
     'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
     'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
     'form-sua-trang-thai' => (new AdminTrangThaiController())->formEditTrangThai(),
     'sua-trang-thai' => (new AdminTrangThaiController())->postEditTrangThai(),
     'xoa-trang-thai' => (new AdminTrangThaiController())->deleteTrangThai(),
-    
-    // route booking 
+
     'list-booking' => (new AdminBookingController())->listBooking(),
     'form-add-booking' => (new AdminBookingController())->formAddBooking(),
     'add-booking' => (new AdminBookingController())->postAddBooking(),
@@ -211,9 +208,11 @@ match ($act) {
     'edit-booking' => (new AdminBookingController())->editBooking(),
     'huy-booking' => (new AdminBookingController())->cancelBooking(),
 
+
     // Khách lẻ
     'khach-le' => (new AdminKhachLe())->getAllKhachLe(), // Lưu ý: Đây là Model, nên phải gọi qua Controller
     
     // Status
+
     'list-status' => (new AdminStatusController())->danhSachStatus(),
 };

@@ -20,16 +20,17 @@ class AdminKhachHang
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertKhachHang($TenKH, $CheckInStatus)
+    public function insertKhachHang($TenKH, $CheckInStatus, $ThoiGianCapNhat)
     {
         try {
-            $sql = "INSERT INTO danh_sach_khach_tour(TenKH, CheckInStatus)
-            VALUE (:TenKH, :CheckInStatus)";
+            $sql = "INSERT INTO danh_sach_khach_tour(TenKH, CheckInStatus, ThoiGianCapNhat)
+            VALUE (:TenKH, :CheckInStatus, :ThoiGianCapNhat)";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':TenKH' => $TenKH,
                 ':CheckInStatus' => $CheckInStatus,
+                ':ThoiGianCapNhat' => $ThoiGianCapNhat,
             ]);
             return true;
         } catch (Exception $e) {
@@ -48,14 +49,15 @@ class AdminKhachHang
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function updateKhachHang($id, $TenKH, $CheckInStatus)
+    public function updateKhachHang($id, $TenKH, $CheckInStatus, $ThoiGianCapNhat)
     {
         try {
-            $sql = "UPDATE danh_sach_khach_tour SET TenKH=:TenKH, CheckInStatus=:CheckInStatus WHERE DSSK_ID=:id";
+            $sql = "UPDATE danh_sach_khach_tour SET TenKH=:TenKH, CheckInStatus=:CheckInStatus, ThoiGianCapNhat= :ThoiGianCapNhat  WHERE DSSK_ID=:id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':TenKH' => $TenKH,
                 ':CheckInStatus' => $CheckInStatus,
+                ':ThoiGianCapNhat' => $ThoiGianCapNhat,
                 ':id' => $id,
             ]);
             return true;

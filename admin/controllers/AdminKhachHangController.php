@@ -4,7 +4,7 @@ class AdminKhachHangController
     public $modelKhachHang;
     public function __construct()
     {
-        $this->modelKhachHang = new AdminKhachHang();
+        $this->modelKhachHang = new AdminKhachHang();   
     }
 
     public function danhSachKhachHang()
@@ -14,12 +14,13 @@ class AdminKhachHangController
     }
     public function formAddKhachHang()
     {
+
         require_once './views/khachhang/addKhachHang.php';
     }
     public function postAddKhachHang()
     {
         // Xử lý thêm khách hàng
-        $this->modelKhachHang->insertKhachHang($_POST['TenKH'], $_POST['CheckInStatus']);
+        $this->modelKhachHang->insertKhachHang($_POST['TenKH'], $_POST['CheckInStatus'], $_POST['ThoiGianCapNhat']  );
         header('Location: ' . BASE_URL_ADMIN . '?act=khach-hang');
     }
     public function formEditKhachHang()
@@ -40,16 +41,17 @@ class AdminKhachHangController
             $id = $_POST['DSSK_ID'];
             $ten_khach_hang = $_POST['TenKH'];
             $check_in_status = $_POST['CheckInStatus'];
+            $ThoiGianCapNhat = $_POST['ThoiGianCapNhat'];
             $errors = [];
             if (empty($ten_khach_hang)) {
                 $errors['ten_khach_hang'] = 'Tên khách hàng không được để trống';
             }
             if (empty($errors)) {
-                $this->modelKhachHang->updateKhachHang($id, $ten_khach_hang, $check_in_status);
+                $this->modelKhachHang->updateKhachHang($id, $ten_khach_hang, $check_in_status, $ThoiGianCapNhat);
                 header("Location:" . BASE_URL_ADMIN . '?act=khach-hang');
                 exit();
             } else {
-                $khachHang = ['id' => $id, 'TenKH' => $ten_khach_hang, 'CheckInStatus' => $check_in_status];
+                $khachHang = ['id' => $id, 'TenKH' => $ten_khach_hang, 'CheckInStatus' => $check_in_status, 'ThoiGianCapNhat' => $ThoiGianCapNhat];
                 require_once './views/khachhang/editKhachHang.php';
             }
         }

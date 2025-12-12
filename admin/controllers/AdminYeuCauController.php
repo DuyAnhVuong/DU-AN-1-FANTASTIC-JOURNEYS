@@ -89,7 +89,7 @@ class AdminYeuCauController
 
             if (empty($errors)) {
                 $this->modelYeuCau->updateYeuCau($YeuCauID, $LoaiYeuCau, $ChiTiet);
-                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+                header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
                 exit();
             } else {
 
@@ -112,7 +112,7 @@ class AdminYeuCauController
         if ($ncc) {
             $this->modelYeuCau->deleteYeuCau($id);
         }
-        header("location:" . BASE_URL_ADMIN . '?act=yeu-cau');
+        header("location:" . BASE_URL_ADMIN . '?act=yeu-cau-dac-biet');
         exit();
 
     }
