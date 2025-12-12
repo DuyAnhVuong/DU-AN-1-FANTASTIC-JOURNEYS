@@ -141,7 +141,10 @@ match ($act) {
     'sua-yeu-cau' => (new AdminYeuCauController())->postEditYeuCau(),
     'form-them-yeu-cau' => (new AdminYeuCauController())->formAddYeuCau(),
     'them-yeu-cau' => (new AdminYeuCauController())->postAddYeuCau(),
+
     'xoa-yeu-cau' => (new AdminYeuCauController())->deleteYeuCau(),
+
+
 
     'list-ncc-pt' => (new AdminNCCPTController())->listNCCPT(),
     'form-them-ncc-pt' => (new AdminNCCPTController())->formAddNCCPT(),
@@ -193,7 +196,6 @@ match ($act) {
 
 
 
-
     'list-trang-thai' => (new AdminTrangThaiController())->danhSachTrangThai(),
     'form-them-trang-thai' => (new AdminTrangThaiController())->formAddTrangThai(),
     'them-trang-thai' => (new AdminTrangThaiController())->postAddTrangThai(),
@@ -213,12 +215,13 @@ match ($act) {
 
 
 
-    'khach-le' => (new AdminKhachLe())->getAllKhachLe(),
 
+    'khach-le' => (new AdminKhachLe())->getAllKhachLe(),
 
     // Khách lẻ
 
 
     // Status
+
     'list-status' => (new AdminStatusController())->danhSachStatus(),
 };
